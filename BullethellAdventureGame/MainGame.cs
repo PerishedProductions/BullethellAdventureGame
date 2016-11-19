@@ -2,20 +2,25 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace BullethellAdventureGame
+using CoreGame.GameLevels;
+
+namespace CoreGame
 {
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
-    public class Game1 : Game
+    public class MainGame : Game
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        public Game1()
+        GameLevel gameState;
+
+        public MainGame()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            gameState = new MenuLevel();
         }
 
         /// <summary>
@@ -26,7 +31,7 @@ namespace BullethellAdventureGame
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            gameState.Initialize();
 
             base.Initialize();
         }
@@ -40,7 +45,7 @@ namespace BullethellAdventureGame
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
+            gameState.LoadContent(Content);
         }
 
         /// <summary>
@@ -62,7 +67,7 @@ namespace BullethellAdventureGame
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            // TODO: Add your update logic here
+            gameState.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -75,7 +80,7 @@ namespace BullethellAdventureGame
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
+            gameState.Draw(spriteBatch);
 
             base.Draw(gameTime);
         }
