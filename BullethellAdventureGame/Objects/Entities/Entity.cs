@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace CoreGame.Entities
+namespace CoreGame.Objects
 {
     public class Entity
     {

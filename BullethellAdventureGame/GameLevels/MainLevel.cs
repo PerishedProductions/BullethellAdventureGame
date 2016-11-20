@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Diagnostics;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-using CoreGame.Entities;
+using CoreGame.Objects;
 using CoreGame.Utilities;
 
 namespace CoreGame.GameLevels
@@ -18,20 +17,19 @@ namespace CoreGame.GameLevels
     {
 
         Player player;
+        Map map;
 
         public override void Initialize()
         {
+            ReadJson reader = new ReadJson();
+            map = new Map(reader.ReadData("Data/Map.json"));
             player = new Player();
             player.Initialize();
-
-            //Testing the Json Reader
-            ReadJson jsonReader = new ReadJson();
-            Debug.WriteLine(jsonReader.ReadData("Data/Data.json")["name"]);
-            Debug.WriteLine(jsonReader.ReadData("Data/Data.json")["age"]);
         }
 
         public override void LoadContent(ContentManager content)
         {
+            map.LoadContent(content);
             player.LoadContent(content);
         }
 
@@ -42,6 +40,7 @@ namespace CoreGame.GameLevels
 
         public override void Draw(SpriteBatch spriteBatch)
         {
+            map.Draw(spriteBatch);
             player.Draw(spriteBatch);
         }
     }
