@@ -30,15 +30,12 @@ namespace CoreGame.Objects
             columns = (int)data["columns"];
             tileSize = (int)data["tileSize"];
 
-            mapString = (string)data["tiles"];
-            string[] tempString = mapString.Split(',');
-
             for (int y = 0; y < rows; y++)
             {
-                string stringToUse = tempString[y];
+                mapString = (string)data["tiles"][y];
                 for (int x = 0; x < columns; x++)
                 {
-                    string tile = stringToUse.Substring(x, 1);
+                    string tile = mapString.Substring(x, 1);
                     if (tile == "1")
                     {
                         Tile newTile = new Tile();

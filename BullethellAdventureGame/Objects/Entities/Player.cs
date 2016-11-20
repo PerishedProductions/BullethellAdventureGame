@@ -18,7 +18,7 @@ namespace CoreGame.Objects
         //Sets the spriteName so we know what to load
         public override void Initialize()
         {
-            spriteName = "Tree";
+            spriteName = "BasicTile";
             base.Initialize();
         }
 
@@ -36,6 +36,13 @@ namespace CoreGame.Objects
             }
 
             base.Update(gameTime);
+        }
+
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            spriteBatch.Begin();
+            spriteBatch.Draw(sprite, position, Color.Blue);
+            spriteBatch.End();
         }
 
     }
