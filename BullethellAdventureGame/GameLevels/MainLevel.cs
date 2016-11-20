@@ -24,6 +24,7 @@ namespace CoreGame.GameLevels
             player = new Player();
             player.Initialize();
 
+            //Testing the Json Reader
             ReadJson jsonReader = new ReadJson();
             Debug.WriteLine(jsonReader.ReadData("Data/Data.json")["name"]);
             Debug.WriteLine(jsonReader.ReadData("Data/Data.json")["age"]);

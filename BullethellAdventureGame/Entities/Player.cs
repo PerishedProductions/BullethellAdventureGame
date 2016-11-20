@@ -15,12 +15,14 @@ namespace CoreGame.Entities
 
         public int moveSpeed = 5;
 
+        //Sets the spriteName so we know what to load
         public override void Initialize()
         {
             spriteName = "Tree";
             base.Initialize();
         }
 
+        //Handles movement
         public override void Update(GameTime gameTime)
         {
             if (Keyboard.GetState().IsKeyDown(Keys.Right))

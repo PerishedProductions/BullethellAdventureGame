@@ -18,11 +18,16 @@ namespace CoreGame.Entities
         public String spriteName;
 
         public virtual void Initialize() { }
+
+        //Loads the sprite
         public virtual void LoadContent(ContentManager content)
         {
             sprite = content.Load<Texture2D>(spriteName);
         }
+
         public virtual void Update(GameTime gameTime) { }
+
+        //Draws the sprite at its position
         public virtual void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Begin();
