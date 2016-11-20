@@ -38,7 +38,10 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Entities\Entity.cs" />
+    <Compile Include="Entities\Player.cs" />
     <Compile Include="GameLevels\GameLevel.cs" />
+    <Compile Include="GameLevels\MainLevel.cs" />
     <Compile Include="GameLevels\MenuLevel.cs" />
     <Compile Include="MainGame.cs" />
     <Compile Include="Managers\LevelManager.cs" />

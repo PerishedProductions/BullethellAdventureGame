@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 using CoreGame.GameLevels;
+using CoreGame.Managers;
 
 namespace CoreGame
 {
@@ -14,13 +15,12 @@ namespace CoreGame
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        GameLevel gameState;
-
         public MainGame()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            gameState = new MenuLevel();
+            LevelManager.Instance.content = Content;
+            LevelManager.Instance.currentLevel = new MenuLevel();
         }
 
         /// <summary>
@@ -31,8 +31,15 @@ namespace CoreGame
         /// </summary>
         protected override void Initialize()
         {
-            gameState.Initialize();
+            //Set the resolution of the window
+            graphics.PreferredBackBufferWidth = 1280;
+            graphics.PreferredBackBufferHeight = 720;
+            graphics.ApplyChanges();
 
+            //Centers the screem
+            this.Window.Position = new Point(GraphicsDevice.DisplayMode.Width - (GraphicsDevice.DisplayMode.Width / 2) - (graphics.PreferredBackBufferWidth / 2), GraphicsDevice.DisplayMode.Height - (GraphicsDevice.DisplayMode.Height / 2) - (graphics.PreferredBackBufferHeight / 2));
+
+            LevelManager.Instance.currentLevel.Initialize();
             base.Initialize();
         }
 
@@ -45,7 +52,7 @@ namespace CoreGame
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            gameState.LoadContent(Content);
+            LevelManager.Instance.currentLevel.LoadContent(Content);
         }
 
         /// <summary>
@@ -67,7 +74,7 @@ namespace CoreGame
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            gameState.Update(gameTime);
+            LevelManager.Instance.currentLevel.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -80,7 +87,7 @@ namespace CoreGame
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            gameState.Draw(spriteBatch);
+            LevelManager.Instance.currentLevel.Draw(spriteBatch);
 
             base.Draw(gameTime);
         }

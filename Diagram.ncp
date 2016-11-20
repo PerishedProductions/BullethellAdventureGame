@@ -7,7 +7,7 @@
       <Entity type="Class">
         <Name>GameLevel</Name>
         <Access>Public</Access>
-        <Location left="623" top="173" />
+        <Location left="73" top="68" />
         <Size width="271" height="216" />
         <Collapsed>False</Collapsed>
         <Member type="Method">public void Initialize()</Member>
@@ -19,7 +19,7 @@
       <Entity type="Class">
         <Name>MenuLevel</Name>
         <Access>Public</Access>
-        <Location left="839" top="494" />
+        <Location left="244" top="402" />
         <Size width="271" height="216" />
         <Collapsed>False</Collapsed>
         <Member type="Field">SpriteFont font</Member>
@@ -30,9 +30,43 @@
         <Member type="Method">public void Draw(SpriteBatch spriteBatch)</Member>
         <Modifier>None</Modifier>
       </Entity>
+      <Entity type="Class">
+        <Name>Entity</Name>
+        <Access>Public</Access>
+        <Location left="698" top="68" />
+        <Size width="265" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">public new String name</Member>
+        <Member type="Field">public new Vector2 position</Member>
+        <Member type="Field">public Texture2D sprite</Member>
+        <Member type="Method">public void Initialize()</Member>
+        <Member type="Method">public void LoadContent(ContentManager content)</Member>
+        <Member type="Method">public void Update(GameTime gameTime)</Member>
+        <Member type="Method">public void Draw(SpriteBatch spriteBatch)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Player</Name>
+        <Access>Public</Access>
+        <Location left="973" top="385" />
+        <Size width="265" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">public new String name</Member>
+        <Member type="Field">public new Vector2 position</Member>
+        <Member type="Field">public Texture2D sprite</Member>
+        <Member type="Method">public void Initialize()</Member>
+        <Member type="Method">public void LoadContent(ContentManager content)</Member>
+        <Member type="Method">public void Update(GameTime gameTime)</Member>
+        <Member type="Method">public void Draw(SpriteBatch spriteBatch)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
     </Entities>
     <Relationships>
       <Relationship type="Generalization" first="1" second="0">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Generalization" first="3" second="2">
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
       </Relationship>
