@@ -39,6 +39,7 @@ namespace CoreGame
             //Centers the screem
             this.Window.Position = new Point(GraphicsDevice.DisplayMode.Width - (GraphicsDevice.DisplayMode.Width / 2) - (graphics.PreferredBackBufferWidth / 2), GraphicsDevice.DisplayMode.Height - (GraphicsDevice.DisplayMode.Height / 2) - (graphics.PreferredBackBufferHeight / 2));
 
+            LevelManager.Instance.viewport = GraphicsDevice.Viewport;
             LevelManager.Instance.currentLevel.Initialize();
             base.Initialize();
         }

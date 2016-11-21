@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
@@ -29,9 +26,7 @@ namespace CoreGame.Objects.Maps.Tiles
         //Draws the sprite at its position
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Begin();
             spriteBatch.Draw(sprite, position);
-            spriteBatch.End();
         }
 
     }

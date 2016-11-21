@@ -38,6 +38,7 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Managers\Camera.cs" />
     <Compile Include="Objects\Entities\Entity.cs" />
     <Compile Include="Objects\Entities\Player.cs" />
     <Compile Include="GameLevels\GameLevel.cs" />

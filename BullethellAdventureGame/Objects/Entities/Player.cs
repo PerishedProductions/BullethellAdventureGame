@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
@@ -40,9 +37,7 @@ namespace CoreGame.Objects
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Begin();
             spriteBatch.Draw(sprite, position, Color.Blue);
-            spriteBatch.End();
         }
 
     }
