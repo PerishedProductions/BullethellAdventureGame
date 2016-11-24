@@ -1,9 +1,6 @@
-﻿using System;
-
+﻿
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 
 
 namespace CoreGame.Managers
@@ -18,7 +15,7 @@ namespace CoreGame.Managers
             this.viewport = viewport;
 
             rotation = 0;
-            zoom = 1;
+            zoom = 2f;
             origin = new Vector2(viewport.Width / 2, viewport.Height / 2);
             position = Vector2.Zero;
         }
@@ -36,6 +33,11 @@ namespace CoreGame.Managers
                 Matrix.CreateRotationZ(rotation) *
                 Matrix.CreateScale(zoom, zoom, 1) *
                 Matrix.CreateTranslation(new Vector3(origin, 0.0f));
+        }
+
+        public void LookAt(Vector2 position)
+        {
+            this.position = position - new Vector2(viewport.Width / 2f, viewport.Height / 2f);
         }
     }
 }

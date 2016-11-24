@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+﻿
+using CoreGame.Managers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-
-using CoreGame.Managers;
 
 namespace CoreGame.GameLevels
 {
@@ -18,7 +13,7 @@ namespace CoreGame.GameLevels
         SpriteFont font;
         Vector2 titlePosition;
 
-        int menuIndex;
+        int menuIndex = 0;
         string[] menuItems = new string[3];
 
         public override void Initialize()
@@ -36,11 +31,9 @@ namespace CoreGame.GameLevels
 
         public override void Update(GameTime gameTime)
         {
-            if (Keyboard.GetState().IsKeyDown(Keys.Enter))
-                LevelManager.Instance.ChangeLevel(new MainLevel());
-
-            if (Keyboard.GetState().IsKeyUp(Keys.Up))
-                if (menuIndex < 0)
+            if (InputManager.Instance.isPressed(Keys.Up))
+            {
+                if (menuIndex == 0)
                 {
                     menuIndex = 2;
                 }
@@ -48,9 +41,11 @@ namespace CoreGame.GameLevels
                 {
                     menuIndex -= 1;
                 }
+            }
 
-            if (Keyboard.GetState().IsKeyUp(Keys.Down))
-                if (menuIndex > 2)
+            if (InputManager.Instance.isReleased(Keys.Down))
+            {
+                if (menuIndex == 2)
                 {
                     menuIndex = 0;
                 }
@@ -58,6 +53,14 @@ namespace CoreGame.GameLevels
                 {
                     menuIndex += 1;
                 }
+            }
+
+            if (InputManager.Instance.isPressed(Keys.Enter))
+            {
+                LevelManager.Instance.ChangeLevel(new MainLevel());
+            }
+
+            base.Update(gameTime);
         }
 
         public override void Draw(SpriteBatch spriteBatch)

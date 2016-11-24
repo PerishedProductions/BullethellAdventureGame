@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
+using CoreGame.Managers;
 
 namespace CoreGame.GameLevels
 {
@@ -14,10 +15,13 @@ namespace CoreGame.GameLevels
     {
         public virtual void Initialize()
         {
-            
+
         }
         public virtual void LoadContent(ContentManager content) { }
-        public virtual void Update(GameTime gameTime) { }
+        public virtual void Update(GameTime gameTime)
+        {
+            InputManager.Instance.Update();
+        }
         public virtual void Draw(SpriteBatch spriteBatch) { }
     }
 }

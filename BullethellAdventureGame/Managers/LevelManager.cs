@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+﻿using CoreGame.GameLevels;
 using Microsoft.Xna.Framework.Content;
-
-using CoreGame.GameLevels;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace CoreGame.Managers
 {
