@@ -12,7 +12,7 @@ namespace CoreGame.Objects
         //Sets the spriteName so we know what to load
         public override void Initialize()
         {
-            spriteName = "BasicTile";
+            spriteName = "Player";
             base.Initialize();
         }
 
