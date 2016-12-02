@@ -24,6 +24,8 @@ namespace CoreGame.Managers
         KeyboardState oldKeyState;
         KeyboardState newKeyState;
 
+        MouseState mouseState;
+
         public void Update()
         {
             oldKeyState = newKeyState;
@@ -77,6 +79,5 @@ namespace CoreGame.Managers
             }
             return false;
         }
-
     }
 }

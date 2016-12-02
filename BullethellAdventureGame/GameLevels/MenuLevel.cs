@@ -26,7 +26,7 @@ namespace CoreGame.GameLevels
 
         public override void LoadContent(ContentManager content)
         {
-            font = content.Load<SpriteFont>("Font");
+            font = content.Load<SpriteFont>("FontMedium");
         }
 
         public override void Update(GameTime gameTime)
@@ -43,7 +43,7 @@ namespace CoreGame.GameLevels
                 }
             }
 
-            if (InputManager.Instance.isReleased(Keys.Down))
+            if (InputManager.Instance.isPressed(Keys.Down))
             {
                 if (menuIndex == 2)
                 {

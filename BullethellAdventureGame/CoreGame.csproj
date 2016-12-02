@@ -54,6 +54,7 @@
     <Compile Include="UI\UICanvas.cs" />
     <Compile Include="UI\UIElement.cs" />
     <Compile Include="UI\UIPanel.cs" />
+    <Compile Include="UI\UIText.cs" />
     <Compile Include="Utilities\ReadJson.cs" />
   </ItemGroup>
   <ItemGroup>

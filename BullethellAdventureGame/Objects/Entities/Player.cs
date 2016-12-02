@@ -34,7 +34,7 @@ namespace CoreGame.Objects
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(sprite, position, Color.Blue);
+            spriteBatch.Draw(sprite, position);
         }
 
     }
