@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-using CoreGame.Objects.Maps.Tiles;
+using CoreGame.Objects;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
@@ -19,7 +19,7 @@ namespace CoreGame.Objects
         int rows;
         int columns;
         int tileSize;
-        
+
         string mapString;
 
         public Map(JsonData data)

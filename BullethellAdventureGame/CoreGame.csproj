@@ -57,7 +57,7 @@
     <Compile Include="MainGame.cs" />
     <Compile Include="Managers\LevelManager.cs" />
     <Compile Include="Objects\Maps\Map.cs" />
-    <Compile Include="Objects\Maps\Tiles\Tile.cs" />
+    <Compile Include="Objects\Entities\Tiles\Tile.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UI\UICanvas.cs" />
