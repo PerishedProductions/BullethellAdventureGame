@@ -38,8 +38,17 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="GameLevels\BulletTestingEnvironment.cs" />
     <Compile Include="Managers\Camera.cs" />
     <Compile Include="Managers\InputManager.cs" />
+    <Compile Include="Objects\Entities\Bullets\Bullet.cs" />
+    <Compile Include="Objects\Entities\Bullets\BulletFactory.cs" />
+    <Compile Include="Objects\Entities\Bullets\BulletProcedureManager.cs" />
+    <Compile Include="Objects\Entities\Bullets\BulletProcedures\BulletRotationProcedure.cs" />
+    <Compile Include="Objects\Entities\Bullets\BulletProcedures\BulletSpawnProcedure.cs" />
+    <Compile Include="Objects\Entities\Bullets\BulletProcedures\IBulletProcedure.cs" />
+    <Compile Include="Objects\Entities\Bullets\BulletProcedures\BulletSpeedProcedure.cs" />
+    <Compile Include="Objects\Entities\Bullets\BulletProcedures\Utility\SpawnPoint.cs" />
     <Compile Include="Objects\Entities\Entity.cs" />
     <Compile Include="Objects\Entities\Player.cs" />
     <Compile Include="GameLevels\GameLevel.cs" />
@@ -81,6 +90,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
