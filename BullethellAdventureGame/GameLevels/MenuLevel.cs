@@ -20,8 +20,8 @@ namespace CoreGame.GameLevels
         {
             titlePosition = new Vector2(200, 100);
             menuItems[0] = "Play";
-            menuItems[1] = "Options";
-            menuItems[2] = "Exit";
+            menuItems[1] = "Bullet Enviorment";
+            menuItems[2] = "Map Editor";
         }
 
         public override void LoadContent(ContentManager content)
@@ -57,7 +57,18 @@ namespace CoreGame.GameLevels
 
             if (InputManager.Instance.isPressed(Keys.Enter))
             {
-                LevelManager.Instance.ChangeLevel(new MainLevel());
+                switch (menuIndex)
+                {
+                    case 0:
+                        LevelManager.Instance.ChangeLevel(new MainLevel());
+                        break;
+                    case 1:
+                        LevelManager.Instance.ChangeLevel(new BulletTestingEnvironment());
+                        break;
+                    case 2:
+                        break;
+
+                }
             }
 
             base.Update(gameTime);

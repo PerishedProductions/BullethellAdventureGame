@@ -24,7 +24,7 @@ namespace CoreGame.Managers
         KeyboardState oldKeyState;
         KeyboardState newKeyState;
 
-        MouseState mouseState;
+        //MouseState mouseState;
 
         public void Update()
         {

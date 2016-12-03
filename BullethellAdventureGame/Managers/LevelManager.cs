@@ -32,7 +32,7 @@ namespace CoreGame.Managers
         {
             currentLevel = level;
             currentLevel.Initialize();
-            MainLevel temp = (MainLevel)currentLevel;
+            GameLevel temp = (GameLevel)currentLevel;
             temp.InitializeCam(viewport);
             currentLevel.LoadContent(content);
         }
