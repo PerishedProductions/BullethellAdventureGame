@@ -28,7 +28,7 @@ namespace CoreGame.GameLevels
             canvas.Initialize();
         }
 
-        public void InitializeCam(Viewport viewport)
+        public override void InitializeCam(Viewport viewport)
         {
             cam = new Camera(viewport);
         }

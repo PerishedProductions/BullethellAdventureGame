@@ -9,6 +9,18 @@ namespace CoreGame.Objects
 
         public int moveSpeed = 5;
 
+        public Rectangle BoundingBox
+        {
+            get
+            {
+                return new Rectangle(
+                    (int)position.X,
+                    (int)position.Y,
+                    sprite.Width,
+                    sprite.Height);
+            }
+        }
+
         //Sets the spriteName so we know what to load
         public override void Initialize()
         {
@@ -27,6 +39,16 @@ namespace CoreGame.Objects
             if (Keyboard.GetState().IsKeyDown(Keys.Left))
             {
                 position.X -= 1 * moveSpeed;
+            }
+
+            if (Keyboard.GetState().IsKeyDown(Keys.Up))
+            {
+                position.Y -= 1 * moveSpeed;
+            }
+
+            if (Keyboard.GetState().IsKeyDown(Keys.Down))
+            {
+                position.Y += 1 * moveSpeed;
             }
 
             base.Update(gameTime);
