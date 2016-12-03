@@ -17,7 +17,7 @@ namespace CoreGame.Objects.Entities.Bullets
 
         public BulletProcedureManager ProcedureManager { get; set; } = null;
 
-        public Rectangle BoundingBox
+        public override Rectangle BoundingBox
         {
             get
             {
@@ -29,14 +29,12 @@ namespace CoreGame.Objects.Entities.Bullets
             }
         }
 
-        public bool CheckCollision(Rectangle otherBoundingBox)
+        public override void HandleCollision(Entity otherEntity)
         {
-            return this.BoundingBox.Intersects(otherBoundingBox);
-        }
-
-        public void HandleCollision()
-        {
-            Active = false;
+            if (otherEntity is Player)
+            {
+                Active = false;
+            }
         }
 
         public Bullet()

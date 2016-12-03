@@ -41,9 +41,9 @@ namespace CoreGame.GameLevels
             for (int i = bulletList.Count - 1; i >= 0; i--)
             {
                 bulletList[i].Update(gameTime);
-                if (bulletList[i].CheckCollision(player.BoundingBox))
+                if (bulletList[i].CheckCollision(player))
                 {
-                    bulletList[i].HandleCollision();
+                    bulletList[i].HandleCollision(player);
                     if (bulletList[i].Active == false)
                     {
                         bulletList.Remove(bulletList[i]);

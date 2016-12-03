@@ -1,8 +1,7 @@
-﻿using System;
-
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 
 namespace CoreGame.Objects
 {
@@ -13,6 +12,28 @@ namespace CoreGame.Objects
         public Texture2D sprite;
 
         public String spriteName;
+
+        public virtual Rectangle BoundingBox
+        {
+            get
+            {
+                return new Rectangle(
+                    (int)position.X,
+                    (int)position.Y,
+                    sprite.Width,
+                    sprite.Height);
+            }
+        }
+
+        public virtual bool CheckCollision(Entity otherEntity)
+        {
+            return this.BoundingBox.Intersects(otherEntity.BoundingBox);
+        }
+
+        public virtual void HandleCollision(Entity otherEntity)
+        {
+
+        }
 
         public virtual void Initialize() { }
 
