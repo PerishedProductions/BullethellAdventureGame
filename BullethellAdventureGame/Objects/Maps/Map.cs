@@ -14,7 +14,7 @@ namespace CoreGame.Objects
     public class Map
     {
 
-        List<Tile> tiles = new List<Tile>();
+        public List<Tile> tiles = new List<Tile>();
 
         int rows;
         int columns;

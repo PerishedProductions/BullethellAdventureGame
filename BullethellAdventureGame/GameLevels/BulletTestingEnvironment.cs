@@ -33,7 +33,6 @@ namespace CoreGame.GameLevels
             player.LoadContent(content);
         }
 
-
         public override void Update(GameTime gameTime)
         {
             player.Update(gameTime);

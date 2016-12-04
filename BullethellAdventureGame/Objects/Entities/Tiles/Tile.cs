@@ -12,6 +12,7 @@ namespace CoreGame.Objects
         public override void Initialize()
         {
             spriteName = "BasicTile";
+            base.Initialize();
         }
 
         //Loads the sprite

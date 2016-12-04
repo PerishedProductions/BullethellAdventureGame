@@ -1,5 +1,4 @@
-﻿
-using CoreGame.Managers;
+﻿using CoreGame.Managers;
 using CoreGame.Objects;
 using CoreGame.Utilities;
 using CoreGame.UI;
@@ -24,7 +23,7 @@ namespace CoreGame.GameLevels
             map = new Map(reader.ReadData("Data/Map.json"));
             player = new Player();
             player.Initialize();
-            player.position = new Vector2(32, 32);
+            player.position = new Vector2(128, 36);
             canvas.Initialize();
         }
 
@@ -45,6 +44,17 @@ namespace CoreGame.GameLevels
 
         public override void Update(GameTime gameTime)
         {
+
+            //Player Collision
+            for (int i = 0; i < map.tiles.Count; i++)
+            {
+                Tile temp = map.tiles[i];
+                if (player.CheckCollision(temp))
+                {
+                    player.HandleCollision(temp);
+                }
+            }
+
             if (InputManager.Instance.isDown(Keys.Q))
             {
                 cam.zoom += .1f;
@@ -57,6 +67,7 @@ namespace CoreGame.GameLevels
             cam.LookAt(player.position);
             player.Update(gameTime);
             canvas.Update(gameTime);
+
             base.Update(gameTime);
         }
 
