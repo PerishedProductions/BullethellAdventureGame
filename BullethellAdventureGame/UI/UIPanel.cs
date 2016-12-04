@@ -32,6 +32,7 @@ namespace CoreGame.UI
         {
             this.content = content;
             sprite = content.Load<Texture2D>(textureName);
+            CreateUIElement(new UIText(new Vector2(11, 11), "Cobo"));
         }
 
         public override void Update(GameTime gameTime)

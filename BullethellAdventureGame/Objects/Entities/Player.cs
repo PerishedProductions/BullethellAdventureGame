@@ -2,12 +2,18 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
+using CoreGame.Graphics;
+
+using System.Diagnostics;
+using Microsoft.Xna.Framework.Content;
+
 namespace CoreGame.Objects
 {
     public class Player : Entity
     {
-
         public int moveSpeed = 5;
+
+        Animation anim;
 
         float gravity = 1;
 
@@ -16,6 +22,12 @@ namespace CoreGame.Objects
         {
             spriteName = "Player";
             base.Initialize();
+        }
+
+        public override void LoadContent(ContentManager content)
+        {
+            base.LoadContent(content);
+            anim = new Animation(sprite, 32, 32, 3, 100, true);
         }
 
         public override void HandleCollision(Entity otherEntity)
@@ -109,14 +121,17 @@ namespace CoreGame.Objects
             }
 
 
-            position.Y += gravity;
+            //position.Y += gravity;
 
+
+            anim.Update(gameTime, position);
             base.Update(gameTime);
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(sprite, position);
+            anim.Draw(spriteBatch);
+            //spriteBatch.Draw(sprite, position);
         }
 
     }
