@@ -2,8 +2,6 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-using System.Diagnostics;
-
 namespace CoreGame.Objects
 {
     public class Player : Entity
@@ -24,16 +22,67 @@ namespace CoreGame.Objects
         {
             if (otherEntity is Tile)
             {
-                if (BoundingBox.Right > otherEntity.BoundingBox.Left && BoundingBox.Bottom - 8 < otherEntity.BoundingBox.Top && BoundingBox.Bottom - 8 > otherEntity.BoundingBox.Bottom)
-                {
-                    position.X = otherEntity.BoundingBox.Left - sprite.Width;
-                }
-
-                if (BoundingBox.Bottom > otherEntity.BoundingBox.Top)
+                //Check if bottom has a collision
+                if (LineIntersectsRect(new Point(otherEntity.BoundingBox.Left, otherEntity.BoundingBox.Top), new Point(otherEntity.BoundingBox.Right, otherEntity.BoundingBox.Top), BoundingBox))
                 {
                     position.Y = otherEntity.BoundingBox.Top - sprite.Height;
+                    return;
                 }
+
+                //Check if right has a collision
+                if (LineIntersectsRect(new Point(otherEntity.BoundingBox.Right, otherEntity.BoundingBox.Top), new Point(otherEntity.BoundingBox.Right, otherEntity.BoundingBox.Bottom), BoundingBox))
+                {
+                    position.X = otherEntity.BoundingBox.Right;
+                    return;
+                }
+
+                //Check if left has a collision
+                if (LineIntersectsRect(new Point(otherEntity.BoundingBox.Left, otherEntity.BoundingBox.Top), new Point(otherEntity.BoundingBox.Left, otherEntity.BoundingBox.Bottom), BoundingBox))
+                {
+                    position.X = otherEntity.BoundingBox.Left - sprite.Width;
+                    return;
+                }
+
+                //Check if top has a collision
+                if (LineIntersectsRect(new Point(otherEntity.BoundingBox.Left, otherEntity.BoundingBox.Bottom), new Point(otherEntity.BoundingBox.Right, otherEntity.BoundingBox.Bottom), BoundingBox))
+                {
+                    position.Y = otherEntity.BoundingBox.Bottom;
+                    return;
+                }
+
             }
+        }
+
+        private bool LineIntersectsRect(Point p1, Point p2, Rectangle r)
+        {
+            return LineIntersectsLine(p1, p2, new Point(r.X, r.Y), new Point(r.X + r.Width, r.Y)) ||
+                   LineIntersectsLine(p1, p2, new Point(r.X + r.Width, r.Y), new Point(r.X + r.Width, r.Y + r.Height)) ||
+                   LineIntersectsLine(p1, p2, new Point(r.X + r.Width, r.Y + r.Height), new Point(r.X, r.Y + r.Height)) ||
+                   LineIntersectsLine(p1, p2, new Point(r.X, r.Y + r.Height), new Point(r.X, r.Y)) ||
+                   (r.Contains(p1) || r.Contains(p2));
+        }
+
+        private bool LineIntersectsLine(Point l1p1, Point l1p2, Point l2p1, Point l2p2)
+        {
+            float q = (l1p1.Y - l2p1.Y) * (l2p2.X - l2p1.X) - (l1p1.X - l2p1.X) * (l2p2.Y - l2p1.Y);
+            float d = (l1p2.X - l1p1.X) * (l2p2.Y - l2p1.Y) - (l1p2.Y - l1p1.Y) * (l2p2.X - l2p1.X);
+
+            if (d == 0)
+            {
+                return false;
+            }
+
+            float r = q / d;
+
+            q = (l1p1.Y - l2p1.Y) * (l1p2.X - l1p1.X) - (l1p1.X - l2p1.X) * (l1p2.Y - l1p1.Y);
+            float s = q / d;
+
+            if (r < 0 || r > 1 || s < 0 || s > 1)
+            {
+                return false;
+            }
+
+            return true;
         }
 
         //Handles movement
