@@ -39,6 +39,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="GameLevels\BulletTestingEnvironment.cs" />
+    <Compile Include="Graphics\Animation.cs" />
     <Compile Include="Managers\Camera.cs" />
     <Compile Include="Managers\InputManager.cs" />
     <Compile Include="Objects\Entities\Bullets\Bullet.cs" />

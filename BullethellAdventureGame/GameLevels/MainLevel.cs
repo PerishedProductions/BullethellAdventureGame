@@ -39,7 +39,6 @@ namespace CoreGame.GameLevels
             canvas.LoadContent(content);
 
             UIPanel panel = (UIPanel)canvas.CreateUIElement(new UIPanel(new Rectangle(10, 10, 100, 50)));
-            panel.CreateUIElement(new UIText(new Vector2(11, 11), "Cobo"));
         }
 
         public override void Update(GameTime gameTime)
@@ -74,7 +73,7 @@ namespace CoreGame.GameLevels
         public override void Draw(SpriteBatch spriteBatch)
         {
             var viewMatrix = cam.GetViewMatrix();
-            spriteBatch.Begin(transformMatrix: viewMatrix);
+            spriteBatch.Begin(SpriteSortMode.BackToFront, null, SamplerState.PointClamp, null, null, transformMatrix: viewMatrix);
             map.Draw(spriteBatch);
             player.Draw(spriteBatch);
             spriteBatch.End();
