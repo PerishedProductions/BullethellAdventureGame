@@ -9,10 +9,13 @@ namespace CoreGame.UI
 {
     public class UIPanel : UIElement
     {
-        Rectangle size;
+        public Rectangle size;
 
         String textureName;
         Texture2D sprite;
+
+        public WindowTheme windowTheme = WindowTheme.Dark;
+        public bool visible = true;
 
         ContentManager content;
 
@@ -23,29 +26,51 @@ namespace CoreGame.UI
             this.size = size;
         }
 
+        public UIPanel(Rectangle size, WindowTheme theme)
+        {
+            this.size = size;
+            this.windowTheme = theme;
+        }
+
         public override void Initialize()
         {
-            textureName = "Window";
+            switch (windowTheme)
+            {
+                case WindowTheme.Dark:
+                    textureName = "Window";
+                    break;
+                case WindowTheme.Light:
+                    textureName = "LightWindow";
+                    break;
+            }
         }
 
         public override void LoadContent(ContentManager content)
         {
             this.content = content;
             sprite = content.Load<Texture2D>(textureName);
-            CreateUIElement(new UIText(new Vector2(11, 11), "Cobo"));
         }
 
         public override void Update(GameTime gameTime)
         {
-
+            if (visible)
+            {
+                for (int i = 0; i < elements.Count; i++)
+                {
+                    elements[i].Update(gameTime);
+                }
+            }
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(sprite, size, Color.White);
-            for (int i = 0; i < elements.Count; i++)
+            if (visible)
             {
-                elements[i].Draw(spriteBatch);
+                spriteBatch.Draw(sprite, size, Color.White);
+                for (int i = 0; i < elements.Count; i++)
+                {
+                    elements[i].Draw(spriteBatch);
+                }
             }
         }
 

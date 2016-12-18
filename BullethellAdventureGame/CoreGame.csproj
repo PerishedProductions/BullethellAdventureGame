@@ -61,6 +61,7 @@
     <Compile Include="Objects\Entities\Tiles\Tile.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UI\UIButton.cs" />
     <Compile Include="UI\UICanvas.cs" />
     <Compile Include="UI\UIElement.cs" />
     <Compile Include="UI\UIPanel.cs" />
@@ -88,6 +89,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Data\Data.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\UI\Hud.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

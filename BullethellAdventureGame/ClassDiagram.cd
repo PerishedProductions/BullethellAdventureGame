@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CoreGame.GameLevels.BulletTestingEnvironment" Collapsed="true">
+    <Position X="0.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAEAAAAgAAAwAAAAAAAAAAAAAAAAABABAAgAAAAAQ=</HashCode>
+      <FileName>GameLevels\BulletTestingEnvironment.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CoreGame.GameLevels.GameLevel" Collapsed="true">
+    <Position X="3" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAQAAAAAAAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>GameLevels\GameLevel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CoreGame.GameLevels.MainLevel" Collapsed="true">
+    <Position X="3" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAQAFAAAAAAAAwAAAAAAAAACAAAAAAABAAAAAAAAAAQ=</HashCode>
+      <FileName>GameLevels\MainLevel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CoreGame.GameLevels.MenuLevel" Collapsed="true">
+    <Position X="5.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYAAAAAAACACwAAAAAQAAAAAAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>GameLevels\MenuLevel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CoreGame.Graphics.Animation" Collapsed="true">
+    <Position X="7.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQIAABAgQAAAgAAAAEAAASAABAAQAAgAAAAIAAAAAA=</HashCode>
+      <FileName>Graphics\Animation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CoreGame.MainGame" Collapsed="true">
+    <Position X="9.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAEEAAAAAAAwAAAAAAAAAAAAAAAAgAAAAAAAAAAAQ=</HashCode>
+      <FileName>MainGame.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CoreGame.Program" Collapsed="true">
+    <Position X="13" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CoreGame.Managers.Camera" Collapsed="true">
+    <Position X="11.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAAAAAAAABACAIBAAACAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Managers\Camera.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CoreGame.Managers.InputManager" Collapsed="true">
+    <Position X="13" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAEAAAAAAAAACIABAAAAAQAAACIABAAA=</HashCode>
+      <FileName>Managers\InputManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CoreGame.Managers.LevelManager" Collapsed="true">
+    <Position X="7.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAABAAAAAAAAQBAAAAARAAAAAAAAAA=</HashCode>
+      <FileName>Managers\LevelManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CoreGame.Objects.Entities.Bullets.Bullet" Collapsed="true">
+    <Position X="5.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQQAAAAAIAAgwAAAAAAAAABACAAAAAgAAAAAAgAQAw=</HashCode>
+      <FileName>Objects\Entities\Bullets\Bullet.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CoreGame.Objects.Entities.Bullets.BulletFactory" Collapsed="true">
+    <Position X="9.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAIAAAAAAAAAAAAAAABQAAAAAAAAAA=</HashCode>
+      <FileName>Objects\Entities\Bullets\BulletFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CoreGame.Objects.Entities.Bullets.BulletProcedureManager" Collapsed="true">
+    <Position X="11.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAA=</HashCode>
+      <FileName>Objects\Entities\Bullets\BulletProcedureManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CoreGame.Objects.Entities.Bullets.BulletProcedures.BulletRotationProcedure" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="13" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAQAAAAAgAAAQAAAAAAAAAAAAABAAAAAAAAAA=</HashCode>
+      <FileName>Objects\Entities\Bullets\BulletProcedures\BulletRotationProcedure.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CoreGame.Objects.Entities.Bullets.BulletProcedures.BulletSpawnProcedure" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="7.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACMAAQBAgAQAEAAQAAAIAAAAAAAAABkAAAAEAAAA=</HashCode>
+      <FileName>Objects\Entities\Bullets\BulletProcedures\BulletSpawnProcedure.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CoreGame.Objects.Entities.Bullets.BulletProcedures.BulletSpeedProcedure" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="9.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAAAAAAQAAAAAAAAAAIAABAAEAAAAAAA=</HashCode>
+      <FileName>Objects\Entities\Bullets\BulletProcedures\BulletSpeedProcedure.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CoreGame.Objects.Entities.Bullets.BulletProcedures.Utility.SpawnPoint" Collapsed="true">
+    <Position X="9.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgIAgAAAAAAABAAAAAAAAAAAAAAAAQAA=</HashCode>
+      <FileName>Objects\Entities\Bullets\BulletProcedures\Utility\SpawnPoint.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CoreGame.Objects.Entity" Collapsed="true">
+    <Position X="3" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQQAAAAAgAAAwAAAAAAIAAAATAEAACAIAAAAAAABAQ=</HashCode>
+      <FileName>Objects\Entities\Entity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CoreGame.Objects.Player" Collapsed="true">
+    <Position X="0.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQQAAgAEAAIAwAAAEAAAgAAgCAIAAAAIAAAAAAAgAQ=</HashCode>
+      <FileName>Objects\Entities\Player.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CoreGame.Objects.Tile" Collapsed="true">
+    <Position X="3" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAwAAAAAAAAAAAAAAAAAAIAAAAAAAAAQ=</HashCode>
+      <FileName>Objects\Entities\Tiles\Tile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CoreGame.Objects.Map" Collapsed="true">
+    <Position X="11.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAQAAAwAAAABAAAAAAgAAAQAACAAAAAAAAAQ=</HashCode>
+      <FileName>Objects\Maps\Map.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CoreGame.UI.UICanvas" Collapsed="true">
+    <Position X="11.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQCAAAAAAAAAwAAAAAAAAAACAABAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>UI\UICanvas.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CoreGame.UI.UIElement" Collapsed="true">
+    <Position X="1.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>UI\UIElement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CoreGame.UI.UIPanel" Collapsed="true">
+    <Position X="0.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAQCAAAAAAAAAxAAAIAAAAAAABABAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>UI\UIPanel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CoreGame.UI.UIText" Collapsed="true">
+    <Position X="2.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYAAAAAAAAAAwAAAAAAIAAAAAAAAAAIAAAAAAAAAAQ=</HashCode>
+      <FileName>UI\UIText.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CoreGame.Utilities.ReadJson" Collapsed="true">
+    <Position X="7.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAEAAAAAAAAAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Utilities\ReadJson.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="CoreGame.Objects.Entities.Bullets.BulletProcedures.IBulletProcedure" Collapsed="true">
+    <Position X="7.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAA=</HashCode>
+      <FileName>Objects\Entities\Bullets\BulletProcedures\IBulletProcedure.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

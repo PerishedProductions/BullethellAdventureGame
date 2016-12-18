@@ -8,31 +8,32 @@ namespace CoreGame.Objects
     public class Entity
     {
         public String name;
-        public Vector2 position;
-        public Texture2D sprite;
+        private Vector2 position;
 
+        public Texture2D sprite;
         public String spriteName;
 
         public virtual Rectangle BoundingBox
         {
             get
             {
-                return new Rectangle(
-                    (int)position.X,
-                    (int)position.Y,
-                    sprite.Width,
-                    sprite.Height);
+                return new Rectangle((int)Position.X,
+                                     (int)Position.Y,
+                                     sprite.Width,
+                                     sprite.Height);
             }
         }
 
-        public virtual bool CheckCollision(Entity otherEntity)
+        public Vector2 Position
         {
-            return this.BoundingBox.Intersects(otherEntity.BoundingBox);
-        }
-
-        public virtual void HandleCollision(Entity otherEntity)
-        {
-
+            get
+            {
+                return position;
+            }
+            set
+            {
+                position = value;
+            }
         }
 
         public virtual void Initialize() { }
@@ -51,6 +52,16 @@ namespace CoreGame.Objects
             spriteBatch.Begin();
             spriteBatch.Draw(sprite, position);
             spriteBatch.End();
+        }
+
+        public virtual bool CheckCollision(Entity otherEntity)
+        {
+            return this.BoundingBox.Intersects(otherEntity.BoundingBox);
+        }
+
+        public virtual void HandleCollision(Entity otherEntity)
+        {
+
         }
     }
 }

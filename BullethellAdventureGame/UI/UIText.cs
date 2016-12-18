@@ -9,7 +9,7 @@ namespace CoreGame.UI
 
         public string text;
 
-        Vector2 position;
+        public Vector2 position;
         SpriteFont font;
 
         public UIText(Vector2 pos, string text)
@@ -35,7 +35,10 @@ namespace CoreGame.UI
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.DrawString(font, text, position, Color.White);
+            if (font != null)
+            {
+                spriteBatch.DrawString(font, text, position, Color.White);
+            }
         }
 
     }

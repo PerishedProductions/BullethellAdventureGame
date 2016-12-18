@@ -37,7 +37,7 @@ namespace CoreGame.Objects
                     if (tile == "1")
                     {
                         Tile newTile = new Tile();
-                        newTile.position = new Vector2(x * tileSize, y * tileSize);
+                        newTile.Position = new Vector2(x * tileSize, y * tileSize);
                         newTile.Initialize();
                         tiles.Add(newTile);
                     }

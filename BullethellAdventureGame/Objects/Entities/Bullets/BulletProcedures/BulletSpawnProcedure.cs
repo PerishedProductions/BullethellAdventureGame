@@ -111,7 +111,7 @@ namespace CoreGame.Objects.Entities.Bullets.BulletProcedures
                 Vector2 newPosition = new Vector2();
                 newPosition.X = AddedPosition.X * (float)Math.Cos(MathHelper.ToRadians(degrees)) - AddedPosition.Y * (float)Math.Sin(MathHelper.ToRadians(degrees));
                 newPosition.Y = AddedPosition.X * (float)Math.Sin(MathHelper.ToRadians(degrees)) + AddedPosition.Y * (float)Math.Cos(MathHelper.ToRadians(degrees));
-                newPosition = newPosition + bullet.position;
+                newPosition = newPosition + bullet.Position;
 
                 float newRotation = (degrees + SpawnPoints[j].Rotation) % 360;
                 newRotation = MathHelper.ToRadians(newRotation);

@@ -26,7 +26,7 @@ namespace CoreGame.Objects
         //Draws the sprite at its position
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(sprite, position);
+            spriteBatch.Draw(sprite, Position);
         }
 
     }

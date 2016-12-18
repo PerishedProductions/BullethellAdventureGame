@@ -21,8 +21,7 @@ namespace CoreGame.GameLevels
             bullet.Initialize();
             player = new Player();
             player.Initialize();
-            player.moveSpeed = 3;
-            player.position = new Vector2(600, 200);
+            player.Position = new Vector2(600, 200);
 
         }
 

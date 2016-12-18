@@ -22,8 +22,8 @@ namespace CoreGame.Objects.Entities.Bullets
             get
             {
                 return new Rectangle(
-                    (int)position.X - sprite.Width / 2,
-                    (int)position.Y - sprite.Height / 2,
+                    (int)Position.X - sprite.Width / 2,
+                    (int)Position.Y - sprite.Height / 2,
                     sprite.Width,
                     sprite.Height);
             }
@@ -46,7 +46,7 @@ namespace CoreGame.Objects.Entities.Bullets
         public Bullet(Vector2 position, float speed, float rotation, float rotationSpeed, BulletProcedureManager procedureManager, Color color)
         {
             spriteName = "Bullet";
-            this.position = position;
+            this.Position = position;
             Speed = speed;
             RotationAngle = rotation;
             RotationSpeed = rotationSpeed;
@@ -56,7 +56,7 @@ namespace CoreGame.Objects.Entities.Bullets
 
         public override void Initialize()
         {
-            this.position = new Vector2(600, 300);
+            this.Position = new Vector2(600, 300);
             RotationAngle = MathHelper.ToRadians(0);
             Speed = 0;
             ProcedureManager = new BulletProcedureManager();
@@ -67,7 +67,7 @@ namespace CoreGame.Objects.Entities.Bullets
             Vector2 direction = new Vector2((float)Math.Cos(RotationAngle),
                                             (float)Math.Sin(RotationAngle));
             direction.Normalize();
-            position += direction * Speed;
+            Position += direction * Speed;
 
             RotationAngle += MathHelper.ToRadians(RotationSpeed);
             float circle = MathHelper.TwoPi;
@@ -95,7 +95,7 @@ namespace CoreGame.Objects.Entities.Bullets
         //Draws the sprite at its position
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(sprite, new Rectangle((int)position.X, (int)position.Y, sprite.Width, sprite.Height), null, BulletColor, RotationAngle, Origin, SpriteEffects.None, 0);
+            spriteBatch.Draw(sprite, new Rectangle((int)Position.X, (int)Position.Y, sprite.Width, sprite.Height), null, BulletColor, RotationAngle, Origin, SpriteEffects.None, 0);
             //spriteBatch.DrawString(font, RotationSpeed.ToString(), new Vector2(Position.X + 10, Position.Y + 10), Color.White);
         }
 

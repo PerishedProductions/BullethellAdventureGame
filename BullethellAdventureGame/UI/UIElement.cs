@@ -2,6 +2,8 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework;
 
+public enum WindowTheme { Dark, Light }
+
 namespace CoreGame.UI
 {
     public class UIElement

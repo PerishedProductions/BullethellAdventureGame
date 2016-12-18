@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Diagnostics;
 
 namespace CoreGame.GameLevels
 {
@@ -23,7 +24,7 @@ namespace CoreGame.GameLevels
             map = new Map(reader.ReadData("Data/Map.json"));
             player = new Player();
             player.Initialize();
-            player.position = new Vector2(128, 36);
+            player.Position = new Vector2(100, 50);
             canvas.Initialize();
         }
 
@@ -37,8 +38,6 @@ namespace CoreGame.GameLevels
             map.LoadContent(content);
             player.LoadContent(content);
             canvas.LoadContent(content);
-
-            UIPanel panel = (UIPanel)canvas.CreateUIElement(new UIPanel(new Rectangle(10, 10, 100, 50)));
         }
 
         public override void Update(GameTime gameTime)
@@ -47,10 +46,9 @@ namespace CoreGame.GameLevels
             //Player Collision
             for (int i = 0; i < map.tiles.Count; i++)
             {
-                Tile temp = map.tiles[i];
-                if (player.CheckCollision(temp))
+                if (player.CheckCollision(map.tiles[i]))
                 {
-                    player.HandleCollision(temp);
+                    player.HandleCollision(map.tiles[i]);
                 }
             }
 
@@ -63,7 +61,8 @@ namespace CoreGame.GameLevels
             {
                 cam.zoom -= .1f;
             }
-            cam.LookAt(player.position);
+
+            cam.LookAt(player.Position);
             player.Update(gameTime);
             canvas.Update(gameTime);
 
