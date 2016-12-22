@@ -45,11 +45,11 @@ namespace CoreGame.UI
             base.Initialize();
         }
 
-        public override void LoadContent(ContentManager content)
+        public override void LoadContent()
         {
-            sprite = content.Load<Texture2D>(textureName);
-            text.LoadContent(content);
-            base.LoadContent(content);
+            ResourceManager.Instance.Sprites.TryGetValue(textureName, out sprite);
+            text.LoadContent();
+            base.LoadContent();
         }
 
         public override void Update(GameTime gameTime)

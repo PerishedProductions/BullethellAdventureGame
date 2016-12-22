@@ -24,9 +24,9 @@ namespace CoreGame.GameLevels
             menuItems[2] = "Map Editor";
         }
 
-        public override void LoadContent(ContentManager content)
+        public override void LoadContent()
         {
-            font = content.Load<SpriteFont>("FontMedium");
+            ResourceManager.Instance.Fonts.TryGetValue("FontMedium", out font);
         }
 
         public override void Update(GameTime gameTime)

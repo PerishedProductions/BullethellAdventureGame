@@ -19,7 +19,6 @@ namespace CoreGame
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            LevelManager.Instance.content = Content;
             LevelManager.Instance.currentLevel = new MenuLevel();
         }
 
@@ -53,7 +52,8 @@ namespace CoreGame
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            LevelManager.Instance.currentLevel.LoadContent(Content);
+            ResourceManager.Instance.LoadAllContent(Content);
+            LevelManager.Instance.currentLevel.LoadContent();
         }
 
         /// <summary>

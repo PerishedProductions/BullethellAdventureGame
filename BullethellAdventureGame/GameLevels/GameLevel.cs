@@ -20,7 +20,7 @@ namespace CoreGame.GameLevels
 
         public virtual void InitializeCam(Viewport viewport) { }
 
-        public virtual void LoadContent(ContentManager content) { }
+        public virtual void LoadContent() { }
         public virtual void Update(GameTime gameTime)
         {
             InputManager.Instance.Update();

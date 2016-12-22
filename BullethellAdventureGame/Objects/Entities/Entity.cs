@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using CoreGame.Managers;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -39,9 +40,9 @@ namespace CoreGame.Objects
         public virtual void Initialize() { }
 
         //Loads the sprite
-        public virtual void LoadContent(ContentManager content)
+        public virtual void LoadContent()
         {
-            sprite = content.Load<Texture2D>(spriteName);
+            ResourceManager.Instance.Sprites.TryGetValue(spriteName, out sprite);
         }
 
         public virtual void Update(GameTime gameTime) { }

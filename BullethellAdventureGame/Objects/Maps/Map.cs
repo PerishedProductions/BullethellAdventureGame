@@ -51,11 +51,11 @@ namespace CoreGame.Objects
 
         }
 
-        public virtual void LoadContent(ContentManager content)
+        public virtual void LoadContent()
         {
             for (int i = 0; i < tiles.Count; i++)
             {
-                tiles[i].LoadContent(content);
+                tiles[i].LoadContent();
             }
         }
 

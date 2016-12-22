@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework;
 
-public enum WindowTheme { Dark, Light }
+public enum WindowTheme { Dark, Light, None }
 
 namespace CoreGame.UI
 {
@@ -14,7 +14,7 @@ namespace CoreGame.UI
 
         }
 
-        public virtual void LoadContent(ContentManager content)
+        public virtual void LoadContent()
         {
 
         }

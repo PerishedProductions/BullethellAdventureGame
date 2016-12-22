@@ -16,7 +16,7 @@ namespace CoreGame.Objects.Entities.Bullets
         public Bullet CreateBullet(Vector2 position, float speed, float rotation, float rotationSpeed, Color bulletColor, BulletProcedureManager procedureManager)
         {
             Bullet newBullet = new Bullet(position, speed, rotation, rotationSpeed, procedureManager, bulletColor);
-            newBullet.LoadContent(LevelInstance.Content);
+            newBullet.LoadContent();
             LevelInstance.bulletList.Add(newBullet);
 
             return newBullet;

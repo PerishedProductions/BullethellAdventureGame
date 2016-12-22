@@ -25,11 +25,10 @@ namespace CoreGame.GameLevels
 
         }
 
-        public override void LoadContent(ContentManager content)
+        public override void LoadContent()
         {
-            Content = content;
-            bullet.LoadContent(content);
-            player.LoadContent(content);
+            bullet.LoadContent();
+            player.LoadContent();
         }
 
         public override void Update(GameTime gameTime)

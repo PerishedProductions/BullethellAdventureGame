@@ -34,7 +34,7 @@ namespace CoreGame.Managers
             currentLevel.Initialize();
             GameLevel temp = (GameLevel)currentLevel;
             temp.InitializeCam(viewport);
-            currentLevel.LoadContent(content);
+            currentLevel.LoadContent();
         }
     }
 }

@@ -42,6 +42,8 @@
     <Compile Include="Graphics\Animation.cs" />
     <Compile Include="Managers\Camera.cs" />
     <Compile Include="Managers\InputManager.cs" />
+    <Compile Include="Managers\ResourceManager.cs" />
+    <Compile Include="Objects\Entities\CollisonEntity.cs" />
     <Compile Include="Objects\Entities\Bullets\Bullet.cs" />
     <Compile Include="Objects\Entities\Bullets\BulletFactory.cs" />
     <Compile Include="Objects\Entities\Bullets\BulletProcedureManager.cs" />

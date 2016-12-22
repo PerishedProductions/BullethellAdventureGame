@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Diagnostics;
+using System.Collections.Generic;
 
 namespace CoreGame.GameLevels
 {
@@ -33,23 +34,21 @@ namespace CoreGame.GameLevels
             cam = new Camera(viewport);
         }
 
-        public override void LoadContent(ContentManager content)
+        public override void LoadContent()
         {
-            map.LoadContent(content);
-            player.LoadContent(content);
-            canvas.LoadContent(content);
+            map.LoadContent();
+            player.LoadContent();
+            canvas.LoadContent();
+            canvas.CreateUIElement(new UIPanel(new Rectangle(109, 100, 500, 100)));
         }
 
         public override void Update(GameTime gameTime)
         {
+            List<Entity> temp = new List<Entity>();
 
-            //Player Collision
             for (int i = 0; i < map.tiles.Count; i++)
             {
-                if (player.CheckCollision(map.tiles[i]))
-                {
-                    player.HandleCollision(map.tiles[i]);
-                }
+                player.CheckCollision(map.tiles[i]);
             }
 
             if (InputManager.Instance.isDown(Keys.Q))

@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
+using CoreGame.Managers;
 
 namespace CoreGame.UI
 {
@@ -42,13 +43,18 @@ namespace CoreGame.UI
                 case WindowTheme.Light:
                     textureName = "LightWindow";
                     break;
+                case WindowTheme.None:
+                    textureName = null;
+                    break;
             }
         }
 
-        public override void LoadContent(ContentManager content)
+        public override void LoadContent()
         {
-            this.content = content;
-            sprite = content.Load<Texture2D>(textureName);
+            if (textureName != null)
+            {
+                ResourceManager.Instance.Sprites.TryGetValue(textureName, out sprite);
+            }
         }
 
         public override void Update(GameTime gameTime)
@@ -67,6 +73,7 @@ namespace CoreGame.UI
             if (visible)
             {
                 spriteBatch.Draw(sprite, size, Color.White);
+
                 for (int i = 0; i < elements.Count; i++)
                 {
                     elements[i].Draw(spriteBatch);
@@ -78,9 +85,8 @@ namespace CoreGame.UI
         {
             elements.Add(element);
             element.Initialize();
-            element.LoadContent(content);
+            element.LoadContent();
             return element;
         }
-
     }
 }

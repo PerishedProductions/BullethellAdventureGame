@@ -17,7 +17,7 @@
 		"Element2": {
 			"Type": "UIPanel",
 			"Position": [ 32, 150 ],
-			"Size": [ 120, 50 ],
+			"Size": [ 500, 50 ],
 			"Alignment": [ "Center" ],
 			"Elements": {
 				"UIButton": {

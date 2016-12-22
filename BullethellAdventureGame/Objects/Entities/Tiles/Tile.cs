@@ -16,9 +16,9 @@ namespace CoreGame.Objects
         }
 
         //Loads the sprite
-        public override void LoadContent(ContentManager content)
+        public override void LoadContent()
         {
-            sprite = content.Load<Texture2D>(spriteName);
+            base.LoadContent();
         }
 
         public override void Update(GameTime gameTime) { }

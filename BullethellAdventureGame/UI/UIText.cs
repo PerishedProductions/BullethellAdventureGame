@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework;
+using CoreGame.Managers;
 
 namespace CoreGame.UI
 {
@@ -23,9 +24,9 @@ namespace CoreGame.UI
 
         }
 
-        public override void LoadContent(ContentManager content)
+        public override void LoadContent()
         {
-            font = content.Load<SpriteFont>("FontMedium");
+            ResourceManager.Instance.Fonts.TryGetValue("FontMedium", out font);
         }
 
         public override void Update(GameTime gameTime)

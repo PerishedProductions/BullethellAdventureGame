@@ -75,10 +75,9 @@ namespace CoreGame.Objects.Entities.Bullets
         }
 
         //Loads the sprite
-        public override void LoadContent(ContentManager content)
+        public override void LoadContent()
         {
-            base.LoadContent(content);
-
+            base.LoadContent();
             Origin = new Vector2(sprite.Width / 2, sprite.Height / 2);
         }
 

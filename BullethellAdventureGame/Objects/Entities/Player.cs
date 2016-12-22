@@ -4,16 +4,13 @@ using Microsoft.Xna.Framework.Input;
 using CoreGame.Graphics;
 using System.Diagnostics;
 using Microsoft.Xna.Framework.Content;
+using CoreGame.Managers;
 
 namespace CoreGame.Objects
 {
-    public class Player : Entity
+    public class Player : PhysicsEntity
     {
-
-        private Vector2 velocity;
         private Animation animation;
-
-        private Vector2 oldPosition;
 
         private Texture2D collisionBoxGraphic;
 
@@ -28,39 +25,21 @@ namespace CoreGame.Objects
             }
         }
 
-        public Vector2 Velocity
-        {
-            get
-            {
-                return velocity;
-            }
-            set
-            {
-                velocity = value;
-            }
-        }
-
         public override void Initialize()
         {
             spriteName = "Player";
             base.Initialize();
         }
 
-        public override void LoadContent(ContentManager content)
+        public override void LoadContent()
         {
-            base.LoadContent(content);
+            base.LoadContent();
             animation = new Animation(sprite, 32, 32, 3, 100, true);
-            collisionBoxGraphic = content.Load<Texture2D>("Window");
+            ResourceManager.Instance.Sprites.TryGetValue("Window", out collisionBoxGraphic);
         }
 
         public override void Update(GameTime gameTime)
         {
-            oldPosition = Position;
-
-            Velocity = Vector2.Zero;
-
-            Velocity += new Vector2(0, .5f);
-
             if (Keyboard.GetState().IsKeyDown(Keys.Up))
             {
                 Velocity = (new Vector2(0, -1));
@@ -81,25 +60,14 @@ namespace CoreGame.Objects
                 Velocity += (new Vector2(-1, 0));
             }
 
-            Position += Velocity;
-
-            animation.Update(gameTime, Position);
             base.Update(gameTime);
+
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
             //spriteBatch.Draw(sprite, Position, Color.White);
             spriteBatch.Draw(collisionBoxGraphic, BoundingBox, Color.White);
-        }
-
-        public override void HandleCollision(Entity otherEntity)
-        {
-            if (BoundingBox.Bottom > otherEntity.BoundingBox.Top)
-            {
-                velocity.Y = 0;
-                Position = new Vector2(Position.X, oldPosition.Y);
-            }
         }
     }
 }
