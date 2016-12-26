@@ -7,7 +7,7 @@
       <Entity type="Class">
         <Name>Level</Name>
         <Access>Public</Access>
-        <Location left="449" top="74" />
+        <Location left="425" top="76" />
         <Size width="162" height="216" />
         <Collapsed>False</Collapsed>
         <Member type="Method">public List&lt;ICollisionEntity&gt; RetrieveNearbyCollisionEntitiesByPosition(float X, float Y, float Radius)</Member>
@@ -16,7 +16,7 @@
       <Entity type="Class">
         <Name>LevelManager</Name>
         <Access>Public</Access>
-        <Location left="1301" top="102" />
+        <Location left="1445" top="112" />
         <Size width="162" height="216" />
         <Collapsed>False</Collapsed>
         <Modifier>Static</Modifier>
@@ -24,7 +24,7 @@
       <Entity type="Class">
         <Name>GameManager</Name>
         <Access>Public</Access>
-        <Location left="1308" top="393" />
+        <Location left="1475" top="356" />
         <Size width="162" height="216" />
         <Collapsed>False</Collapsed>
         <Modifier>Static</Modifier>
@@ -32,7 +32,7 @@
       <Entity type="Class">
         <Name>CameraManager</Name>
         <Access>Public</Access>
-        <Location left="1382" top="687" />
+        <Location left="1474" top="593" />
         <Size width="162" height="216" />
         <Collapsed>False</Collapsed>
         <Modifier>None</Modifier>
@@ -40,7 +40,7 @@
       <Entity type="Class">
         <Name>InputManager</Name>
         <Access>Public</Access>
-        <Location left="1080" top="393" />
+        <Location left="1247" top="356" />
         <Size width="162" height="216" />
         <Collapsed>False</Collapsed>
         <Modifier>None</Modifier>
@@ -65,7 +65,7 @@
       <Entity type="Class">
         <Name>Entity</Name>
         <Access>Public</Access>
-        <Location left="757" top="182" />
+        <Location left="716" top="310" />
         <Size width="162" height="216" />
         <Collapsed>False</Collapsed>
         <Member type="Field">Vector Position</Member>
@@ -109,7 +109,7 @@
       <Entity type="Class">
         <Name>ResourceManager</Name>
         <Access>Public</Access>
-        <Location left="994" top="102" />
+        <Location left="1007" top="408" />
         <Size width="162" height="216" />
         <Collapsed>False</Collapsed>
         <Member type="Method">public void LoadSprite(string spriteName)</Member>
@@ -150,12 +150,13 @@
       <Entity type="Interface">
         <Name>ICollisionEntity</Name>
         <Access>Public</Access>
-        <Location left="505" top="393" />
+        <Location left="660" top="10" />
         <Size width="162" height="216" />
         <Collapsed>False</Collapsed>
         <Member type="Method">Rectangle BoundingBox()</Member>
         <Member type="Method">bool CheckCollision(ICollisionEntity otherEntity)</Member>
         <Member type="Method">void HandleCollision(ICollisionEntity otherCollision)</Member>
+        <Member type="Method">bool IsCollisionActive()</Member>
       </Entity>
       <Entity type="Comment">
         <Text>Check Player Collisions every move to prevent movement into walls? Or fix this movement as collision is detected?</Text>
@@ -165,15 +166,33 @@
       <Entity type="Class">
         <Name>MapManager</Name>
         <Access>Public</Access>
-        <Location left="1140" top="687" />
+        <Location left="1232" top="593" />
         <Size width="162" height="216" />
         <Collapsed>False</Collapsed>
         <Member type="Method">public Map LoadMap(string MapName)</Member>
         <Modifier>None</Modifier>
       </Entity>
+      <Entity type="Interface">
+        <Name>IBehaviourManager</Name>
+        <Access>Public</Access>
+        <Location left="905" top="49" />
+        <Size width="168" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">void UpdateBehaviour(Entity entity, int elapsedTime)</Member>
+      </Entity>
+      <Entity type="Interface">
+        <Name>IBehaviour</Name>
+        <Access>Public</Access>
+        <Location left="1165" top="37" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">void PerformBehaviour(Entity entity, int elapsedTime)</Member>
+      </Entity>
     </Entities>
     <Relationships>
       <Relationship type="Association" first="5" second="6">
+        <Label>
+        </Label>
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <Direction>Unidirectional</Direction>
@@ -181,11 +200,13 @@
         <EndMultiplicity>*</EndMultiplicity>
       </Relationship>
       <Relationship type="Association" first="0" second="5">
+        <Label>
+        </Label>
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Horizontal</EndOrientation>
         <BendPoint relativeToStartShape="True">
-          <X>500</X>
-          <Y>10</Y>
+          <X>476</X>
+          <Y>12</Y>
         </BendPoint>
         <BendPoint relativeToStartShape="False">
           <X>184</X>
@@ -212,17 +233,15 @@
         </BendPoint>
       </Relationship>
       <Relationship type="Association" first="7" second="12">
-        <Label>
-        </Label>
         <StartOrientation>Horizontal</StartOrientation>
         <EndOrientation>Horizontal</EndOrientation>
         <BendPoint relativeToStartShape="True">
-          <X>950</X>
-          <Y>244</Y>
+          <X>904</X>
+          <Y>518</Y>
         </BendPoint>
         <BendPoint relativeToStartShape="False">
-          <X>952</X>
-          <Y>212</Y>
+          <X>965</X>
+          <Y>518</Y>
         </BendPoint>
         <Direction>Unidirectional</Direction>
         <AssociationType>Association</AssociationType>
@@ -236,20 +255,20 @@
         <EndOrientation>Vertical</EndOrientation>
       </Relationship>
       <Relationship type="Generalization" first="6" second="7">
-        <StartOrientation>Vertical</StartOrientation>
+        <StartOrientation>Horizontal</StartOrientation>
         <EndOrientation>Horizontal</EndOrientation>
-        <BendPoint relativeToStartShape="True">
-          <X>395</X>
-          <Y>351</Y>
-        </BendPoint>
         <BendPoint relativeToStartShape="False">
-          <X>710</X>
-          <Y>320</Y>
+          <X>666</X>
+          <Y>514</Y>
         </BendPoint>
       </Relationship>
       <Relationship type="Generalization" first="8" second="7">
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="False">
+          <X>811</X>
+          <Y>551</Y>
+        </BendPoint>
       </Relationship>
       <Relationship type="Generalization" first="14" second="7">
         <StartOrientation>Vertical</StartOrientation>
@@ -259,33 +278,54 @@
           <Y>628</Y>
         </BendPoint>
         <BendPoint relativeToStartShape="False">
-          <X>876</X>
-          <Y>424</Y>
-        </BendPoint>
-      </Relationship>
-      <Relationship type="Realization" first="8" second="17">
-        <StartOrientation>Vertical</StartOrientation>
-        <EndOrientation>Vertical</EndOrientation>
-        <BendPoint relativeToStartShape="True">
-          <X>648</X>
-          <Y>697</Y>
+          <X>835</X>
+          <Y>552</Y>
         </BendPoint>
       </Relationship>
       <Relationship type="Association" first="0" second="7">
-        <Label>
-        </Label>
         <StartOrientation>Horizontal</StartOrientation>
         <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="False">
+          <X>689</X>
+          <Y>326</Y>
+        </BendPoint>
         <Direction>Unidirectional</Direction>
         <AssociationType>Association</AssociationType>
-      </Relationship>
-      <Relationship type="Realization" first="13" second="17">
-        <StartOrientation>Vertical</StartOrientation>
-        <EndOrientation>Vertical</EndOrientation>
       </Relationship>
       <Relationship type="Comment" first="18" second="13">
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Horizontal</EndOrientation>
+      </Relationship>
+      <Relationship type="Generalization" first="13" second="7">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="False">
+          <X>683</X>
+          <Y>570</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Realization" first="7" second="17">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Association" first="7" second="20">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>848</X>
+          <Y>283</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="20" second="21">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+        <EndMultiplicity>*</EndMultiplicity>
       </Relationship>
     </Relationships>
   </ProjectItem>
