@@ -15,7 +15,7 @@ namespace CoreGame.Managers
             this.viewport = viewport;
 
             rotation = 0;
-            zoom = 2f;
+            zoom = 5f;
             origin = new Vector2(viewport.Width / 2, viewport.Height / 2);
             position = Vector2.Zero;
         }
@@ -38,6 +38,11 @@ namespace CoreGame.Managers
         public void LookAt(Vector2 position)
         {
             this.position = position - new Vector2(viewport.Width / 2f, viewport.Height / 2f);
+        }
+
+        public void LookAtSmooth(Vector2 position)
+        {
+            this.position = new Vector2(MathHelper.Lerp(this.position.X, position.X - viewport.Width / 2f, 0.08f), MathHelper.Lerp(this.position.Y, position.Y - viewport.Height / 2, 0.01f));
         }
     }
 }

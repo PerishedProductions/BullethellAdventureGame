@@ -23,9 +23,7 @@ namespace CoreGame.Managers
             }
         }
 
-        public ContentManager content;
         public Viewport viewport;
-
         public GameLevel currentLevel;
 
         public void ChangeLevel(GameLevel level)

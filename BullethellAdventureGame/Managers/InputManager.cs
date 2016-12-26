@@ -29,6 +29,10 @@ namespace CoreGame.Managers
         KeyboardState oldKeyState;
         KeyboardState newKeyState;
 
+        //Controller Inputs
+        GamePadState oldControllerState;
+        GamePadState newControllerState;
+
         //Mouse Inputs
         MouseState mouseState;
         MouseState oldMouseState;
@@ -40,6 +44,9 @@ namespace CoreGame.Managers
 
             oldKeyState = newKeyState;
             newKeyState = Keyboard.GetState();
+
+            oldControllerState = newControllerState;
+            newControllerState = GamePad.GetState(PlayerIndex.One);
         }
 
         public int getMouseWheelState()
@@ -136,5 +143,54 @@ namespace CoreGame.Managers
             }
             return false;
         }
+
+        public bool controllerIsPressed(params Buttons[] buttons)
+        {
+            foreach (Buttons button in buttons)
+            {
+                if (newControllerState.IsButtonDown(button) && oldControllerState.IsButtonUp(button))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public bool controllerIsReleased(params Buttons[] buttons)
+        {
+            foreach (Buttons button in buttons)
+            {
+                if (newControllerState.IsButtonUp(button) && oldControllerState.IsButtonDown(button))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public bool controllerIsDown(params Buttons[] buttons)
+        {
+            foreach (Buttons button in buttons)
+            {
+                if (newControllerState.IsButtonDown(button))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public bool controllerIsUp(params Buttons[] buttons)
+        {
+            foreach (Buttons button in buttons)
+            {
+                if (newControllerState.IsButtonUp(button))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
     }
 }

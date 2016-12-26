@@ -9,7 +9,6 @@ namespace CoreGame.Objects
     public class Entity
     {
         public String name;
-        private Vector2 position;
 
         public Texture2D sprite;
         public String spriteName;
@@ -25,17 +24,7 @@ namespace CoreGame.Objects
             }
         }
 
-        public Vector2 Position
-        {
-            get
-            {
-                return position;
-            }
-            set
-            {
-                position = value;
-            }
-        }
+        public Vector2 Position { get; set; }
 
         public virtual void Initialize() { }
 
@@ -50,9 +39,7 @@ namespace CoreGame.Objects
         //Draws the sprite at its position
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Begin();
-            spriteBatch.Draw(sprite, position);
-            spriteBatch.End();
+            spriteBatch.Draw(sprite, Position);
         }
 
         public virtual bool CheckCollision(Entity otherEntity)

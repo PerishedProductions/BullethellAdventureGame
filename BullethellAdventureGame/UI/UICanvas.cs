@@ -37,10 +37,12 @@ namespace CoreGame.UI
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
+            spriteBatch.Begin(SpriteSortMode.BackToFront, null, SamplerState.PointClamp, null, null, null);
             for (int i = 0; i < uiElements.Count; i++)
             {
                 uiElements[i].Draw(spriteBatch);
             }
+            spriteBatch.End();
         }
 
         public UIElement CreateUIElement(UIElement element)

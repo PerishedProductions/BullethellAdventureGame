@@ -43,6 +43,7 @@
     <Compile Include="Managers\Camera.cs" />
     <Compile Include="Managers\InputManager.cs" />
     <Compile Include="Managers\ResourceManager.cs" />
+    <Compile Include="Managers\UIManager.cs" />
     <Compile Include="Objects\Entities\CollisonEntity.cs" />
     <Compile Include="Objects\Entities\Bullets\Bullet.cs" />
     <Compile Include="Objects\Entities\Bullets\BulletFactory.cs" />
@@ -63,6 +64,7 @@
     <Compile Include="Objects\Entities\Tiles\Tile.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UI\Canvases\PauseMenuCanvas.cs" />
     <Compile Include="UI\UIButton.cs" />
     <Compile Include="UI\UICanvas.cs" />
     <Compile Include="UI\UIElement.cs" />

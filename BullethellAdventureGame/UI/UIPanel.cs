@@ -18,8 +18,6 @@ namespace CoreGame.UI
         public WindowTheme windowTheme = WindowTheme.Dark;
         public bool visible = true;
 
-        ContentManager content;
-
         public List<UIElement> elements = new List<UIElement>();
 
         public UIPanel(Rectangle size)

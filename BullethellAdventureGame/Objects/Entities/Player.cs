@@ -18,10 +18,10 @@ namespace CoreGame.Objects
         {
             get
             {
-                return new Rectangle((int)Position.X,
-                                     (int)Position.Y,
-                                     16,
-                                     16);
+                return new Rectangle((int)Position.X + 28,
+                                     (int)Position.Y + 15,
+                                     7,
+                                     27);
             }
         }
 
@@ -40,22 +40,22 @@ namespace CoreGame.Objects
 
         public override void Update(GameTime gameTime)
         {
-            if (Keyboard.GetState().IsKeyDown(Keys.Up))
+            if (InputManager.Instance.isDown(Keys.Up) || InputManager.Instance.controllerIsDown(Buttons.DPadUp))
             {
                 Velocity = (new Vector2(0, -1));
             }
 
-            if (Keyboard.GetState().IsKeyDown(Keys.Down))
+            if (InputManager.Instance.isDown(Keys.Down) || InputManager.Instance.controllerIsDown(Buttons.DPadDown))
             {
                 Velocity += (new Vector2(0, 1));
             }
 
-            if (Keyboard.GetState().IsKeyDown(Keys.Right))
+            if (InputManager.Instance.isDown(Keys.Right) || InputManager.Instance.controllerIsDown(Buttons.DPadRight))
             {
                 Velocity += (new Vector2(1, 0));
             }
 
-            if (Keyboard.GetState().IsKeyDown(Keys.Left))
+            if (InputManager.Instance.isDown(Keys.Left) || InputManager.Instance.controllerIsDown(Buttons.DPadLeft))
             {
                 Velocity += (new Vector2(-1, 0));
             }
@@ -66,8 +66,8 @@ namespace CoreGame.Objects
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            //spriteBatch.Draw(sprite, Position, Color.White);
             spriteBatch.Draw(collisionBoxGraphic, BoundingBox, Color.White);
+            spriteBatch.Draw(sprite, Position, Color.White);
         }
     }
 }
