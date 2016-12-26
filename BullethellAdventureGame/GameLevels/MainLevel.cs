@@ -17,8 +17,6 @@ namespace CoreGame.GameLevels
         Player player;
         Map map;
 
-        UICanvas canvas = new UICanvas();
-
         public override void Initialize()
         {
             ReadJson reader = new ReadJson();
@@ -26,7 +24,8 @@ namespace CoreGame.GameLevels
             player = new Player();
             player.Initialize();
             player.Position = new Vector2(100, 50);
-            canvas.Initialize();
+
+            UIManager.Instance.ChangeCanvas(new PauseMenuCanvas());
         }
 
         public override void InitializeCam(Viewport viewport)
@@ -38,8 +37,6 @@ namespace CoreGame.GameLevels
         {
             map.LoadContent();
             player.LoadContent();
-            canvas.LoadContent();
-            canvas.CreateUIElement(new UIPanel(new Rectangle(109, 100, 500, 100)));
         }
 
         public override void Update(GameTime gameTime)
@@ -61,9 +58,8 @@ namespace CoreGame.GameLevels
                 cam.zoom -= .1f;
             }
 
-            cam.LookAt(player.Position);
+            cam.LookAtSmooth(player.Position);
             player.Update(gameTime);
-            canvas.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -74,12 +70,6 @@ namespace CoreGame.GameLevels
             spriteBatch.Begin(SpriteSortMode.BackToFront, null, SamplerState.PointClamp, null, null, transformMatrix: viewMatrix);
             map.Draw(spriteBatch);
             player.Draw(spriteBatch);
-            spriteBatch.End();
-
-            spriteBatch.Begin();
-
-            canvas.Draw(spriteBatch);
-
             spriteBatch.End();
         }
     }

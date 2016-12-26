@@ -77,6 +77,9 @@ namespace CoreGame
 
             LevelManager.Instance.currentLevel.Update(gameTime);
 
+            if (UIManager.Instance.currentCanvas != null)
+                UIManager.Instance.currentCanvas.Update(gameTime);
+
             base.Update(gameTime);
         }
 
@@ -89,6 +92,9 @@ namespace CoreGame
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             LevelManager.Instance.currentLevel.Draw(spriteBatch);
+
+            if (UIManager.Instance.currentCanvas != null)
+                UIManager.Instance.currentCanvas.Draw(spriteBatch);
 
             base.Draw(gameTime);
         }
