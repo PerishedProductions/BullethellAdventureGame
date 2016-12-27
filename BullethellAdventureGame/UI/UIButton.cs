@@ -18,16 +18,16 @@ namespace CoreGame.UI
 
         public bool mouseOver;
 
-        public UIButton(String text, Rectangle size, Vector2 textOffset)
+        public UIButton(String text, Rectangle size)
         {
             this.size = size;
-            this.text = new UIText(new Vector2(size.X + textOffset.X, size.Y + textOffset.Y), text);
+            this.text = new UIText(new Vector2(size.X, size.Y), text);
         }
 
-        public UIButton(String text, Rectangle size, Vector2 textPos, WindowTheme theme)
+        public UIButton(String text, Rectangle size, WindowTheme theme)
         {
             this.size = size;
-            this.text = new UIText(new Vector2(size.X + textPos.X, size.Y + textPos.Y), text);
+            this.text = new UIText(new Vector2(size.X, size.Y), text, Alignment.Center);
             this.windowTheme = theme;
         }
 
@@ -42,27 +42,23 @@ namespace CoreGame.UI
                     textureName = "LightWindow";
                     break;
             }
-            base.Initialize();
         }
 
         public override void LoadContent()
         {
             ResourceManager.Instance.Sprites.TryGetValue(textureName, out sprite);
             text.LoadContent();
-            base.LoadContent();
         }
 
         public override void Update(GameTime gameTime)
         {
             mouseOver = size.Contains(InputManager.Instance.getMousePos());
-            base.Update(gameTime);
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(sprite, size, Color.White);
             text.Draw(spriteBatch);
-            base.Draw(spriteBatch);
         }
 
     }

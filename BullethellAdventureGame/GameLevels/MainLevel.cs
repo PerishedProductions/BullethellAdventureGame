@@ -13,9 +13,9 @@ namespace CoreGame.GameLevels
 {
     public class MainLevel : GameLevel
     {
-        Camera cam;
-        Player player;
-        Map map;
+        private Camera cam;
+        private Player player;
+        private Map map;
 
         public override void Initialize()
         {
@@ -25,7 +25,7 @@ namespace CoreGame.GameLevels
             player.Initialize();
             player.Position = new Vector2(100, 50);
 
-            UIManager.Instance.ChangeCanvas(new PauseMenuCanvas());
+            //UIManager.Instance.ChangeCanvas(new PauseMenuCanvas());
         }
 
         public override void InitializeCam(Viewport viewport)
@@ -41,25 +41,41 @@ namespace CoreGame.GameLevels
 
         public override void Update(GameTime gameTime)
         {
-            List<Entity> temp = new List<Entity>();
-
-            for (int i = 0; i < map.tiles.Count; i++)
+            if (InputManager.Instance.isPressed(Keys.Escape) || InputManager.Instance.controllerIsDown(Buttons.Start))
             {
-                player.CheckCollision(map.tiles[i]);
+                GameManager.Instance.Paused = !GameManager.Instance.Paused;
+                if (GameManager.Instance.Paused)
+                {
+                    UIManager.Instance.ChangeCanvas(new PauseMenuCanvas());
+                }
+                else
+                {
+                    UIManager.Instance.ChangeCanvas(new UICanvas());
+                }
             }
 
-            if (InputManager.Instance.isDown(Keys.Q))
+            if (!GameManager.Instance.Paused)
             {
-                cam.zoom += .1f;
-            }
+                List<Entity> temp = new List<Entity>();
 
-            if (InputManager.Instance.isDown(Keys.E))
-            {
-                cam.zoom -= .1f;
-            }
+                for (int i = 0; i < map.tiles.Count; i++)
+                {
+                    player.CheckCollision(map.tiles[i]);
+                }
 
-            cam.LookAtSmooth(player.Position);
-            player.Update(gameTime);
+                if (InputManager.Instance.isDown(Keys.Q))
+                {
+                    cam.zoom += .1f;
+                }
+
+                if (InputManager.Instance.isDown(Keys.E))
+                {
+                    cam.zoom -= .1f;
+                }
+
+                cam.LookAtSmooth(player.Position);
+                player.Update(gameTime);
+            }
 
             base.Update(gameTime);
         }

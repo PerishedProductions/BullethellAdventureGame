@@ -102,6 +102,7 @@ namespace CoreGame.Managers
             {
                 if (newKeyState.IsKeyDown(key) && oldKeyState.IsKeyUp(key))
                 {
+                    oldKeyState = newKeyState;
                     return true;
                 }
             }
