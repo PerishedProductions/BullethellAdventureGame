@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Input;
 using WinFormsGraphicsDevice;
+using System.Linq;
 
 namespace Editor
 {
@@ -15,10 +16,8 @@ namespace Editor
         private SpriteBatch spriteBatch;
 
         public Map map;
-        private string currentMap = "Null";
+        private string currentMapString = "";
         private SpriteFont font;
-
-        private Camera cam;
 
         protected override void Initialize()
         {
@@ -27,10 +26,7 @@ namespace Editor
 
             ResourceManager.Instance.LoadAllContent(content);
 
-            cam = new Camera(GraphicsDevice.Viewport);
-
             ResourceManager.Instance.Fonts.TryGetValue("FontMedium", out font);
-            LoadMap("Data/Map.json");
         }
 
         //TODO: Why is this only called once? Try to fix it
@@ -38,22 +34,23 @@ namespace Editor
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSortMode.BackToFront, null, SamplerState.PointClamp, null, null, null);
             if (map != null)
                 map.Draw(spriteBatch);
             spriteBatch.End();
 
-            spriteBatch.Begin();
-            spriteBatch.DrawString(font, "Name: " + currentMap, new Vector2(10, 10), Color.Black);
+            spriteBatch.Begin(SpriteSortMode.BackToFront, null, SamplerState.PointClamp, null, null, null);
+            spriteBatch.DrawString(font, "Name: " + currentMapString, new Vector2(10, 10), Color.Black);
             spriteBatch.End();
+
+            Invalidate();
         }
 
-        public void LoadMap(string path)
+        public void LoadMap(string path, string name)
         {
-            currentMap = path;
+            currentMapString = name;
             ReadJson jsonReader = new ReadJson();
-            map = new Map(jsonReader.ReadData(currentMap));
-            map.LoadContent();
+            map = new Map(jsonReader.ReadData(path));
         }
     }
 }

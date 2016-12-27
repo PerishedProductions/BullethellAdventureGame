@@ -73,13 +73,14 @@
             // newMapToolStripMenuItem
             // 
             this.newMapToolStripMenuItem.Name = "newMapToolStripMenuItem";
-            this.newMapToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+            this.newMapToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.newMapToolStripMenuItem.Text = "New Map";
+            this.newMapToolStripMenuItem.Click += new System.EventHandler(this.newMapToolStripMenuItem_Click);
             // 
             // loadMap
             // 
             this.loadMap.Name = "loadMap";
-            this.loadMap.Size = new System.Drawing.Size(127, 22);
+            this.loadMap.Size = new System.Drawing.Size(152, 22);
             this.loadMap.Text = "Load Map";
             this.loadMap.Click += new System.EventHandler(this.loadMap_Click);
             // 

@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using CoreGame.Managers;
+using CoreGame.Utilities;
+using System.IO;
+using LitJson;
 
 namespace Editor
 {
@@ -38,7 +41,22 @@ namespace Editor
 
             if (result == DialogResult.OK)
             {
-                //mapEditor.LoadMap(dialog.FileName);
+                mapEditor.LoadMap(dialog.FileName, Path.GetFileName(dialog.FileName));
+            }
+        }
+
+        private void newMapToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog dialog = new SaveFileDialog();
+            dialog.FileName = "New Map.json";
+            DialogResult result = dialog.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                ReadJson jsonReader = new ReadJson();
+                WriteJson jsonWrite = new WriteJson();
+                jsonWrite.WriteData(dialog.FileName, jsonReader.ReadData("Data/MapTemplate.json"));
+                mapEditor.LoadMap(dialog.FileName, Path.GetFileName(dialog.FileName));
             }
         }
     }

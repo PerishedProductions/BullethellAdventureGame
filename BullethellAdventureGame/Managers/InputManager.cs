@@ -4,9 +4,9 @@ using Microsoft.Xna.Framework.Input;
 namespace CoreGame.Managers
 {
 
-    enum MouseButton { Left, Middle, Right }
+    public enum MouseButton { Left, Middle, Right }
 
-    class InputManager
+    public class InputManager
     {
 
         private static InputManager instance;

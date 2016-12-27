@@ -72,6 +72,7 @@
     <Compile Include="UI\UIPanel.cs" />
     <Compile Include="UI\UIText.cs" />
     <Compile Include="Utilities\ReadJson.cs" />
+    <Compile Include="Utilities\WriteJson.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="LitJson">
@@ -91,9 +92,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\Map.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Data\Data.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Data\UI\Hud.json">
