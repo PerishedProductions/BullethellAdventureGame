@@ -1,40 +1,42 @@
 ﻿using CoreGame.Managers;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 
 namespace CoreGame.Objects
 {
-    public class Entity
+    public abstract class Entity
     {
-        public String name;
+        public string Name { get; set; }
+        public Vector2 Position { get; set; }
+        public bool IsCollisionActive { get; set; }
 
-        public Texture2D sprite;
-        public String spriteName;
+        public bool Active { get; set; } = true;
+        public float RotationAngle { get; set; }
+        public float RotationSpeed { get; set; }
+        public float Speed { get; set; }
+        public Vector2 Origin { get; set; }
+
+        protected Texture2D sprite;
 
         public virtual Rectangle BoundingBox
         {
             get
             {
-                return new Rectangle((int)Position.X,
-                                     (int)Position.Y,
-                                     sprite.Width,
-                                     sprite.Height);
+                return new Rectangle(
+                    (int)Position.X - sprite.Width / 2,
+                    (int)Position.Y - sprite.Height / 2,
+                    sprite.Width,
+                    sprite.Height);
             }
         }
 
-        public Vector2 Position { get; set; }
-
-        public virtual void Initialize() { }
-
-        //Loads the sprite
-        public virtual void LoadContent()
+        public virtual void Initialize(string spriteName)
         {
             ResourceManager.Instance.Sprites.TryGetValue(spriteName, out sprite);
+            Origin = new Vector2(sprite.Width / 2, sprite.Height / 2);
         }
 
-        public virtual void Update(GameTime gameTime) { }
+        public abstract void Update(GameTime gameTime);
 
         //Draws the sprite at its position
         public virtual void Draw(SpriteBatch spriteBatch)
@@ -47,9 +49,6 @@ namespace CoreGame.Objects
             return this.BoundingBox.Intersects(otherEntity.BoundingBox);
         }
 
-        public virtual void HandleCollision(Entity otherEntity)
-        {
-
-        }
+        public abstract void HandleCollision(Entity otherEntity);
     }
 }

@@ -1,12 +1,10 @@
 ﻿using CoreGame.Managers;
 using CoreGame.Objects;
-using CoreGame.Utilities;
 using CoreGame.UI;
+using CoreGame.Utilities;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using System.Diagnostics;
 using System.Collections.Generic;
 
 namespace CoreGame.GameLevels
@@ -22,7 +20,7 @@ namespace CoreGame.GameLevels
             ReadJson reader = new ReadJson();
             map = new Map(reader.ReadData("Data/Map.json"));
             player = new Player();
-            player.Initialize();
+            player.Initialize("Player");
             player.Position = new Vector2(100, 50);
 
             UIManager.Instance.ChangeCanvas(new PauseMenuCanvas());
@@ -31,12 +29,6 @@ namespace CoreGame.GameLevels
         public override void InitializeCam(Viewport viewport)
         {
             cam = new Camera(viewport);
-        }
-
-        public override void LoadContent()
-        {
-            map.LoadContent();
-            player.LoadContent();
         }
 
         public override void Update(GameTime gameTime)

@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-
-using CoreGame.Objects;
-
+﻿using LitJson;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-
-using LitJson;
+using System.Collections.Generic;
 
 namespace CoreGame.Objects
 {
@@ -38,7 +32,7 @@ namespace CoreGame.Objects
                     {
                         Tile newTile = new Tile();
                         newTile.Position = new Vector2(x * tileSize, y * tileSize);
-                        newTile.Initialize();
+                        newTile.Initialize("BasicTile");
                         tiles.Add(newTile);
                     }
                 }
@@ -49,14 +43,6 @@ namespace CoreGame.Objects
         public virtual void Initialize()
         {
 
-        }
-
-        public virtual void LoadContent()
-        {
-            for (int i = 0; i < tiles.Count; i++)
-            {
-                tiles[i].LoadContent();
-            }
         }
 
         public virtual void Update(GameTime gameTime)

@@ -1,7 +1,4 @@
-﻿using System;
-
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace CoreGame.Objects
@@ -9,16 +6,9 @@ namespace CoreGame.Objects
     public class Tile : Entity
     {
 
-        public override void Initialize()
+        public override void Initialize(string spriteName)
         {
-            spriteName = "BasicTile";
-            base.Initialize();
-        }
-
-        //Loads the sprite
-        public override void LoadContent()
-        {
-            base.LoadContent();
+            base.Initialize(spriteName);
         }
 
         public override void Update(GameTime gameTime) { }
@@ -26,8 +16,12 @@ namespace CoreGame.Objects
         //Draws the sprite at its position
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(sprite, Position);
+            spriteBatch.Draw(sprite, new Rectangle((int)Position.X, (int)Position.Y, sprite.Width, sprite.Height), null, Color.White, RotationAngle, Origin, SpriteEffects.None, 0);
         }
 
+        public override void HandleCollision(Entity otherEntity)
+        {
+
+        }
     }
 }

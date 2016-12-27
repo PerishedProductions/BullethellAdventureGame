@@ -2,10 +2,10 @@
 
 namespace CoreGame.Objects.Entities.Bullets.BulletProcedures
 {
-    public class BulletSpeedProcedure : IBulletProcedure
+    public class BulletRotationBehaviorAction : IBehaviorAction
     {
-        public float TargetSpeed { get; set; }
-        public float Acceleration { get; set; }
+        public float TargetRotationSpeed { get; set; }
+        public float RotationSpeedAcceleration { get; set; }
 
         private bool _isFinished;
 
@@ -22,28 +22,28 @@ namespace CoreGame.Objects.Entities.Bullets.BulletProcedures
             }
         }
 
-        public void PerformCommand(Bullet bullet, GameTime gameTime)
+        public void PerformBehaviorAction(Entity entity, GameTime gameTime)
         {
-            if (Acceleration > 0)
+            if (RotationSpeedAcceleration > 0)
             {
-                if (bullet.Speed >= TargetSpeed)
+                if (entity.RotationSpeed >= TargetRotationSpeed)
                 {
                     _isFinished = true;
                 }
                 else
                 {
-                    bullet.Speed += Acceleration;
+                    entity.RotationSpeed += RotationSpeedAcceleration;
                 }
             }
             else
             {
-                if (bullet.Speed <= TargetSpeed)
+                if (entity.RotationSpeed <= TargetRotationSpeed)
                 {
                     _isFinished = true;
                 }
                 else
                 {
-                    bullet.Speed += Acceleration;
+                    entity.RotationSpeed += RotationSpeedAcceleration;
                 }
             }
         }
