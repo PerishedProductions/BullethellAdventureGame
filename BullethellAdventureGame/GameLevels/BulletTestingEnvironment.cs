@@ -18,17 +18,10 @@ namespace CoreGame.GameLevels
         {
             BulletFactory.Instance.LevelInstance = this;
             bullet = new Bullet();
-            bullet.Initialize();
             player = new Player();
-            player.Initialize();
+            player.Initialize("Player");
             player.Position = new Vector2(600, 200);
 
-        }
-
-        public override void LoadContent()
-        {
-            bullet.LoadContent();
-            player.LoadContent();
         }
 
         public override void Update(GameTime gameTime)

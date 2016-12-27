@@ -1,5 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 
@@ -7,15 +6,9 @@ namespace CoreGame.Objects.Entities.Bullets
 {
     public class Bullet : Entity
     {
-        public bool Active { get; set; } = true;
-        public float RotationAngle { get; set; }
-        public float RotationSpeed { get; set; }
-        public float Speed { get; set; }
-
-        public Vector2 Origin { get; set; }
         public Color BulletColor { get; set; } = Color.White;
 
-        public BulletProcedureManager ProcedureManager { get; set; } = null;
+        public BulletBehaviorManager ProcedureManager { get; set; } = null;
 
         public override Rectangle BoundingBox
         {
@@ -39,13 +32,16 @@ namespace CoreGame.Objects.Entities.Bullets
 
         public Bullet()
         {
-            spriteName = "Bullet";
-            this.Initialize();
+            this.Position = new Vector2(600, 300);
+            RotationAngle = MathHelper.ToRadians(0);
+            Speed = 0;
+            ProcedureManager = new BulletBehaviorManager();
+            this.Initialize("Bullet");
         }
 
-        public Bullet(Vector2 position, float speed, float rotation, float rotationSpeed, BulletProcedureManager procedureManager, Color color)
+        public Bullet(Vector2 position, float speed, float rotation, float rotationSpeed, BulletBehaviorManager procedureManager, Color color)
         {
-            spriteName = "Bullet";
+            this.Initialize("Bullet");
             this.Position = position;
             Speed = speed;
             RotationAngle = rotation;
@@ -54,12 +50,9 @@ namespace CoreGame.Objects.Entities.Bullets
             BulletColor = color;
         }
 
-        public override void Initialize()
+        public override void Initialize(string spriteName)
         {
-            this.Position = new Vector2(600, 300);
-            RotationAngle = MathHelper.ToRadians(0);
-            Speed = 0;
-            ProcedureManager = new BulletProcedureManager();
+            base.Initialize(spriteName);
         }
 
         public void Move()
@@ -74,20 +67,13 @@ namespace CoreGame.Objects.Entities.Bullets
             RotationAngle = RotationAngle % circle;
         }
 
-        //Loads the sprite
-        public override void LoadContent()
-        {
-            base.LoadContent();
-            Origin = new Vector2(sprite.Width / 2, sprite.Height / 2);
-        }
-
         public override void Update(GameTime gameTime)
         {
             Move();
 
             if (ProcedureManager != null)
             {
-                ProcedureManager.PerformProcedure(this, gameTime);
+                ProcedureManager.PerformBehavior(this, gameTime, "Spawn");
             }
         }
 

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace CoreGame.Objects.Entities.Bullets.BulletProcedures
 {
-    public class BulletSpawnProcedure : IBulletProcedure
+    public class BulletSpawnBehaviorAction : IBehaviorAction
     {
         private static BulletFactory factory = BulletFactory.Instance;
         public int SpawnPatternDegreeSteps { get; set; }
@@ -19,7 +19,7 @@ namespace CoreGame.Objects.Entities.Bullets.BulletProcedures
 
         public List<SpawnPoint> SpawnPoints { get; set; } = new List<SpawnPoint>();
 
-        public BulletSpawnProcedure()
+        public BulletSpawnBehaviorAction()
         {
             SpawnPoint spawn = new SpawnPoint();
             spawn.Position = new Vector2(100, 0);
@@ -67,42 +67,7 @@ namespace CoreGame.Objects.Entities.Bullets.BulletProcedures
             }
         }
 
-        public void PerformCommand(Bullet bullet, GameTime gameTime)
-        {
-            currentInterval += gameTime.ElapsedGameTime.Milliseconds;
-
-            if (currentInterval > BulletInterval)
-            {
-                if (currentWave < BulletWaves)
-                {
-                    if (SingleStepEachWave)
-                    {
-                        float degrees = currentWave * SpawnPatternDegreeSteps;
-
-                        SpawnBullet(bullet, degrees);
-                    }
-                    else
-                    {
-                        for (int i = 0; i < SpawnPatternCount; i++)
-                        {
-                            float degrees = i * SpawnPatternDegreeSteps;
-
-                            SpawnBullet(bullet, degrees);
-                        }
-                    }
-
-                    currentWave++;
-                }
-                else
-                {
-                    _isFinished = true;
-                }
-
-                currentInterval = 0;
-            }
-        }
-
-        private void SpawnBullet(Bullet bullet, float degrees)
+        private void SpawnBullet(Entity bullet, float degrees)
         {
             for (int j = 0; j < SpawnPoints.Count; j++)
             {
@@ -117,6 +82,41 @@ namespace CoreGame.Objects.Entities.Bullets.BulletProcedures
                 newRotation = MathHelper.ToRadians(newRotation);
 
                 factory.CreateBullet(newPosition, SpawnPoints[j].Speed, newRotation, SpawnPoints[j].RotationSpeed, SpawnPoints[j].BulletColor, null);
+            }
+        }
+
+        public void PerformBehaviorAction(Entity entity, GameTime gameTime)
+        {
+            currentInterval += gameTime.ElapsedGameTime.Milliseconds;
+
+            if (currentInterval > BulletInterval)
+            {
+                if (currentWave < BulletWaves)
+                {
+                    if (SingleStepEachWave)
+                    {
+                        float degrees = currentWave * SpawnPatternDegreeSteps;
+
+                        SpawnBullet(entity, degrees);
+                    }
+                    else
+                    {
+                        for (int i = 0; i < SpawnPatternCount; i++)
+                        {
+                            float degrees = i * SpawnPatternDegreeSteps;
+
+                            SpawnBullet(entity, degrees);
+                        }
+                    }
+
+                    currentWave++;
+                }
+                else
+                {
+                    _isFinished = true;
+                }
+
+                currentInterval = 0;
             }
         }
     }
