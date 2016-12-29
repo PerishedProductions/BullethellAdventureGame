@@ -13,7 +13,7 @@ namespace CoreGame.GameLevels
     {
         private Camera cam;
         private Player player;
-        private Map map;
+        public static Map map;
 
         public override void Initialize()
         {
@@ -49,11 +49,6 @@ namespace CoreGame.GameLevels
             if (!GameManager.Instance.Paused)
             {
                 List<Entity> temp = new List<Entity>();
-
-                for (int i = 0; i < map.tiles.Count; i++)
-                {
-                    player.CheckCollision(map.tiles[i]);
-                }
 
                 if (InputManager.Instance.isDown(Keys.Q))
                 {

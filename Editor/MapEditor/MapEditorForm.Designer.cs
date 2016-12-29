@@ -42,13 +42,9 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
-            this.toolBox = new System.Windows.Forms.TabControl();
-            this.mapProperties = new System.Windows.Forms.TabPage();
-            this.tileBrowser = new System.Windows.Forms.TabPage();
             this.mapEditor = new Editor.MapEditor();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
-            this.toolBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -73,14 +69,14 @@
             // newMapToolStripMenuItem
             // 
             this.newMapToolStripMenuItem.Name = "newMapToolStripMenuItem";
-            this.newMapToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.newMapToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
             this.newMapToolStripMenuItem.Text = "New Map";
             this.newMapToolStripMenuItem.Click += new System.EventHandler(this.newMapToolStripMenuItem_Click);
             // 
             // loadMap
             // 
             this.loadMap.Name = "loadMap";
-            this.loadMap.Size = new System.Drawing.Size(152, 22);
+            this.loadMap.Size = new System.Drawing.Size(127, 22);
             this.loadMap.Text = "Load Map";
             this.loadMap.Click += new System.EventHandler(this.loadMap_Click);
             // 
@@ -163,42 +159,12 @@
             this.toolStripButton5.Size = new System.Drawing.Size(23, 22);
             this.toolStripButton5.Text = "toolStripButton5";
             // 
-            // toolBox
-            // 
-            this.toolBox.Controls.Add(this.mapProperties);
-            this.toolBox.Controls.Add(this.tileBrowser);
-            this.toolBox.Location = new System.Drawing.Point(12, 52);
-            this.toolBox.Name = "toolBox";
-            this.toolBox.SelectedIndex = 0;
-            this.toolBox.Size = new System.Drawing.Size(249, 668);
-            this.toolBox.TabIndex = 3;
-            // 
-            // mapProperties
-            // 
-            this.mapProperties.Location = new System.Drawing.Point(4, 22);
-            this.mapProperties.Name = "mapProperties";
-            this.mapProperties.Padding = new System.Windows.Forms.Padding(3);
-            this.mapProperties.Size = new System.Drawing.Size(241, 642);
-            this.mapProperties.TabIndex = 1;
-            this.mapProperties.Text = "Map Properties";
-            this.mapProperties.UseVisualStyleBackColor = true;
-            // 
-            // tileBrowser
-            // 
-            this.tileBrowser.Location = new System.Drawing.Point(4, 22);
-            this.tileBrowser.Name = "tileBrowser";
-            this.tileBrowser.Padding = new System.Windows.Forms.Padding(3);
-            this.tileBrowser.Size = new System.Drawing.Size(241, 642);
-            this.tileBrowser.TabIndex = 0;
-            this.tileBrowser.Text = "Tile Browser";
-            this.tileBrowser.UseVisualStyleBackColor = true;
-            // 
             // mapEditor
             // 
-            this.mapEditor.Location = new System.Drawing.Point(267, 74);
+            this.mapEditor.Location = new System.Drawing.Point(279, 52);
             this.mapEditor.Name = "mapEditor";
-            this.mapEditor.Size = new System.Drawing.Size(999, 642);
-            this.mapEditor.TabIndex = 4;
+            this.mapEditor.Size = new System.Drawing.Size(987, 668);
+            this.mapEditor.TabIndex = 2;
             this.mapEditor.Text = "mapEditor";
             // 
             // MapEditorForm
@@ -207,7 +173,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1278, 732);
             this.Controls.Add(this.mapEditor);
-            this.Controls.Add(this.toolBox);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -218,7 +183,6 @@
             this.menuStrip1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
-            this.toolBox.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -239,9 +203,6 @@
         private System.Windows.Forms.ToolStripButton toolStripButton5;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
-        private System.Windows.Forms.TabControl toolBox;
-        private System.Windows.Forms.TabPage tileBrowser;
-        private System.Windows.Forms.TabPage mapProperties;
         private MapEditor mapEditor;
     }
 }

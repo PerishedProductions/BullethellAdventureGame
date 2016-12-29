@@ -6,6 +6,13 @@ namespace CoreGame.Objects
     public class Tile : Entity
     {
 
+        public int Id { get; set; } = 0;
+
+        public Tile(int id)
+        {
+            this.Id = id;
+        }
+
         public override void Initialize(string spriteName)
         {
             base.Initialize(spriteName);

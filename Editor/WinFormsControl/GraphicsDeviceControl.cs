@@ -16,7 +16,6 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace WinFormsGraphicsDevice
 {
-    using Microsoft.Xna.Framework;
     // System.Drawing and the XNA Framework both define Color and Rectangle
     // types. To avoid conflicts, we specify exactly which ones to use.
     using Color = System.Drawing.Color;
@@ -191,7 +190,6 @@ namespace WinFormsGraphicsDevice
                                                                 ClientSize.Height);
 
                 GraphicsDevice.Present();
-                //OLD: GraphicsDevice.Present(sourceRectangle, null, this.Handle);
             }
             catch
             {
@@ -286,6 +284,7 @@ namespace WinFormsGraphicsDevice
         #endregion
 
         #region Abstract Methods
+
 
         /// <summary>
         /// Derived classes override this to initialize their drawing code.

@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework;
 using CoreGame.Managers;
+using System.Diagnostics;
 
 namespace CoreGame.UI
 {
@@ -13,6 +14,7 @@ namespace CoreGame.UI
 
         public string text;
         public Vector2 position;
+        private Rectangle container;
         private SpriteFont font;
         private Alignment alignment = Alignment.Left;
 
@@ -22,11 +24,11 @@ namespace CoreGame.UI
             this.text = text;
         }
 
-        public UIText(Vector2 pos, string text, Alignment alignment)
+        public UIText(Rectangle container, string text, Alignment alignment)
         {
-            this.position = pos;
             this.text = text;
             this.alignment = alignment;
+            this.container = container;
         }
 
         public override void Initialize()
@@ -38,16 +40,18 @@ namespace CoreGame.UI
         {
             ResourceManager.Instance.Fonts.TryGetValue("FontMedium", out font);
 
-            switch (alignment)
+            if (container != null)
             {
-                case Alignment.Left:
-                    break;
-                case Alignment.Center:
-                    position += new Vector2(font.MeasureString(text).X / 2, 0);
-                    break;
-                case Alignment.Right:
-                    position += new Vector2(font.MeasureString(text).X, 0);
-                    break;
+                switch (alignment)
+                {
+                    case Alignment.Left:
+                        break;
+                    case Alignment.Center:
+                        position = new Vector2(container.X + container.Width / 2 - font.MeasureString(text).X / 2, container.Y + container.Height / 2 - font.MeasureString(text).Y / 2);
+                        break;
+                    case Alignment.Right:
+                        break;
+                }
             }
         }
 

@@ -9,9 +9,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Editor</RootNamespace>
     <AssemblyName>Editor</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -55,8 +56,11 @@
     <Compile Include="MapEditor\MapEditor.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="MapEditor\TileBrowser.cs">
-      <SubType>Component</SubType>
+    <Compile Include="MapEditor\MapProperties.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MapEditor\MapProperties.Designer.cs">
+      <DependentUpon>MapProperties.cs</DependentUpon>
     </Compile>
     <Compile Include="MapEditor\MapEditorForm.cs">
       <SubType>Form</SubType>
@@ -74,6 +78,9 @@
     <EmbeddedResource Include="MapEditor\MapEditorForm.resx">
       <DependentUpon>MapEditorForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MapEditor\MapProperties.resx">
+      <DependentUpon>MapProperties.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -82,6 +89,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Data\Map.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

@@ -37,6 +37,9 @@ namespace CoreGame.Managers
         MouseState mouseState;
         MouseState oldMouseState;
 
+        /// <summary>
+        /// Sets the oldstates of the last update pefore getting the new input
+        /// </summary>
         public void Update()
         {
             oldMouseState = mouseState;
@@ -49,26 +52,48 @@ namespace CoreGame.Managers
             newControllerState = GamePad.GetState(PlayerIndex.One);
         }
 
+        /// <summary>
+        /// Gets The state of the mouse wheel
+        /// </summary>
+        /// <returns></returns>
         public int getMouseWheelState()
         {
             return mouseState.ScrollWheelValue;
         }
 
+        /// <summary>
+        /// Gets the state of the mouse wheel from the last frame
+        /// </summary>
+        /// <returns></returns>
         public int getOldMouseWheelState()
         {
             return oldMouseState.ScrollWheelValue;
         }
 
+        /// <summary>
+        /// Gets the mouse position
+        /// </summary>
+        /// <returns></returns>
         public Vector2 getMousePos()
         {
             return mouseState.Position.ToVector2();
         }
 
+        /// <summary>
+        /// Gets the mouse position according to the camera
+        /// </summary>
+        /// <param name="viewmatrix">The viewmatrix of the camera we are currently using</param>
+        /// <returns></returns>
         public Vector2 getMouseWorldPos(Matrix viewmatrix)
         {
             return Vector2.Transform(mouseState.Position.ToVector2(), Matrix.Invert(viewmatrix));
         }
 
+        /// <summary>
+        /// Returns if a mouse specific mouse button was pressed
+        /// </summary>
+        /// <param name="mouseButton">What button are we going to check</param>
+        /// <returns></returns>
         public bool mouseIsPressed(MouseButton mouseButton)
         {
             switch (mouseButton)
@@ -96,6 +121,11 @@ namespace CoreGame.Managers
             return false;
         }
 
+        /// <summary>
+        /// Returns if a specific key has been pressed
+        /// </summary>
+        /// <param name="keys">The keys we want to check</param>
+        /// <returns></returns>
         public bool isPressed(params Keys[] keys)
         {
             foreach (Keys key in keys)
@@ -109,6 +139,11 @@ namespace CoreGame.Managers
             return false;
         }
 
+        /// <summary>
+        /// Returns if specific keys has been released
+        /// </summary>
+        /// <param name="keys">The keys we want to check</param>
+        /// <returns></returns>
         public bool isReleased(params Keys[] keys)
         {
             foreach (Keys key in keys)
@@ -121,6 +156,11 @@ namespace CoreGame.Managers
             return false;
         }
 
+        /// <summary>
+        /// Returns if specific keys is being held down
+        /// </summary>
+        /// <param name="keys">The key we want to check</param>
+        /// <returns></returns>
         public bool isDown(params Keys[] keys)
         {
             foreach (Keys key in keys)
@@ -133,6 +173,11 @@ namespace CoreGame.Managers
             return false;
         }
 
+        /// <summary>
+        /// Returns if specific keys is not being held down
+        /// </summary>
+        /// <param name="keys">The key we want to check</param>
+        /// <returns></returns>
         public bool isUp(params Keys[] keys)
         {
             foreach (Keys key in keys)
@@ -145,6 +190,11 @@ namespace CoreGame.Managers
             return false;
         }
 
+        /// <summary>
+        /// Returns if specific controller button is being pressed
+        /// </summary>
+        /// <param name="button">The button we want to check</param>
+        /// <returns></returns>
         public bool controllerIsPressed(params Buttons[] buttons)
         {
             foreach (Buttons button in buttons)
@@ -157,6 +207,11 @@ namespace CoreGame.Managers
             return false;
         }
 
+        /// <summary>
+        /// Returns if specific controller button is being released
+        /// </summary>
+        /// <param name="button">The button we want to check</param>
+        /// <returns></returns>
         public bool controllerIsReleased(params Buttons[] buttons)
         {
             foreach (Buttons button in buttons)
@@ -169,6 +224,11 @@ namespace CoreGame.Managers
             return false;
         }
 
+        /// <summary>
+        /// Returns if specific controller button is being held down
+        /// </summary>
+        /// <param name="button">The button we want to check</param>
+        /// <returns></returns>
         public bool controllerIsDown(params Buttons[] buttons)
         {
             foreach (Buttons button in buttons)
@@ -181,6 +241,11 @@ namespace CoreGame.Managers
             return false;
         }
 
+        /// <summary>
+        /// Returns if specific controller button is not being held down
+        /// </summary>
+        /// <param name="button">The button we want to check</param>
+        /// <returns></returns>
         public bool controllerIsUp(params Buttons[] buttons)
         {
             foreach (Buttons button in buttons)

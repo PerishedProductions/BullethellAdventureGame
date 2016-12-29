@@ -26,6 +26,10 @@ namespace CoreGame.Managers
         public Viewport viewport;
         public GameLevel currentLevel;
 
+        /// <summary>
+        /// Changes the current level
+        /// </summary>
+        /// <param name="level">the level we want to change to</param>
         public void ChangeLevel(GameLevel level)
         {
             currentLevel = level;

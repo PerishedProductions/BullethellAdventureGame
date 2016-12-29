@@ -4,9 +4,7 @@ using CoreGame.Objects;
 using CoreGame.Utilities;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Input;
 using WinFormsGraphicsDevice;
-using System.Linq;
 
 namespace Editor
 {
@@ -29,7 +27,6 @@ namespace Editor
             ResourceManager.Instance.Fonts.TryGetValue("FontMedium", out font);
         }
 
-        //TODO: Why is this only called once? Try to fix it
         protected override void Draw()
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);

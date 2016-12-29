@@ -31,6 +31,10 @@ namespace CoreGame.Managers
 
         private bool loaded = false;
 
+        /// <summary>
+        /// Loads all the content (Sprites, fonts etc...)
+        /// </summary>
+        /// <param name="Content">The Content manager we want to load from</param>
         public void LoadAllContent(ContentManager Content)
         {
             if (!loaded)

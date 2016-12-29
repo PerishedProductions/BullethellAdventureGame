@@ -13,6 +13,12 @@ namespace CoreGame.Managers
 
         public UICanvas currentCanvas;
 
+        //TODO: Make it able to store multiple canvases
+
+        /// <summary>
+        /// Changes out the current canvas for a new one
+        /// </summary>
+        /// <param name="canvas">The canvas we want to change to</param>
         public void ChangeCanvas(UICanvas canvas)
         {
             currentCanvas = canvas;

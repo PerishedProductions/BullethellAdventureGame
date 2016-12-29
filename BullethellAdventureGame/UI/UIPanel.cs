@@ -15,7 +15,7 @@ namespace CoreGame.UI
         String textureName;
         Texture2D sprite;
 
-        public WindowTheme windowTheme = WindowTheme.Dark;
+        public ColorTheme windowTheme = ColorTheme.Dark;
         public bool visible = true;
 
         public List<UIElement> elements = new List<UIElement>();
@@ -25,7 +25,7 @@ namespace CoreGame.UI
             this.size = size;
         }
 
-        public UIPanel(Rectangle size, WindowTheme theme)
+        public UIPanel(Rectangle size, ColorTheme theme)
         {
             this.size = size;
             this.windowTheme = theme;
@@ -35,13 +35,13 @@ namespace CoreGame.UI
         {
             switch (windowTheme)
             {
-                case WindowTheme.Dark:
+                case ColorTheme.Dark:
                     textureName = "Window";
                     break;
-                case WindowTheme.Light:
+                case ColorTheme.Light:
                     textureName = "LightWindow";
                     break;
-                case WindowTheme.None:
+                case ColorTheme.None:
                     textureName = null;
                     break;
             }

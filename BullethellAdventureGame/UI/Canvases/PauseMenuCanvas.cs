@@ -24,8 +24,10 @@ namespace CoreGame.UI
         {
             ResourceManager.Instance.Sprites.TryGetValue("Window", out backdrop);
 
-            paused = (UIText)CreateUIElement(new UIText(new Vector2(10, 10), "Paused!!"));
-            continueButton = (UIButton)CreateUIElement(new UIButton("Continue", new Rectangle(10, 50, 300, 50)));
+            paused = (UIText)CreateUIElement(new UIText(new Vector2(10, 5), "Paused!!"), UILayer.Middle);
+            continueButton = (UIButton)CreateUIElement(new UIButton("Continue", new Rectangle(10, 50, 300, 50), this), UILayer.Middle);
+            settingsButton = (UIButton)CreateUIElement(new UIButton("Settings", new Rectangle(10, 105, 300, 50), this), UILayer.Middle);
+            exitButton = (UIButton)CreateUIElement(new UIButton("Exit Game", new Rectangle(10, 160, 300, 50), this), UILayer.Middle);
 
             base.LoadContent();
         }

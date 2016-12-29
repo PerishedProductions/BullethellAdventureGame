@@ -1,4 +1,5 @@
-﻿using LitJson;
+﻿using CoreGame.Utilities;
+using LitJson;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
@@ -10,13 +11,18 @@ namespace CoreGame.Objects
 
         public List<Tile> tiles = new List<Tile>();
 
+        public JsonData MapData;
+
         int rows;
         int columns;
         int tileSize;
 
-        string mapString;
-
         public Map(JsonData data)
+        {
+            LoadMap(data);
+        }
+
+        public void LoadMap(JsonData data)
         {
             rows = (int)data["rows"];
             columns = (int)data["columns"];
@@ -24,30 +30,24 @@ namespace CoreGame.Objects
 
             for (int y = 0; y < rows; y++)
             {
-                mapString = (string)data["tiles"][y];
+                string mapString = (string)data["tiles"][y];
                 for (int x = 0; x < columns; x++)
                 {
                     string tile = mapString.Substring(x, 1);
                     if (tile == "1")
                     {
-                        Tile newTile = new Tile();
+                        Tile newTile = new Tile(1);
                         newTile.Position = new Vector2(x * tileSize, y * tileSize);
                         newTile.Initialize("BasicTile");
                         tiles.Add(newTile);
                     }
                 }
             }
-
         }
 
-        public virtual void Initialize()
+        public void SaveMap(string path)
         {
-
-        }
-
-        public virtual void Update(GameTime gameTime)
-        {
-
+            //TODO: SaveMaps
         }
 
         public virtual void Draw(SpriteBatch spriteBatch)

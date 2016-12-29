@@ -14,20 +14,20 @@ namespace CoreGame.UI
         Texture2D sprite;
         public string textureName;
 
-        public WindowTheme windowTheme = WindowTheme.Dark;
+        public ColorTheme windowTheme = ColorTheme.Dark;
 
         public bool mouseOver;
 
-        public UIButton(String text, Rectangle size)
+        public UIButton(String text, Rectangle size, UICanvas canvas)
         {
             this.size = size;
-            this.text = new UIText(new Vector2(size.X, size.Y), text);
+            this.text = (UIText)canvas.CreateUIElement(new UIText(size, text, Alignment.Center), UILayer.Front);
         }
 
-        public UIButton(String text, Rectangle size, WindowTheme theme)
+        public UIButton(String text, Rectangle size, ColorTheme theme, UICanvas canvas)
         {
             this.size = size;
-            this.text = new UIText(new Vector2(size.X, size.Y), text, Alignment.Center);
+            this.text = (UIText)canvas.CreateUIElement(new UIText(size, text, Alignment.Center), UILayer.Front);
             this.windowTheme = theme;
         }
 
@@ -35,10 +35,10 @@ namespace CoreGame.UI
         {
             switch (windowTheme)
             {
-                case WindowTheme.Dark:
+                case ColorTheme.Dark:
                     textureName = "Window";
                     break;
-                case WindowTheme.Light:
+                case ColorTheme.Light:
                     textureName = "LightWindow";
                     break;
             }
