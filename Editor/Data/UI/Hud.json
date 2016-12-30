@@ -1,0 +1,32 @@
+﻿{
+	"Name": "Hud",
+	"Elements": {
+		"Element0": {
+			"Type": "UIText",
+			"Position": [ 32, 32 ],
+			"Alignment": [ "Center" ],
+			"String": "Text"
+		},
+		"Element1": {
+			"Type": "UIButton",
+			"Position": [ 32, 80 ],
+			"Size": [ 120, 50 ],
+			"Alignment": [ "Center" ],
+			"String": "Button"
+		},
+		"Element2": {
+			"Type": "UIPanel",
+			"Position": [ 32, 150 ],
+			"Size": [ 500, 50 ],
+			"Alignment": [ "Center" ],
+			"Elements": {
+				"UIButton": {
+					"Position": [ 32, 32 ],
+					"Size": [ 32, 32 ],
+					"Alignment": [ "Center" ],
+					"String": "Button"
+				}
+			}
+		}
+	}
+}

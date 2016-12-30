@@ -29,6 +29,8 @@ namespace CoreGame.Managers
         public Dictionary<string, Texture2D> Sprites = new Dictionary<string, Texture2D>();
         public Dictionary<string, SpriteFont> Fonts = new Dictionary<string, SpriteFont>();
 
+        public ContentManager Content;
+
         private bool loaded = false;
 
         /// <summary>
@@ -37,12 +39,14 @@ namespace CoreGame.Managers
         /// <param name="Content">The Content manager we want to load from</param>
         public void LoadAllContent(ContentManager Content)
         {
+            this.Content = Content;
             if (!loaded)
             {
                 Sprites.Add("BasicTile", Content.Load<Texture2D>("Sprites/BasicTile"));
                 Sprites.Add("BG", Content.Load<Texture2D>("Sprites/BG"));
                 Sprites.Add("Bullet", Content.Load<Texture2D>("Sprites/Bullet"));
                 Sprites.Add("Player", Content.Load<Texture2D>("Sprites/Player"));
+                Sprites.Add("PlayerCollision", Content.Load<Texture2D>("Sprites/PlayerCollision"));
                 Sprites.Add("PlayerWalk", Content.Load<Texture2D>("Sprites/PlayerWalk"));
                 Sprites.Add("Tree", Content.Load<Texture2D>("Sprites/Tree"));
                 Sprites.Add("Window", Content.Load<Texture2D>("Sprites/Window"));

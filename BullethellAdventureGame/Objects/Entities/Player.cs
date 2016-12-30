@@ -11,28 +11,16 @@ namespace CoreGame.Objects
     public class Player : Entity
     {
         private Animation animation;
-        private Texture2D collisionBoxGraphic;
 
         public Vector2 Velocity { get; set; }
-        private int gravity = 3;
+        private int gravity = 2;
+        private bool flipped = false;
 
-        public override Rectangle BoundingBox
+        public override void Initialize(string spriteName, string collisonSpriteName)
         {
-            get
-            {
-                return new Rectangle(
-                    (int)Position.X - animation.destinationRect.Width / 2,
-                    (int)Position.Y - animation.destinationRect.Height / 2,
-                    animation.destinationRect.Width,
-                    animation.destinationRect.Height);
-            }
-        }
-
-        public override void Initialize(string spriteName)
-        {
-            base.Initialize(spriteName);
+            base.Initialize(spriteName, collisonSpriteName);
             animation = new Animation(sprite, 32, 32, 8, 100, true);
-            ResourceManager.Instance.Sprites.TryGetValue("Window", out collisionBoxGraphic);
+            Origin = new Vector2(animation.destinationRect.Width / 2, animation.destinationRect.Height / 2);
         }
 
         public override void Update(GameTime gameTime)
@@ -59,20 +47,32 @@ namespace CoreGame.Objects
                 Velocity += new Vector2(-1, 0);
             }
 
+            Velocity += new Vector2(0, gravity);
+
+            if (InputManager.Instance.isDown(Keys.X))
+            {
+                Velocity += new Vector2(0, -4);
+            }
+
             for (int i = 0; i < MainLevel.map.tiles.Count; i++)
             {
                 HandleCollision(MainLevel.map.tiles[i]);
             }
 
             Position += Velocity;
+
+            if (Velocity.X < 0 && !flipped)
+                flipped = !flipped;
+            else if (Velocity.X > 0 && flipped)
+                flipped = !flipped;
+
             animation.Update(gameTime, Position);
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(collisionBoxGraphic, BoundingBox, Color.White);
-            animation.Draw(spriteBatch);
-            //spriteBatch.Draw(sprite, new Rectangle((int)Position.X, (int)Position.Y, sprite.Width, sprite.Height), null, Color.White, RotationAngle, Origin, SpriteEffects.None, 0);
+            //spriteBatch.Draw(collisionSprite, BoundingBox, Color.White);
+            animation.Draw(spriteBatch, RotationAngle, Origin, flipped);
         }
 
         public override void HandleCollision(Entity otherEntity)

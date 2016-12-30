@@ -67,11 +67,19 @@ namespace CoreGame.Graphics
             destinationRect = new Rectangle((int)position.X - (int)(frameWidth * scale) / 2, (int)position.Y - (int)(frameHeight * scale) / 2, (int)(frameWidth * scale), (int)(frameHeight * scale));
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch, float rotation, Vector2 origin, bool flipped)
         {
             if (active)
             {
-                spriteBatch.Draw(sprite, destinationRect, soureceRect, Color.White);
+                if (flipped)
+                {
+                    spriteBatch.Draw(sprite, destinationRect, soureceRect, Color.White, rotation, origin, SpriteEffects.FlipHorizontally, 0);
+                }
+                else
+                {
+                    spriteBatch.Draw(sprite, destinationRect, soureceRect, Color.White, rotation, origin, SpriteEffects.None, 0);
+                }
+
             }
         }
     }

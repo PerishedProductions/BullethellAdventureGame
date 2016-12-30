@@ -18,16 +18,29 @@ namespace CoreGame.Objects
         public Vector2 Origin { get; set; }
 
         protected Texture2D sprite;
+        protected Texture2D collisionSprite;
 
         public virtual Rectangle BoundingBox
         {
             get
             {
-                return new Rectangle(
+                if (collisionSprite != null)
+                {
+                    return new Rectangle(
+                    (int)Position.X - collisionSprite.Width / 2,
+                    (int)Position.Y - collisionSprite.Height / 2,
+                    collisionSprite.Width,
+                    collisionSprite.Height);
+                }
+                else
+                {
+                    return new Rectangle(
                     (int)Position.X - sprite.Width / 2,
                     (int)Position.Y - sprite.Height / 2,
                     sprite.Width,
                     sprite.Height);
+                }
+                
             }
         }
 
@@ -38,6 +51,17 @@ namespace CoreGame.Objects
         public virtual void Initialize(string spriteName)
         {
             ResourceManager.Instance.Sprites.TryGetValue(spriteName, out sprite);
+            Origin = new Vector2(sprite.Width / 2, sprite.Height / 2);
+        }
+
+        /// <summary>
+        /// Initializes the entity by loading it's sprite and setting it's origin
+        /// </summary>
+        /// <param name="spriteName"></param>
+        public virtual void Initialize(string spriteName, string collisionSpriteName)
+        {
+            ResourceManager.Instance.Sprites.TryGetValue(spriteName, out sprite);
+            ResourceManager.Instance.Sprites.TryGetValue(collisionSpriteName, out collisionSprite);
             Origin = new Vector2(sprite.Width / 2, sprite.Height / 2);
         }
 
