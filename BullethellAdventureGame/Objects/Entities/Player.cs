@@ -16,10 +16,22 @@ namespace CoreGame.Objects
         public Vector2 Velocity { get; set; }
         private int gravity = 3;
 
+        public override Rectangle BoundingBox
+        {
+            get
+            {
+                return new Rectangle(
+                    (int)Position.X - animation.destinationRect.Width / 2,
+                    (int)Position.Y - animation.destinationRect.Height / 2,
+                    animation.destinationRect.Width,
+                    animation.destinationRect.Height);
+            }
+        }
+
         public override void Initialize(string spriteName)
         {
             base.Initialize(spriteName);
-            animation = new Animation(sprite, 32, 32, 3, 100, true);
+            animation = new Animation(sprite, 32, 32, 8, 100, true);
             ResourceManager.Instance.Sprites.TryGetValue("Window", out collisionBoxGraphic);
         }
 
@@ -53,21 +65,23 @@ namespace CoreGame.Objects
             }
 
             Position += Velocity;
+            animation.Update(gameTime, Position);
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            //spriteBatch.Draw(collisionBoxGraphic, BoundingBox, Color.White);
-            spriteBatch.Draw(sprite, new Rectangle((int)Position.X, (int)Position.Y, sprite.Width, sprite.Height), null, Color.White, RotationAngle, Origin, SpriteEffects.None, 0);
+            spriteBatch.Draw(collisionBoxGraphic, BoundingBox, Color.White);
+            animation.Draw(spriteBatch);
+            //spriteBatch.Draw(sprite, new Rectangle((int)Position.X, (int)Position.Y, sprite.Width, sprite.Height), null, Color.White, RotationAngle, Origin, SpriteEffects.None, 0);
         }
 
         public override void HandleCollision(Entity otherEntity)
         {
             if (Velocity.X > 0)
             {
-                if (PlaceMeeting(Position.X + sprite.Width / 2 + Velocity.X, Position.Y + sprite.Height / 2, otherEntity))
+                if (PlaceMeeting(Position.X + BoundingBox.Width / 2 + Velocity.X, Position.Y + BoundingBox.Height / 2, otherEntity))
                 {
-                    while (!PlaceMeeting(Position.X + sprite.Width / 2 + Math.Sign(Velocity.X), Position.Y + sprite.Height / 2, otherEntity))
+                    while (!PlaceMeeting(Position.X + BoundingBox.Width / 2 + Math.Sign(Velocity.X), Position.Y + BoundingBox.Height / 2, otherEntity))
                     {
                         Position += new Vector2(Math.Sign(Velocity.X), 0);
                     }
@@ -76,9 +90,9 @@ namespace CoreGame.Objects
             }
             else if (Velocity.X < 0)
             {
-                if (PlaceMeeting(Position.X - sprite.Width / 2 + Velocity.X, Position.Y - sprite.Height / 2, otherEntity))
+                if (PlaceMeeting(Position.X - BoundingBox.Width / 2 + Velocity.X, Position.Y - BoundingBox.Height / 2, otherEntity))
                 {
-                    while (!PlaceMeeting(Position.X - sprite.Width / 2 + Math.Sign(Velocity.X), Position.Y - sprite.Height / 2, otherEntity))
+                    while (!PlaceMeeting(Position.X - BoundingBox.Width / 2 + Math.Sign(Velocity.X), Position.Y - BoundingBox.Height / 2, otherEntity))
                     {
                         Position += new Vector2(Math.Sign(Velocity.X), 0);
                     }
@@ -88,9 +102,9 @@ namespace CoreGame.Objects
 
             if (Velocity.Y > 0)
             {
-                if (PlaceMeeting(Position.X + sprite.Width / 2, Position.Y + sprite.Height / 2 + Velocity.Y, otherEntity))
+                if (PlaceMeeting(Position.X + BoundingBox.Width / 2, Position.Y + BoundingBox.Height / 2 + Velocity.Y, otherEntity))
                 {
-                    while (!PlaceMeeting(Position.X + sprite.Width / 2, Position.Y + sprite.Height / 2 + Math.Sign(Velocity.Y), otherEntity))
+                    while (!PlaceMeeting(Position.X + BoundingBox.Width / 2, Position.Y + BoundingBox.Height / 2 + Math.Sign(Velocity.Y), otherEntity))
                     {
                         Position += new Vector2(0, Math.Sign(Velocity.Y));
                     }
@@ -99,9 +113,9 @@ namespace CoreGame.Objects
             }
             else if (Velocity.Y < 0)
             {
-                if (PlaceMeeting(Position.X - sprite.Width / 2, Position.Y - sprite.Height / 2 + Velocity.Y, otherEntity))
+                if (PlaceMeeting(Position.X - BoundingBox.Width / 2, Position.Y - BoundingBox.Height / 2 + Velocity.Y, otherEntity))
                 {
-                    while (!PlaceMeeting(Position.X - sprite.Width / 2, Position.Y - sprite.Height / 2 + Math.Sign(Velocity.Y), otherEntity))
+                    while (!PlaceMeeting(Position.X - BoundingBox.Width / 2, Position.Y - BoundingBox.Height / 2 + Math.Sign(Velocity.Y), otherEntity))
                     {
                         Position += new Vector2(0, Math.Sign(Velocity.Y));
                     }

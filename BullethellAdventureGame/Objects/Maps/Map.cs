@@ -34,12 +34,63 @@ namespace CoreGame.Objects
                 for (int x = 0; x < columns; x++)
                 {
                     string tile = mapString.Substring(x, 1);
-                    if (tile == "1")
+                    Tile newTile;
+                    switch (tile)
                     {
-                        Tile newTile = new Tile(1);
-                        newTile.Position = new Vector2(x * tileSize, y * tileSize);
-                        newTile.Initialize("BasicTile");
-                        tiles.Add(newTile);
+                        case "1":
+                            newTile = new Tile(1);
+                            newTile.Position = new Vector2(x * tileSize, y * tileSize);
+                            newTile.Initialize("GroundTile1");
+                            tiles.Add(newTile);
+                            break;
+                        case "2":
+                            newTile = new Tile(2);
+                            newTile.Position = new Vector2(x * tileSize, y * tileSize);
+                            newTile.Initialize("GroundTile2");
+                            tiles.Add(newTile);
+                            break;
+                        case "3":
+                            newTile = new Tile(3);
+                            newTile.Position = new Vector2(x * tileSize, y * tileSize);
+                            newTile.Initialize("GroundTile3");
+                            tiles.Add(newTile);
+                            break;
+                        case "4":
+                            newTile = new Tile(4);
+                            newTile.Position = new Vector2(x * tileSize, y * tileSize);
+                            newTile.Initialize("GroundTile4");
+                            tiles.Add(newTile);
+                            break;
+                        case "5":
+                            newTile = new Tile(5);
+                            newTile.Position = new Vector2(x * tileSize, y * tileSize);
+                            newTile.Initialize("GroundTile5");
+                            tiles.Add(newTile);
+                            break;
+                        case "6":
+                            newTile = new Tile(6);
+                            newTile.Position = new Vector2(x * tileSize, y * tileSize);
+                            newTile.Initialize("GroundTile6");
+                            tiles.Add(newTile);
+                            break;
+                        case "7":
+                            newTile = new Tile(7);
+                            newTile.Position = new Vector2(x * tileSize, y * tileSize);
+                            newTile.Initialize("GroundTile7");
+                            tiles.Add(newTile);
+                            break;
+                        case "8":
+                            newTile = new Tile(8);
+                            newTile.Position = new Vector2(x * tileSize, y * tileSize);
+                            newTile.Initialize("GroundTile8");
+                            tiles.Add(newTile);
+                            break;
+                        case "9":
+                            newTile = new Tile(9);
+                            newTile.Position = new Vector2(x * tileSize, y * tileSize);
+                            newTile.Initialize("GroundTile9");
+                            tiles.Add(newTile);
+                            break;
                     }
                 }
             }

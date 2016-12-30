@@ -43,8 +43,19 @@ namespace CoreGame.Managers
                 Sprites.Add("BG", Content.Load<Texture2D>("Sprites/BG"));
                 Sprites.Add("Bullet", Content.Load<Texture2D>("Sprites/Bullet"));
                 Sprites.Add("Player", Content.Load<Texture2D>("Sprites/Player"));
+                Sprites.Add("PlayerWalk", Content.Load<Texture2D>("Sprites/PlayerWalk"));
                 Sprites.Add("Tree", Content.Load<Texture2D>("Sprites/Tree"));
                 Sprites.Add("Window", Content.Load<Texture2D>("Sprites/Window"));
+
+                Sprites.Add("GroundTile1", Content.Load<Texture2D>("Sprites/Tiles/GroundTile1"));
+                Sprites.Add("GroundTile2", Content.Load<Texture2D>("Sprites/Tiles/GroundTile2"));
+                Sprites.Add("GroundTile3", Content.Load<Texture2D>("Sprites/Tiles/GroundTile3"));
+                Sprites.Add("GroundTile4", Content.Load<Texture2D>("Sprites/Tiles/GroundTile4"));
+                Sprites.Add("GroundTile5", Content.Load<Texture2D>("Sprites/Tiles/GroundTile5"));
+                Sprites.Add("GroundTile6", Content.Load<Texture2D>("Sprites/Tiles/GroundTile6"));
+                Sprites.Add("GroundTile7", Content.Load<Texture2D>("Sprites/Tiles/GroundTile7"));
+                Sprites.Add("GroundTile8", Content.Load<Texture2D>("Sprites/Tiles/GroundTile8"));
+                Sprites.Add("GroundTile9", Content.Load<Texture2D>("Sprites/Tiles/GroundTile9"));
 
                 Fonts.Add("FontSmall", Content.Load<SpriteFont>("Fonts/FontSmall"));
                 Fonts.Add("FontMedium", Content.Load<SpriteFont>("Fonts/FontMedium"));

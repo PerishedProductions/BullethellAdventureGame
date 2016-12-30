@@ -42,6 +42,7 @@ namespace Editor
             if (result == DialogResult.OK)
             {
                 mapEditor.LoadMap(dialog.FileName, Path.GetFileName(dialog.FileName));
+                this.Text = Path.GetFileName("Map Editor - " + Path.GetFileName(dialog.FileName));
             }
         }
 
@@ -57,6 +58,7 @@ namespace Editor
                 WriteJson jsonWrite = new WriteJson();
                 jsonWrite.WriteData(dialog.FileName, jsonReader.ReadData("Data/MapTemplate.json"));
                 mapEditor.LoadMap(dialog.FileName, Path.GetFileName(dialog.FileName));
+                this.Text = Path.GetFileName("Map Editor - " + Path.GetFileName(dialog.FileName));
             }
         }
     }

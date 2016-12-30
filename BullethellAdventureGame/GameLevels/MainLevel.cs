@@ -20,8 +20,8 @@ namespace CoreGame.GameLevels
             ReadJson reader = new ReadJson();
             map = new Map(reader.ReadData("Data/Map.json"));
             player = new Player();
-            player.Initialize("Player");
-            player.Position = new Vector2(100, 50);
+            player.Initialize("PlayerWalk");
+            player.Position = new Vector2(300, 40);
 
             //UIManager.Instance.ChangeCanvas(new PauseMenuCanvas());
         }
