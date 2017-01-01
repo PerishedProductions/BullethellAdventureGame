@@ -18,6 +18,11 @@ namespace CoreGame.Objects
             base.Initialize(spriteName);
         }
 
+        public void Initialize()
+        {
+            base.Initialize("GroundTile" + Id);
+        }
+
         public override void Update(GameTime gameTime) { }
 
         //Draws the sprite at its position

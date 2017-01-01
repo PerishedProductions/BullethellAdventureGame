@@ -40,7 +40,7 @@ namespace CoreGame.Objects
                     sprite.Width,
                     sprite.Height);
                 }
-                
+
             }
         }
 

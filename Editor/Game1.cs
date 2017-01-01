@@ -30,14 +30,13 @@ namespace Editor
         protected override void Initialize()
         {
             //Set the resolution of the window
-            graphics.PreferredBackBufferWidth = 1280;
-            graphics.PreferredBackBufferHeight = 720;
+            graphics.PreferredBackBufferWidth = 1440;
+            graphics.PreferredBackBufferHeight = 810;
             graphics.ApplyChanges();
 
-            //Centers the screem
-            this.Window.Position = new Point(GraphicsDevice.DisplayMode.Width - (GraphicsDevice.DisplayMode.Width / 2) - (graphics.PreferredBackBufferWidth / 2), GraphicsDevice.DisplayMode.Height - (GraphicsDevice.DisplayMode.Height / 2) - (graphics.PreferredBackBufferHeight / 2));
-
+            //Set title and allow resolution
             Window.Title = "Persished Engine";
+            Window.AllowUserResizing = true;
 
             ResourceManager.Instance.LoadAllContent(Content);
             LevelManager.Instance.currentLevel = new EditorStartPage();

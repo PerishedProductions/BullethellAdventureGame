@@ -2,12 +2,13 @@
 using CoreGame.Managers;
 using CoreGame.Objects;
 using CoreGame.Utilities;
+using Editor.Objects;
+using Editor.Objects.Entities;
 using GeonBit.UI;
 using GeonBit.UI.Entities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using System.Collections.Generic;
 
 namespace Editor.GameLevels
 {
@@ -15,29 +16,22 @@ namespace Editor.GameLevels
     {
         // GeonBit.UI: UI manager instance
         private UserInterface UIManager;
-        private Map map;
+        private EditorMap map;
         private Camera cam;
 
-        Tile previewTile;
-
-        private List<Texture2D> tiles = new List<Texture2D>();
+        private Tile previewTile;
+        private SpriteFont font;
 
         public override void Initialize()
         {
-            for (int i = 0; i < 9; i++)
-            {
-                Texture2D temp;
-                ResourceManager.Instance.Sprites.TryGetValue("GroundTile" + i, out temp);
-                if (temp != null)
-                    tiles.Add(temp);
-            }
             previewTile = new Tile(1);
             previewTile.Initialize("GroundTile1");
+
+            ResourceManager.Instance.Fonts.TryGetValue("FontMedium", out font);
 
             // GeonBit.UI: create and init the UI manager
             UIManager = new UserInterface(ResourceManager.Instance.Content);
             UIManager.Initialize();
-
             UserInterface.SCALE = 0.7f;
 
             Panel menuBar = new Panel(size: new Vector2(1280, 70), skin: PanelSkin.Simple, anchor: Anchor.TopCenter, offset: new Vector2(0, 0));
@@ -59,6 +53,7 @@ namespace Editor.GameLevels
             newMap.OnClick = (GeonBit.UI.Entities.Entity btn) =>
             {
                 TogglePanel(filePanel);
+                NewMap();
             };
             filePanel.AddChild(newMap);
 
@@ -85,33 +80,22 @@ namespace Editor.GameLevels
                 ExitMapEditor();
             };
             filePanel.AddChild(exitEditor);
-
-            SelectList tileBrowser = new SelectList(Anchor.BottomRight, null);
-            //Panel tileBrowser = new Panel(new Vector2(350, 500), PanelSkin.Default, Anchor.BottomRight, null);
-
-            for (int i = 0; i < tiles.Count; i++)
-            {
-                Image img = new Image(tiles[i], new Vector2(32, 32), ImageDrawMode.Stretch, Anchor.CenterRight, new Vector2(10, 0));
-                int index = i + 1;
-                tileBrowser.AddItem("GroundTile " + index);
-            }
-            UIManager.AddEntity(tileBrowser);
-            tileBrowser.OnValueChange = (GeonBit.UI.Entities.Entity entity) =>
-            {
-
-            };
-
-            ReadJson reader = new ReadJson();
-            map = new Map(reader.ReadData("Data/Map.json"));
         }
 
         public override void InitializeCam(Viewport viewport)
         {
             cam = new Camera(viewport);
+            ReadJson reader = new ReadJson();
+            map = new EditorMap(reader.ReadData("Data/Map.json"), ref cam);
         }
 
         public override void Update(GameTime gameTime)
         {
+            for (int i = 0; i < map.tiles.Count; i++)
+            {
+                EditorTile temp = (EditorTile)map.tiles[i];
+                temp.Update(gameTime, previewTile);
+            }
 
             if (InputManager.Instance.isDown(Keys.W))
             {
@@ -128,6 +112,20 @@ namespace Editor.GameLevels
             if (InputManager.Instance.isDown(Keys.D))
             {
                 cam.position += new Vector2(2, 0);
+            }
+
+            if (InputManager.Instance.isPressed(Keys.Tab))
+            {
+                ToggleTileID();
+            }
+
+            if (previewTile.Id < 9 && InputManager.Instance.getMouseWheelState() > InputManager.Instance.getOldMouseWheelState())
+            {
+                previewTile.Id++;
+            }
+            if (previewTile.Id > 0 && InputManager.Instance.getMouseWheelState() < InputManager.Instance.getOldMouseWheelState() && cam.zoom > 0.1f)
+            {
+                previewTile.Id--;
             }
 
             if (InputManager.Instance.isDown(Keys.LeftAlt))
@@ -154,11 +152,29 @@ namespace Editor.GameLevels
             var viewMatrix = cam.GetViewMatrix();
             spriteBatch.Begin(SpriteSortMode.BackToFront, null, SamplerState.PointClamp, null, null, transformMatrix: viewMatrix);
             map.Draw(spriteBatch);
-            previewTile.Draw(spriteBatch);
+            spriteBatch.End();
+
+            spriteBatch.Begin(SpriteSortMode.BackToFront, null, SamplerState.PointClamp, null, null, null);
+            spriteBatch.DrawString(font, "GroundTile" + previewTile.Id, InputManager.Instance.getMousePos() + new Vector2(30, 0), Color.White);
             spriteBatch.End();
 
             // GeonBit.UI: draw UI using the spriteBatch you created above
             UIManager.Draw(spriteBatch);
+        }
+
+        void ToggleTileID()
+        {
+            for (int i = 0; i < map.tiles.Count; i++)
+            {
+                EditorTile tile = (EditorTile)map.tiles[i];
+                tile.drawId = !tile.drawId;
+            }
+        }
+
+        void NewMap()
+        {
+            ReadJson reader = new ReadJson();
+            map = new EditorMap(reader.ReadData("Data/EmptyMap.json"), ref cam);
         }
 
         void ExitMapEditor()

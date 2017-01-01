@@ -41,6 +41,8 @@
     <Compile Include="Game1.cs" />
     <Compile Include="GameLevels\EditorStartPage.cs" />
     <Compile Include="GameLevels\MapEditor.cs" />
+    <Compile Include="Objects\Entities\EditorMap.cs" />
+    <Compile Include="Objects\Entities\EditorTile.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -78,6 +80,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Data\EmptyMap.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Data\Map.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
