@@ -13,6 +13,7 @@ namespace CoreGame.Objects
         private Animator animator;
         private Animation idleAnimationSword;
         private Animation walkingAnimation;
+        private Animation attackAnimation;
 
         public Vector2 Velocity { get; set; }
         private int gravity = 2;
@@ -23,6 +24,7 @@ namespace CoreGame.Objects
             base.Initialize(spriteName, collisonSpriteName);
             idleAnimationSword = new Animation(sprite, 64, 32, 2, 3, 200, true);
             walkingAnimation = new Animation(sprite, 64, 32, 1, 7, 100, true);
+            attackAnimation = new Animation(sprite, 64, 32, 3, 5, 100, false);
             animator = new Animator(idleAnimationSword);
             Origin = new Vector2(idleAnimationSword.destinationRect.Width / 2, idleAnimationSword.destinationRect.Height / 2);
         }
@@ -51,11 +53,16 @@ namespace CoreGame.Objects
                 Velocity += new Vector2(-1, 0);
             }
 
+            if (InputManager.Instance.isPressed(Keys.C))
+            {
+                animator.ChangeAnimation(attackAnimation);
+            }
+
             Velocity += new Vector2(0, gravity);
 
-            if (InputManager.Instance.isDown(Keys.X))
+            if (InputManager.Instance.isPressed(Keys.Z))
             {
-                Velocity += new Vector2(0, -4);
+                Velocity += new Vector2(0, -10);
             }
 
             for (int i = 0; i < MainLevel.map.tiles.Count; i++)

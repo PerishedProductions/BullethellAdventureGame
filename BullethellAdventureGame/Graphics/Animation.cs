@@ -24,8 +24,8 @@ namespace CoreGame.Graphics
         int frameWidth;
         int scale = 1;
 
-        bool active = true;
-        bool looping;
+        public bool active = true;
+        public bool looping;
 
         public Animation(Texture2D sprite, int frameWidth, int frameHeight, int frameRow, int frameCount, int frametime, bool looping)
         {
