@@ -47,6 +47,7 @@ namespace CoreGame.Managers
                 Sprites.Add("Bullet", Content.Load<Texture2D>("Sprites/Bullet"));
                 Sprites.Add("Player", Content.Load<Texture2D>("Sprites/Player"));
                 Sprites.Add("PlayerCollision", Content.Load<Texture2D>("Sprites/PlayerCollision"));
+                Sprites.Add("PlayerAnimations", Content.Load<Texture2D>("Sprites/PlayerAnimations"));
                 Sprites.Add("PlayerWalk", Content.Load<Texture2D>("Sprites/PlayerWalk"));
                 Sprites.Add("Tree", Content.Load<Texture2D>("Sprites/Tree"));
                 Sprites.Add("Window", Content.Load<Texture2D>("Sprites/Window"));

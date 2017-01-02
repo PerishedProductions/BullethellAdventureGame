@@ -18,10 +18,10 @@ namespace CoreGame.GameLevels
         public override void Initialize()
         {
             ReadJson reader = new ReadJson();
-            map = new Map(reader.ReadData("Data/Map.json"));
+            map = new Map(reader.ReadData("Data/New Map.json"));
             player = new Player();
-            player.Initialize("PlayerWalk", "PlayerCollision");
-            player.Position = new Vector2(300, 40);
+            player.Initialize("PlayerAnimations", "PlayerCollision");
+            player.Position = new Vector2(300, 100);
 
             //UIManager.Instance.ChangeCanvas(new PauseMenuCanvas());
         }

@@ -14,6 +14,7 @@ namespace CoreGame.Graphics
         int elapsedTime;
         int frameTime;
         int frameCount;
+        int frameRow;
         int currentFrame;
 
         Rectangle soureceRect;
@@ -26,7 +27,7 @@ namespace CoreGame.Graphics
         bool active = true;
         bool looping;
 
-        public Animation(Texture2D sprite, int frameWidth, int frameHeight, int frameCount, int frametime, bool looping)
+        public Animation(Texture2D sprite, int frameWidth, int frameHeight, int frameRow, int frameCount, int frametime, bool looping)
         {
             this.sprite = sprite;
             this.frameWidth = frameWidth;
@@ -34,6 +35,7 @@ namespace CoreGame.Graphics
             this.frameCount = frameCount;
             this.frameTime = frametime;
             this.looping = looping;
+            this.frameRow = frameRow;
         }
 
         public void Update(GameTime gameTime, Vector2 position)
@@ -62,7 +64,7 @@ namespace CoreGame.Graphics
                 elapsedTime = 0;
             }
 
-            soureceRect = new Rectangle(currentFrame * frameWidth, 0, frameWidth, frameHeight);
+            soureceRect = new Rectangle(currentFrame * frameWidth, frameRow * frameHeight, frameWidth, frameHeight);
 
             destinationRect = new Rectangle((int)position.X - (int)(frameWidth * scale) / 2, (int)position.Y - (int)(frameHeight * scale) / 2, (int)(frameWidth * scale), (int)(frameHeight * scale));
         }

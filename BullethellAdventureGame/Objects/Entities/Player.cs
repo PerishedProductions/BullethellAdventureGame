@@ -10,7 +10,9 @@ namespace CoreGame.Objects
 {
     public class Player : Entity
     {
-        private Animation animation;
+        private Animator animator;
+        private Animation idleAnimationSword;
+        private Animation walkingAnimation;
 
         public Vector2 Velocity { get; set; }
         private int gravity = 2;
@@ -19,8 +21,10 @@ namespace CoreGame.Objects
         public override void Initialize(string spriteName, string collisonSpriteName)
         {
             base.Initialize(spriteName, collisonSpriteName);
-            animation = new Animation(sprite, 32, 32, 8, 100, true);
-            Origin = new Vector2(animation.destinationRect.Width / 2, animation.destinationRect.Height / 2);
+            idleAnimationSword = new Animation(sprite, 64, 32, 2, 3, 200, true);
+            walkingAnimation = new Animation(sprite, 64, 32, 1, 7, 100, true);
+            animator = new Animator(idleAnimationSword);
+            Origin = new Vector2(idleAnimationSword.destinationRect.Width / 2, idleAnimationSword.destinationRect.Height / 2);
         }
 
         public override void Update(GameTime gameTime)
@@ -66,13 +70,22 @@ namespace CoreGame.Objects
             else if (Velocity.X > 0 && flipped)
                 flipped = !flipped;
 
-            animation.Update(gameTime, Position);
+            if (Velocity.X != 0)
+            {
+                animator.ChangeAnimation(walkingAnimation);
+            }
+            else
+            {
+                animator.ChangeAnimation(idleAnimationSword);
+            }
+
+            animator.Update(gameTime, Position);
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
             //spriteBatch.Draw(collisionSprite, BoundingBox, Color.White);
-            animation.Draw(spriteBatch, RotationAngle, Origin, flipped);
+            animator.Draw(spriteBatch, RotationAngle, Origin, flipped);
         }
 
         public override void HandleCollision(Entity otherEntity)

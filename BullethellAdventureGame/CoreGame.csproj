@@ -40,6 +40,7 @@
   <ItemGroup>
     <Compile Include="GameLevels\BulletTestingEnvironment.cs" />
     <Compile Include="Graphics\Animation.cs" />
+    <Compile Include="Graphics\Animator.cs" />
     <Compile Include="Managers\Camera.cs" />
     <Compile Include="Managers\GameManager.cs" />
     <Compile Include="Managers\InputManager.cs" />
@@ -92,6 +93,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\Map.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\New Map.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Data\UI\Hud.json">

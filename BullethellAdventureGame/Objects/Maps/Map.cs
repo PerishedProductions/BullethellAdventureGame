@@ -34,17 +34,44 @@ namespace CoreGame.Objects
                 for (int x = 0; x < columns; x++)
                 {
                     string tile = mapString.Substring(x, 1);
-                    Tile newTile = new Tile(int.Parse(tile));
-                    newTile.Position = new Vector2(x * tileSize, y * tileSize);
-                    newTile.Initialize();
-                    tiles.Add(newTile);
+                    //TODO: Add seperate layer for collision boxes for the map
+                    if (tile != "0")
+                    {
+                        Tile newTile = new Tile(int.Parse(tile));
+                        newTile.Position = new Vector2(x * tileSize, y * tileSize);
+                        newTile.Initialize();
+                        tiles.Add(newTile);
+                    }
                 }
             }
         }
 
-        public void SaveMap(string path)
+
+        public string[] MapToString()
         {
-            //TODO: SaveMaps
+            string[] mapArray = new string[rows];
+            for (int y = 0; y < rows; y++)
+            {
+                string mapString = "";
+                for (int x = 0; x < columns; x++)
+                {
+                    mapString += GetTile(x * tileSize, y * tileSize).Id;
+                }
+                mapArray[y] = mapString;
+            }
+            return mapArray;
+        }
+
+        public Tile GetTile(int x, int y)
+        {
+            for (int i = 0; i < tiles.Count; i++)
+            {
+                if (tiles[i].Position == new Vector2(x, y))
+                {
+                    return tiles[i];
+                }
+            }
+            return null;
         }
 
         public virtual void Draw(SpriteBatch spriteBatch)
