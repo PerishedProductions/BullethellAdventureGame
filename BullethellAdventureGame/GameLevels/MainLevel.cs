@@ -1,5 +1,6 @@
 ﻿using CoreGame.Managers;
 using CoreGame.Objects;
+using CoreGame.Objects.Entities.NPCS.Monsters;
 using CoreGame.UI;
 using CoreGame.Utilities;
 using Microsoft.Xna.Framework;
@@ -13,6 +14,7 @@ namespace CoreGame.GameLevels
     {
         private Camera cam;
         private Player player;
+        private Slime slime;
         public static Map map;
 
         public override void Initialize()
@@ -22,6 +24,10 @@ namespace CoreGame.GameLevels
             player = new Player();
             player.Initialize("PlayerAnimations", "PlayerCollision");
             player.Position = new Vector2(300, 100);
+
+            slime = new Slime();
+            slime.Initialize("Slime");
+            slime.Position = new Vector2(350, 200);
 
             //UIManager.Instance.ChangeCanvas(new PauseMenuCanvas());
         }
@@ -62,6 +68,7 @@ namespace CoreGame.GameLevels
 
                 cam.LookAtSmooth(player.Position);
                 player.Update(gameTime);
+                slime.Update(gameTime);
             }
 
             base.Update(gameTime);
@@ -73,6 +80,7 @@ namespace CoreGame.GameLevels
             spriteBatch.Begin(SpriteSortMode.BackToFront, null, SamplerState.PointClamp, null, null, transformMatrix: viewMatrix);
             map.Draw(spriteBatch);
             player.Draw(spriteBatch);
+            slime.Draw(spriteBatch);
             spriteBatch.End();
         }
     }

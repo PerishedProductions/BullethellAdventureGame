@@ -60,9 +60,8 @@ namespace CoreGame.Objects
         /// <param name="spriteName"></param>
         public virtual void Initialize(string spriteName, string collisionSpriteName)
         {
-            ResourceManager.Instance.Sprites.TryGetValue(spriteName, out sprite);
             ResourceManager.Instance.Sprites.TryGetValue(collisionSpriteName, out collisionSprite);
-            Origin = new Vector2(sprite.Width / 2, sprite.Height / 2);
+            Initialize(spriteName);
         }
 
         public abstract void Update(GameTime gameTime);

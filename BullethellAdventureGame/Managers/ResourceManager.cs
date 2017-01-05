@@ -1,10 +1,6 @@
 ﻿using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CoreGame.Managers
 {
@@ -49,6 +45,7 @@ namespace CoreGame.Managers
                 Sprites.Add("PlayerCollision", Content.Load<Texture2D>("Sprites/PlayerCollision"));
                 Sprites.Add("PlayerAnimations", Content.Load<Texture2D>("Sprites/PlayerAnimations"));
                 Sprites.Add("PlayerWalk", Content.Load<Texture2D>("Sprites/PlayerWalk"));
+                Sprites.Add("Slime", Content.Load<Texture2D>("Sprites/Slime"));
                 Sprites.Add("Tree", Content.Load<Texture2D>("Sprites/Tree"));
                 Sprites.Add("Window", Content.Load<Texture2D>("Sprites/Window"));
 

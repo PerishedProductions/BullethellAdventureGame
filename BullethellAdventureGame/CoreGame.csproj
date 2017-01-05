@@ -56,6 +56,9 @@
     <Compile Include="Objects\Entities\Entity.cs" />
     <Compile Include="Objects\Entities\IBehaviorAction.cs" />
     <Compile Include="Objects\Entities\IBehaviorManager.cs" />
+    <Compile Include="Objects\Entities\NPCS\Monsters\Monster.cs" />
+    <Compile Include="Objects\Entities\NPCS\Monsters\Slime.cs" />
+    <Compile Include="Objects\Entities\NPCS\NPC.cs" />
     <Compile Include="Objects\Entities\Player.cs" />
     <Compile Include="GameLevels\GameLevel.cs" />
     <Compile Include="GameLevels\MainLevel.cs" />

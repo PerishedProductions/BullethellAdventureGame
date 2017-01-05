@@ -1,6 +1,6 @@
-﻿using CoreGame.Objects;
+﻿using CoreGame.Managers;
+using CoreGame.Objects;
 using Microsoft.Xna.Framework;
-using CoreGame.Managers;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Editor.Objects
@@ -24,15 +24,6 @@ namespace Editor.Objects
             {
                 this.Id = previewTile.Id;
                 this.Initialize();
-            }
-        }
-
-        public override void Draw(SpriteBatch spriteBatch)
-        {
-            base.Draw(spriteBatch);
-            if (drawId)
-            {
-                spriteBatch.DrawString(font, Id.ToString(), Position, Color.Blue);
             }
         }
 

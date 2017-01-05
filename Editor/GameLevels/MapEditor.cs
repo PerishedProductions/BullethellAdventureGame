@@ -24,6 +24,7 @@ namespace Editor.GameLevels
 
         private string currentMapPath;
 
+        private bool drawTileID = false;
         private bool overUI = false;
 
         private Tile previewTile;
@@ -37,12 +38,11 @@ namespace Editor.GameLevels
             previewTile.Initialize("GroundTile1");
             ResourceManager.Instance.Fonts.TryGetValue("FontMedium", out font);
 
-            // GeonBit.UI: create and init the UI manager
             UIManager = new UserInterface(ResourceManager.Instance.Content);
             UIManager.Initialize();
             UserInterface.SCALE = 0.7f;
 
-            Panel menuBar = new Panel(size: new Vector2(1920, 70), skin: PanelSkin.Simple, anchor: Anchor.TopCenter, offset: new Vector2(0, 0));
+            Panel menuBar = new Panel(size: new Vector2(1680, 70), skin: PanelSkin.Simple, anchor: Anchor.TopCenter, offset: new Vector2(0, 0));
             menuBar.OnMouseEnter = (GeonBit.UI.Entities.Entity entity) =>
             {
                 overUI = true;
@@ -128,6 +128,40 @@ namespace Editor.GameLevels
             };
             menuBar.AddChild(collisionMode);
 
+            Panel propertyPanel = new Panel(new Vector2(1280, 720), PanelSkin.Default, Anchor.Center, null);
+            propertyPanel.Visible = false;
+            propertyPanel.OnMouseEnter = (GeonBit.UI.Entities.Entity entity) =>
+            {
+                overUI = true;
+            };
+            propertyPanel.OnMouseLeave = (GeonBit.UI.Entities.Entity entity) =>
+            {
+                overUI = false;
+            };
+            UIManager.AddEntity(propertyPanel);
+
+            Header propertyHeader = new Header("Map Properties", Anchor.TopCenter, null);
+            propertyPanel.AddChild(propertyHeader);
+
+            Button closePropertyPanle = new Button("X", ButtonSkin.Default, Anchor.TopRight, new Vector2(100, 50), new Vector2(0, -10));
+            closePropertyPanle.OnClick = (GeonBit.UI.Entities.Entity btn) =>
+            {
+                propertyPanel.Visible = !propertyPanel.Visible;
+            };
+            propertyPanel.AddChild(closePropertyPanle);
+
+            HorizontalLine propertyLine = new HorizontalLine(Anchor.TopCenter, new Vector2(0, 50));
+            propertyPanel.AddChild(propertyLine);
+
+            Paragraph mapRow = new Paragraph("Rows: ", Anchor.Center, null, null);
+            propertyPanel.AddChild(mapRow);
+
+            Button mapProperties = new Button("Map Properties", ButtonSkin.Default, Anchor.CenterLeft, new Vector2(350, 60), new Vector2(1270, 0));
+            mapProperties.OnClick = (GeonBit.UI.Entities.Entity btn) =>
+            {
+                propertyPanel.Visible = !propertyPanel.Visible;
+            };
+            menuBar.AddChild(mapProperties);
         }
 
         public override void InitializeCam(Viewport viewport)
@@ -177,7 +211,7 @@ namespace Editor.GameLevels
 
             if (InputManager.Instance.isPressed(Keys.Tab))
             {
-                ToggleTileID();
+                drawTileID = !drawTileID;
             }
 
             if (editorMode == EditorMode.TileMode)
@@ -193,7 +227,6 @@ namespace Editor.GameLevels
             }
             previewTile.Position = InputManager.Instance.getMouseWorldPos(cam.GetViewMatrix());
 
-            // GeonBit.UIL update UI manager
             UIManager.Update(gameTime);
             base.Update(gameTime);
         }
@@ -203,24 +236,32 @@ namespace Editor.GameLevels
             var viewMatrix = cam.GetViewMatrix();
             spriteBatch.Begin(SpriteSortMode.BackToFront, null, SamplerState.PointClamp, null, null, transformMatrix: viewMatrix);
             if (map != null)
+            {
+                if (drawTileID)
+                {
+                    for (int i = 0; i < map.tiles.Count; i++)
+                    {
+                        spriteBatch.DrawString(font, map.tiles[i].Id.ToString(), map.tiles[i].Position, Color.Blue);
+                    }
+                }
                 map.Draw(spriteBatch);
+            }
             spriteBatch.End();
 
             spriteBatch.Begin(SpriteSortMode.BackToFront, null, SamplerState.PointClamp, null, null, null);
-            spriteBatch.DrawString(font, "GroundTile" + previewTile.Id, InputManager.Instance.getMousePos() + new Vector2(30, 0), Color.White);
+            switch (editorMode)
+            {
+                case EditorMode.TileMode:
+                    spriteBatch.DrawString(font, "GroundTile" + previewTile.Id, InputManager.Instance.getMousePos() + new Vector2(30, 0), Color.White);
+                    break;
+                case EditorMode.EntityMode:
+                    break;
+                case EditorMode.CollisionMode:
+                    break;
+            }
             spriteBatch.End();
 
-            // GeonBit.UI: draw UI using the spriteBatch you created above
             UIManager.Draw(spriteBatch);
-        }
-
-        void ToggleTileID()
-        {
-            for (int i = 0; i < map.tiles.Count; i++)
-            {
-                EditorTile tile = (EditorTile)map.tiles[i];
-                tile.drawId = !tile.drawId;
-            }
         }
 
         void NewMap()
