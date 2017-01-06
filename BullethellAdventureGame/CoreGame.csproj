@@ -69,6 +69,7 @@
     <Compile Include="Objects\Entities\Tiles\Tile.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UI\Canvases\MainMenuCanvas.cs" />
     <Compile Include="UI\Canvases\PauseMenuCanvas.cs" />
     <Compile Include="UI\UIButton.cs" />
     <Compile Include="UI\UICanvas.cs" />

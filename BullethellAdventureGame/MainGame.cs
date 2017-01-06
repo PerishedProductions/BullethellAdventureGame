@@ -1,9 +1,7 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-
-using CoreGame.GameLevels;
+﻿using CoreGame.GameLevels;
 using CoreGame.Managers;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace CoreGame
 {
@@ -37,6 +35,7 @@ namespace CoreGame
 
             //Centers the screem
             this.Window.Position = new Point(GraphicsDevice.DisplayMode.Width - (GraphicsDevice.DisplayMode.Width / 2) - (graphics.PreferredBackBufferWidth / 2), GraphicsDevice.DisplayMode.Height - (GraphicsDevice.DisplayMode.Height / 2) - (graphics.PreferredBackBufferHeight / 2));
+            this.Window.Title = "GAME TITLE!!!";
 
             LevelManager.Instance.viewport = GraphicsDevice.Viewport;
             LevelManager.Instance.currentLevel.Initialize();

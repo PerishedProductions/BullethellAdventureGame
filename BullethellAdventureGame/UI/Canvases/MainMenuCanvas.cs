@@ -5,12 +5,12 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace CoreGame.UI
 {
-    public class PauseMenuCanvas : UICanvas
+    public class MainMenuCanvas : UICanvas
     {
 
-        UIText paused;
+        UIText title;
 
-        UIButton continueButton;
+        UIButton startGameButton;
         UIButton settingsButton;
         UIButton exitButton;
 
@@ -20,14 +20,15 @@ namespace CoreGame.UI
         {
             ResourceManager.Instance.Sprites.TryGetValue("Window", out backdrop);
 
-            paused = (UIText)CreateUIElement(new UIText(new Vector2(10, 5), "Paused!!"), UILayer.Middle);
-            continueButton = (UIButton)CreateUIElement(new UIButton("Continue", new Rectangle(10, 50, 300, 50), this), UILayer.Middle);
+            title = (UIText)CreateUIElement(new UIText(new Vector2(10, 5), "GAME TITLE!!!"), UILayer.Middle);
+            startGameButton = (UIButton)CreateUIElement(new UIButton("Start Game", new Rectangle(10, 50, 300, 50), this), UILayer.Middle);
+            startGameButton.onButtonClicked += () =>
+            {
+                LevelManager.Instance.ChangeLevel(new MainLevel());
+            };
+
             settingsButton = (UIButton)CreateUIElement(new UIButton("Settings", new Rectangle(10, 105, 300, 50), this), UILayer.Middle);
             exitButton = (UIButton)CreateUIElement(new UIButton("Exit Game", new Rectangle(10, 160, 300, 50), this), UILayer.Middle);
-            exitButton.onButtonClicked += () =>
-            {
-                LevelManager.Instance.ChangeLevel(new MenuLevel());
-            };
 
             base.LoadContent();
         }

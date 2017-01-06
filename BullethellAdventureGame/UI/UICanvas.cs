@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Content;
+﻿using CoreGame.Managers;
 using Microsoft.Xna.Framework;
-using System.Diagnostics;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+using System.Collections.Generic;
 
 namespace CoreGame.UI
 {
@@ -12,6 +12,9 @@ namespace CoreGame.UI
         public List<UIElement> frontLayer = new List<UIElement>();
         public List<UIElement> middleLayer = new List<UIElement>();
         public List<UIElement> bottomLayer = new List<UIElement>();
+
+        public List<UIButton> menuButtons = new List<UIButton>();
+        public int menuIndex = 0;
 
         public virtual void Initialize()
         {
@@ -65,6 +68,33 @@ namespace CoreGame.UI
             {
                 frontLayer[i].Update(gameTime);
             }
+
+            if (menuButtons != null)
+            {
+                if (InputManager.Instance.isPressed(Keys.Up))
+                {
+                    if (menuIndex == 0)
+                        menuIndex = menuButtons.Count - 1;
+                    else
+                        menuIndex--;
+                }
+
+                if (InputManager.Instance.isPressed(Keys.Down))
+                {
+                    if (menuIndex == menuButtons.Count - 1)
+                        menuIndex = 0;
+                    else
+                        menuIndex++;
+                }
+
+                if (InputManager.Instance.isPressed(Keys.Enter))
+                {
+                    menuButtons[menuIndex].OnButtonClicked();
+                }
+
+                menuButtons[menuIndex].Selected = true;
+            }
+
         }
 
         public virtual void Draw(SpriteBatch spriteBatch)
@@ -105,6 +135,12 @@ namespace CoreGame.UI
                     bottomLayer.Add(element);
                     break;
             }
+
+            if (element is UIButton)
+            {
+                menuButtons.Add((UIButton)element);
+            }
+
             element.Initialize();
             element.LoadContent();
             return element;

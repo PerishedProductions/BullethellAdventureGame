@@ -48,7 +48,7 @@ namespace CoreGame.GameLevels
                 }
                 else
                 {
-                    UIManager.Instance.ChangeCanvas(new UICanvas());
+                    //TODO: Add main gui
                 }
             }
 

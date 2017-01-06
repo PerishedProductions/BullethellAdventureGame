@@ -8,10 +8,10 @@
 // Since: 2016.
 //-----------------------------------------------------------------------------
 #endregion
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using GeonBit.UI.Entities;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace GeonBit.UI
 {
@@ -68,7 +68,7 @@ namespace GeonBit.UI
 
         /// <summary>Screen width.</summary>
         static public int ScreenWidth = 0;
-        
+
         /// <summary>Screen height.</summary>
         static public int ScreenHeight = 0;
 
@@ -187,8 +187,8 @@ namespace GeonBit.UI
         {
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             Vector2 cursorPos = _input.MousePosition;
-            spriteBatch.Draw(_cursor, 
-                                new Rectangle((int)cursorPos.X + _cursorOffset, (int)cursorPos.Y, (int)CURSOR_SIZE.X, (int)CURSOR_SIZE.Y), 
+            spriteBatch.Draw(_cursor,
+                                new Rectangle((int)cursorPos.X + _cursorOffset, (int)cursorPos.Y, (int)CURSOR_SIZE.X, (int)CURSOR_SIZE.Y),
                                 Color.White);
             spriteBatch.End();
         }
@@ -245,7 +245,7 @@ namespace GeonBit.UI
             // update screen size
             ScreenWidth = spriteBatch.GraphicsDevice.Viewport.Width;
             ScreenHeight = spriteBatch.GraphicsDevice.Viewport.Height;
-            
+
             // draw root panel
             _root.Draw(spriteBatch);
 

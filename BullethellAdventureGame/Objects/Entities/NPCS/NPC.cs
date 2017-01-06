@@ -11,6 +11,7 @@ namespace CoreGame.Objects.Entities.NPCS
 
         public override void HandleCollision(Entity otherEntity)
         {
+
         }
 
         public override void Update(GameTime gameTime)

@@ -1,12 +1,11 @@
-﻿using System;
+﻿using CoreGame.Managers;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using CoreGame.Managers;
+using System;
 
 namespace CoreGame.UI
 {
-    class UIButton : UIElement
+    public class UIButton : UIElement
     {
 
         UIText text;
@@ -14,9 +13,14 @@ namespace CoreGame.UI
         Texture2D sprite;
         public string textureName;
 
+        public bool Selected { get; set; } = false;
+
         public ColorTheme windowTheme = ColorTheme.Dark;
 
-        public bool mouseOver;
+        int TopPadding = 5;
+        int LeftPadding = 5;
+        int BottomPadding = 5;
+        int RightPadding = 5;
 
         public UIButton(String text, Rectangle size, UICanvas canvas)
         {
@@ -29,6 +33,16 @@ namespace CoreGame.UI
             this.size = size;
             this.text = (UIText)canvas.CreateUIElement(new UIText(size, text, Alignment.Center), UILayer.Front);
             this.windowTheme = theme;
+        }
+
+        public event Action onButtonClicked;
+
+        public void OnButtonClicked()
+        {
+            if (onButtonClicked != null)
+            {
+                onButtonClicked.Invoke();
+            }
         }
 
         public override void Initialize()
@@ -52,13 +66,48 @@ namespace CoreGame.UI
 
         public override void Update(GameTime gameTime)
         {
-            mouseOver = size.Contains(InputManager.Instance.getMousePos());
+            Selected = false;
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(sprite, size, Color.White);
-            text.Draw(spriteBatch);
+            if (Selected)
+            {
+                var sourcePathces = CreatePatches(sprite.Bounds);
+                var destinationPatches = CreatePatches(size);
+
+                for (var i = 0; i < sourcePathces.Length; i++)
+                {
+                    spriteBatch.Draw(sprite, sourceRectangle: sourcePathces[i], destinationRectangle: destinationPatches[i]);
+                }
+            }
+        }
+
+        private Rectangle[] CreatePatches(Rectangle rectangle)
+        {
+            var x = rectangle.X;
+            var y = rectangle.Y;
+            var w = rectangle.Width;
+            var h = rectangle.Height;
+            var middleWidth = w - LeftPadding - RightPadding;
+            var middleHeight = h - TopPadding - BottomPadding;
+            var bottomY = y + h - BottomPadding;
+            var rightX = x + w - RightPadding;
+            var leftX = x + LeftPadding;
+            var topY = y + TopPadding;
+            var patches = new[]
+            {
+                new Rectangle(x,      y,        LeftPadding,  TopPadding),      // top left
+                new Rectangle(leftX,  y,        middleWidth,  TopPadding),      // top middle
+                new Rectangle(rightX, y,        RightPadding, TopPadding),      // top right
+                new Rectangle(x,      topY,     LeftPadding,  middleHeight),    // left middle
+                new Rectangle(leftX,  topY,     middleWidth,  middleHeight),    // middle
+                new Rectangle(rightX, topY,     RightPadding, middleHeight),    // right middle
+                new Rectangle(x,      bottomY,  LeftPadding,  BottomPadding),   // bottom left
+                new Rectangle(leftX,  bottomY,  middleWidth,  BottomPadding),   // bottom middle
+                new Rectangle(rightX, bottomY,  RightPadding, BottomPadding)    // bottom right
+            };
+            return patches;
         }
 
     }
