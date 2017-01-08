@@ -47,6 +47,7 @@ namespace CoreGame.Managers
                 Sprites.Add("PlayerWalk", Content.Load<Texture2D>("Sprites/PlayerWalk"));
                 Sprites.Add("Slime", Content.Load<Texture2D>("Sprites/Slime"));
                 Sprites.Add("Tree", Content.Load<Texture2D>("Sprites/Tree"));
+                Sprites.Add("Backdrop", Content.Load<Texture2D>("Sprites/Backdrop"));
                 Sprites.Add("Window", Content.Load<Texture2D>("Sprites/Window"));
 
                 Sprites.Add("GroundTile0", Content.Load<Texture2D>("Sprites/Tiles/GroundTile0"));

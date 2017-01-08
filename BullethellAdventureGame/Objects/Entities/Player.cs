@@ -52,9 +52,13 @@ namespace CoreGame.Objects
                 Velocity += new Vector2(-1, 0);
             }
 
-            if (InputManager.Instance.isPressed(Keys.C))
+            if (InputManager.Instance.isPressed(Keys.C) || InputManager.Instance.controllerIsPressed(Buttons.A))
             {
                 animator.ChangeAnimation(attackAnimation);
+                if (!flipped)
+                    Velocity += new Vector2(10, 0);
+                else
+                    Velocity += new Vector2(-10, 0);
             }
 
             //Velocity += new Vector2(0, gravity);

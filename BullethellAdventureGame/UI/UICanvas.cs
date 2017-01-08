@@ -71,7 +71,7 @@ namespace CoreGame.UI
 
             if (menuButtons != null)
             {
-                if (InputManager.Instance.isPressed(Keys.Up))
+                if (InputManager.Instance.isPressed(Keys.Up) || InputManager.Instance.controllerIsPressed(Buttons.DPadUp))
                 {
                     if (menuIndex == 0)
                         menuIndex = menuButtons.Count - 1;
@@ -79,7 +79,7 @@ namespace CoreGame.UI
                         menuIndex--;
                 }
 
-                if (InputManager.Instance.isPressed(Keys.Down))
+                if (InputManager.Instance.isPressed(Keys.Down) || InputManager.Instance.controllerIsPressed(Buttons.DPadDown))
                 {
                     if (menuIndex == menuButtons.Count - 1)
                         menuIndex = 0;
@@ -87,7 +87,7 @@ namespace CoreGame.UI
                         menuIndex++;
                 }
 
-                if (InputManager.Instance.isPressed(Keys.Enter))
+                if (InputManager.Instance.isPressed(Keys.Enter) || InputManager.Instance.controllerIsPressed(Buttons.A))
                 {
                     menuButtons[menuIndex].OnButtonClicked();
                 }

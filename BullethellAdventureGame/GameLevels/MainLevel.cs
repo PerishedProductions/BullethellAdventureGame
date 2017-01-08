@@ -17,6 +17,8 @@ namespace CoreGame.GameLevels
         private Slime slime;
         public static Map map;
 
+        private Texture2D backdrop;
+
         public override void Initialize()
         {
             ReadJson reader = new ReadJson();
@@ -28,6 +30,8 @@ namespace CoreGame.GameLevels
             slime = new Slime();
             slime.Initialize("Slime");
             slime.Position = new Vector2(350, 200);
+
+            ResourceManager.Instance.Sprites.TryGetValue("Backdrop", out backdrop);
 
             //UIManager.Instance.ChangeCanvas(new PauseMenuCanvas());
         }
@@ -76,7 +80,15 @@ namespace CoreGame.GameLevels
 
         public override void Draw(SpriteBatch spriteBatch)
         {
+            //TODO: DO this another way with paralaxing
             var viewMatrix = cam.GetViewMatrix();
+            spriteBatch.Begin(SpriteSortMode.BackToFront, null, SamplerState.PointClamp, null, null, transformMatrix: viewMatrix);
+            map.Draw(spriteBatch);
+            spriteBatch.Draw(backdrop, Vector2.Zero, null, Color.White * 0.5f);
+            spriteBatch.Draw(backdrop, new Vector2(300, 0), null, Color.White * 0.5f);
+            spriteBatch.Draw(backdrop, new Vector2(600, 0), null, Color.White * 0.5f);
+            spriteBatch.End();
+
             spriteBatch.Begin(SpriteSortMode.BackToFront, null, SamplerState.PointClamp, null, null, transformMatrix: viewMatrix);
             map.Draw(spriteBatch);
             player.Draw(spriteBatch);
