@@ -4,7 +4,6 @@ using CoreGame.Managers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using System;
 
 namespace CoreGame.Objects
 {
@@ -97,48 +96,48 @@ namespace CoreGame.Objects
 
         public override void HandleCollision(Entity otherEntity)
         {
-            if (Velocity.X > 0)
+            if (!otherEntity.IsCollisionActive)
             {
-                if (PlaceMeeting(Position.X + BoundingBox.Width / 2 + Velocity.X, Position.Y + BoundingBox.Height / 2, otherEntity))
-                {
-                    while (!PlaceMeeting(Position.X + BoundingBox.Width / 2 + Math.Sign(Velocity.X), Position.Y + BoundingBox.Height / 2, otherEntity))
-                    {
-                        Position += new Vector2(Math.Sign(Velocity.X), 0);
-                    }
-                    Velocity = new Vector2(0, Velocity.Y);
-                }
-            }
-            else if (Velocity.X < 0)
-            {
-                if (PlaceMeeting(Position.X - BoundingBox.Width / 2 + Velocity.X, Position.Y - BoundingBox.Height / 2, otherEntity))
-                {
-                    while (!PlaceMeeting(Position.X - BoundingBox.Width / 2 + Math.Sign(Velocity.X), Position.Y - BoundingBox.Height / 2, otherEntity))
-                    {
-                        Position += new Vector2(Math.Sign(Velocity.X), 0);
-                    }
-                    Velocity = new Vector2(0, Velocity.Y);
-                }
+                return;
             }
 
+            //Move Right
+            if (Velocity.X > 0)
+            {
+                // Check if the top point or bottom point of the right wall are inside of the other entity
+                if (PlaceMeeting(Position.X + BoundingBox.Width / 2 + Velocity.X, Position.Y + BoundingBox.Height / 2, otherEntity) ||
+                    PlaceMeeting(Position.X + BoundingBox.Width / 2 + Velocity.X, Position.Y - BoundingBox.Height / 2, otherEntity))
+                {
+                    Velocity = new Vector2(0, Velocity.Y);
+                }
+            }
+            //Move Left
+            else if (Velocity.X < 0)
+            {
+                // Check if the top point or bottom point of the left wall are inside of the other entity
+                if (PlaceMeeting(Position.X - BoundingBox.Width / 2 + Velocity.X, Position.Y + BoundingBox.Height / 2, otherEntity) ||
+                    PlaceMeeting(Position.X + BoundingBox.Width / 2 + Velocity.X, Position.Y - BoundingBox.Height / 2, otherEntity))
+                {
+                    Velocity = new Vector2(0, Velocity.Y);
+                }
+            }
+            //Move Down
             if (Velocity.Y > 0)
             {
-                if (PlaceMeeting(Position.X + BoundingBox.Width / 2, Position.Y + BoundingBox.Height / 2 + Velocity.Y, otherEntity))
+                // Check if the left point or right point of the bottom wall are inside of the other entity
+                if (PlaceMeeting(Position.X + BoundingBox.Width / 2, Position.Y + BoundingBox.Height / 2 + Velocity.Y, otherEntity) ||
+                    PlaceMeeting(Position.X - BoundingBox.Width / 2, Position.Y + BoundingBox.Height / 2 + Velocity.Y, otherEntity))
                 {
-                    while (!PlaceMeeting(Position.X + BoundingBox.Width / 2, Position.Y + BoundingBox.Height / 2 + Math.Sign(Velocity.Y), otherEntity))
-                    {
-                        Position += new Vector2(0, Math.Sign(Velocity.Y));
-                    }
                     Velocity = new Vector2(Velocity.X, 0);
                 }
             }
+            //Move Up
             else if (Velocity.Y < 0)
             {
-                if (PlaceMeeting(Position.X - BoundingBox.Width / 2, Position.Y - BoundingBox.Height / 2 + Velocity.Y, otherEntity))
+                // Check if the left point or right point of the top wall are inside of the other entity
+                if (PlaceMeeting(Position.X + BoundingBox.Width / 2, Position.Y - BoundingBox.Height / 2 + Velocity.Y, otherEntity) ||
+                    PlaceMeeting(Position.X - BoundingBox.Width / 2, Position.Y + BoundingBox.Height / 2 + Velocity.Y, otherEntity))
                 {
-                    while (!PlaceMeeting(Position.X - BoundingBox.Width / 2, Position.Y - BoundingBox.Height / 2 + Math.Sign(Velocity.Y), otherEntity))
-                    {
-                        Position += new Vector2(0, Math.Sign(Velocity.Y));
-                    }
                     Velocity = new Vector2(Velocity.X, 0);
                 }
             }
