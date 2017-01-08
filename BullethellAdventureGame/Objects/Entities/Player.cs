@@ -57,7 +57,7 @@ namespace CoreGame.Objects
                 animator.ChangeAnimation(attackAnimation);
             }
 
-            Velocity += new Vector2(0, gravity);
+            //Velocity += new Vector2(0, gravity);
 
             if (InputManager.Instance.isPressed(Keys.Z))
             {
@@ -116,7 +116,7 @@ namespace CoreGame.Objects
             {
                 // Check if the top point or bottom point of the left wall are inside of the other entity
                 if (PlaceMeeting(Position.X - BoundingBox.Width / 2 + Velocity.X, Position.Y + BoundingBox.Height / 2, otherEntity) ||
-                    PlaceMeeting(Position.X + BoundingBox.Width / 2 + Velocity.X, Position.Y - BoundingBox.Height / 2, otherEntity))
+                    PlaceMeeting(Position.X - BoundingBox.Width / 2 + Velocity.X, Position.Y - BoundingBox.Height / 2, otherEntity))
                 {
                     Velocity = new Vector2(0, Velocity.Y);
                 }
@@ -136,7 +136,7 @@ namespace CoreGame.Objects
             {
                 // Check if the left point or right point of the top wall are inside of the other entity
                 if (PlaceMeeting(Position.X + BoundingBox.Width / 2, Position.Y - BoundingBox.Height / 2 + Velocity.Y, otherEntity) ||
-                    PlaceMeeting(Position.X - BoundingBox.Width / 2, Position.Y + BoundingBox.Height / 2 + Velocity.Y, otherEntity))
+                    PlaceMeeting(Position.X - BoundingBox.Width / 2, Position.Y - BoundingBox.Height / 2 + Velocity.Y, otherEntity))
                 {
                     Velocity = new Vector2(Velocity.X, 0);
                 }
