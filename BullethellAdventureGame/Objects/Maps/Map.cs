@@ -1,5 +1,4 @@
-﻿using CoreGame.Utilities;
-using LitJson;
+﻿using LitJson;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
@@ -38,6 +37,7 @@ namespace CoreGame.Objects
                     if (tile != "0")
                     {
                         Tile newTile = new Tile(int.Parse(tile));
+                        newTile.IsCollisionActive = true;
                         newTile.Position = new Vector2(x * tileSize, y * tileSize);
                         newTile.Initialize();
                         tiles.Add(newTile);
