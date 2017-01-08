@@ -39,6 +39,8 @@ namespace CoreGame
 
             LevelManager.Instance.viewport = GraphicsDevice.Viewport;
             LevelManager.Instance.currentLevel.Initialize();
+
+            GameManager.Instance.Game = this;
             base.Initialize();
         }
 

@@ -16,10 +16,10 @@ namespace CoreGame.UI
         public ColorTheme windowTheme = ColorTheme.Dark;
         public bool visible = true;
 
-        int TopPadding = 5;
-        int LeftPadding = 5;
-        int BottomPadding = 5;
-        int RightPadding = 5;
+        private int TopPadding = 5;
+        private int LeftPadding = 5;
+        private int BottomPadding = 5;
+        private int RightPadding = 5;
 
         public List<UIElement> elements = new List<UIElement>();
 

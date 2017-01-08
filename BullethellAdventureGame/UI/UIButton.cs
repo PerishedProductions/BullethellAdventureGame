@@ -8,19 +8,19 @@ namespace CoreGame.UI
     public class UIButton : UIElement
     {
 
-        UIText text;
-        Rectangle size;
-        Texture2D sprite;
+        private UIText text;
+        private Rectangle size;
+        private Texture2D sprite;
         public string textureName;
 
         public bool Selected { get; set; } = false;
 
         public ColorTheme windowTheme = ColorTheme.Dark;
 
-        int TopPadding = 5;
-        int LeftPadding = 5;
-        int BottomPadding = 5;
-        int RightPadding = 5;
+        private int TopPadding = 5;
+        private int LeftPadding = 5;
+        private int BottomPadding = 5;
+        private int RightPadding = 5;
 
         public UIButton(String text, Rectangle size, UICanvas canvas)
         {

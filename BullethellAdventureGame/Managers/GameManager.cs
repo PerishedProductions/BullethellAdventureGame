@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.Xna.Framework;
 
 namespace CoreGame.Managers
 {
@@ -14,6 +10,12 @@ namespace CoreGame.Managers
         private GameManager() { }
 
         public bool Paused = false;
+        public Game Game;
+
+        public void CloseGame()
+        {
+            Game.Exit();
+        }
 
     }
 }

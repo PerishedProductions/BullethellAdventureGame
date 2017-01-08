@@ -12,8 +12,6 @@ namespace CoreGame.Managers
 
         public UICanvas currentCanvas;
 
-        //TODO: Make it able to store multiple canvases
-
         /// <summary>
         /// Changes out the current canvas for a new one
         /// </summary>
@@ -21,8 +19,11 @@ namespace CoreGame.Managers
         public void ChangeCanvas(UICanvas canvas)
         {
             currentCanvas = canvas;
-            currentCanvas.Initialize();
-            currentCanvas.LoadContent();
+            if (canvas != null)
+            {
+                currentCanvas.Initialize();
+                currentCanvas.LoadContent();
+            }
         }
 
     }

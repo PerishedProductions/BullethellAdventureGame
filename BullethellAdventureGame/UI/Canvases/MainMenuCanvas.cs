@@ -20,15 +20,20 @@ namespace CoreGame.UI
         {
             ResourceManager.Instance.Sprites.TryGetValue("Window", out backdrop);
 
-            title = (UIText)CreateUIElement(new UIText(new Vector2(10, 5), "GAME TITLE!!!"), UILayer.Middle);
-            startGameButton = (UIButton)CreateUIElement(new UIButton("Start Game", new Rectangle(10, 50, 300, 50), this), UILayer.Middle);
+            title = (UIText)CreateUIElement(new UIText(new Rectangle(0, 0, 1280, 300), "GAME TITLE!!!", Alignment.Center), UILayer.Middle);
+            startGameButton = (UIButton)CreateUIElement(new UIButton("Start Game", new Rectangle(1280 / 2 - 300 / 2, 300, 300, 50), this), UILayer.Middle);
             startGameButton.onButtonClicked += () =>
             {
                 LevelManager.Instance.ChangeLevel(new MainLevel());
+                UIManager.Instance.ChangeCanvas(null);
             };
 
-            settingsButton = (UIButton)CreateUIElement(new UIButton("Settings", new Rectangle(10, 105, 300, 50), this), UILayer.Middle);
-            exitButton = (UIButton)CreateUIElement(new UIButton("Exit Game", new Rectangle(10, 160, 300, 50), this), UILayer.Middle);
+            settingsButton = (UIButton)CreateUIElement(new UIButton("Settings", new Rectangle(1280 / 2 - 300 / 2, 355, 300, 50), this), UILayer.Middle);
+            exitButton = (UIButton)CreateUIElement(new UIButton("Exit Game", new Rectangle(1280 / 2 - 300 / 2, 410, 300, 50), this), UILayer.Middle);
+            exitButton.onButtonClicked += () =>
+            {
+                GameManager.Instance.CloseGame();
+            };
 
             base.LoadContent();
         }

@@ -1,12 +1,9 @@
-﻿using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Content;
+﻿using CoreGame.Managers;
 using Microsoft.Xna.Framework;
-using CoreGame.Managers;
-using System.Diagnostics;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace CoreGame.UI
 {
-
     public enum Alignment { Left, Center, Right }
 
     public class UIText : UIElement
@@ -53,11 +50,6 @@ namespace CoreGame.UI
                         break;
                 }
             }
-        }
-
-        public override void Update(GameTime gameTime)
-        {
-
         }
 
         public override void Draw(SpriteBatch spriteBatch)
