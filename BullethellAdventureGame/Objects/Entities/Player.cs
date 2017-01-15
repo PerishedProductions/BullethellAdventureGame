@@ -1,5 +1,4 @@
-﻿using CoreGame.GameLevels;
-using CoreGame.Graphics;
+﻿using CoreGame.Graphics;
 using CoreGame.Managers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -7,15 +6,13 @@ using Microsoft.Xna.Framework.Input;
 
 namespace CoreGame.Objects
 {
-    public class Player : Entity
+    public class Player : DynamicEntity
     {
         private Animator animator;
         private Animation idleAnimationSword;
         private Animation walkingAnimation;
         private Animation attackAnimation;
 
-        public Vector2 Velocity { get; set; }
-        private int gravity = 2;
         private bool flipped = false;
 
         public override void Initialize(string spriteName, string collisonSpriteName)
@@ -52,7 +49,7 @@ namespace CoreGame.Objects
                 Velocity += new Vector2(-1, 0);
             }
 
-            if (InputManager.Instance.isPressed(Keys.C) || InputManager.Instance.controllerIsPressed(Buttons.A))
+            if (InputManager.Instance.isPressed(Keys.C) || InputManager.Instance.controllerIsPressed(Buttons.X))
             {
                 animator.ChangeAnimation(attackAnimation);
                 if (!flipped)
@@ -61,19 +58,12 @@ namespace CoreGame.Objects
                     Velocity += new Vector2(-10, 0);
             }
 
-            //Velocity += new Vector2(0, gravity);
+            base.Update(gameTime);
 
-            if (InputManager.Instance.isPressed(Keys.Z))
+            if (InputManager.Instance.isPressed(Keys.Z) || InputManager.Instance.controllerIsPressed(Buttons.A))
             {
-                Velocity += new Vector2(0, -10);
+                Velocity += new Vector2(0, -20);
             }
-
-            for (int i = 0; i < MainLevel.map.tiles.Count; i++)
-            {
-                HandleCollision(MainLevel.map.tiles[i]);
-            }
-
-            Position += Velocity;
 
             if (Velocity.X < 0 && !flipped)
                 flipped = !flipped;
@@ -97,66 +87,5 @@ namespace CoreGame.Objects
             //spriteBatch.Draw(collisionSprite, BoundingBox, Color.White);
             animator.Draw(spriteBatch, RotationAngle, Origin, flipped);
         }
-
-        public override void HandleCollision(Entity otherEntity)
-        {
-            if (!otherEntity.IsCollisionActive)
-            {
-                return;
-            }
-
-            //Move Right
-            if (Velocity.X > 0)
-            {
-                // Check if the top point or bottom point of the right wall are inside of the other entity
-                if (PlaceMeeting(Position.X + BoundingBox.Width / 2 + Velocity.X, Position.Y + BoundingBox.Height / 2, otherEntity) ||
-                    PlaceMeeting(Position.X + BoundingBox.Width / 2 + Velocity.X, Position.Y - BoundingBox.Height / 2, otherEntity))
-                {
-                    Velocity = new Vector2(0, Velocity.Y);
-                }
-            }
-            //Move Left
-            else if (Velocity.X < 0)
-            {
-                // Check if the top point or bottom point of the left wall are inside of the other entity
-                if (PlaceMeeting(Position.X - BoundingBox.Width / 2 + Velocity.X, Position.Y + BoundingBox.Height / 2, otherEntity) ||
-                    PlaceMeeting(Position.X - BoundingBox.Width / 2 + Velocity.X, Position.Y - BoundingBox.Height / 2, otherEntity))
-                {
-                    Velocity = new Vector2(0, Velocity.Y);
-                }
-            }
-            //Move Down
-            if (Velocity.Y > 0)
-            {
-                // Check if the left point or right point of the bottom wall are inside of the other entity
-                if (PlaceMeeting(Position.X + BoundingBox.Width / 2, Position.Y + BoundingBox.Height / 2 + Velocity.Y, otherEntity) ||
-                    PlaceMeeting(Position.X - BoundingBox.Width / 2, Position.Y + BoundingBox.Height / 2 + Velocity.Y, otherEntity))
-                {
-                    Velocity = new Vector2(Velocity.X, 0);
-                }
-            }
-            //Move Up
-            else if (Velocity.Y < 0)
-            {
-                // Check if the left point or right point of the top wall are inside of the other entity
-                if (PlaceMeeting(Position.X + BoundingBox.Width / 2, Position.Y - BoundingBox.Height / 2 + Velocity.Y, otherEntity) ||
-                    PlaceMeeting(Position.X - BoundingBox.Width / 2, Position.Y - BoundingBox.Height / 2 + Velocity.Y, otherEntity))
-                {
-                    Velocity = new Vector2(Velocity.X, 0);
-                }
-            }
-        }
-
-        bool PlaceMeeting(float x, float y, Entity otherEntity)
-        {
-            Vector2 point = new Vector2(x, y);
-
-            if (otherEntity.BoundingBox.Contains(point))
-            {
-                return true;
-            }
-            return false;
-        }
-
     }
 }

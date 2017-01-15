@@ -20,12 +20,12 @@ namespace CoreGame.UI
         {
             ResourceManager.Instance.Sprites.TryGetValue("Window", out backdrop);
 
-            title = (UIText)CreateUIElement(new UIText(new Rectangle(0, 0, 1280, 300), "GAME TITLE!!!", Alignment.Center), UILayer.Middle);
+            title = (UIText)CreateUIElement(new UIText(new Rectangle(0, 0, 1280, 300), "GAME TITLE!!!", Alignment.Center, TextSize.Huge), UILayer.Middle);
             startGameButton = (UIButton)CreateUIElement(new UIButton("Start Game", new Rectangle(1280 / 2 - 300 / 2, 300, 300, 50), this), UILayer.Middle);
             startGameButton.onButtonClicked += () =>
             {
                 LevelManager.Instance.ChangeLevel(new MainLevel());
-                UIManager.Instance.ChangeCanvas(null);
+                UIManager.Instance.ChangeCanvas(new PlayerHudCanvas());
             };
 
             settingsButton = (UIButton)CreateUIElement(new UIButton("Settings", new Rectangle(1280 / 2 - 300 / 2, 355, 300, 50), this), UILayer.Middle);

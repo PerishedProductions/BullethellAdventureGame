@@ -6,7 +6,6 @@ namespace CoreGame.Objects
 {
     public abstract class Entity
     {
-
         public string Name { get; set; }
         public Vector2 Position { get; set; }
         public bool IsCollisionActive { get; set; }

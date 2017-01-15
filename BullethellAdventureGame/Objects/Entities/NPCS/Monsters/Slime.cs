@@ -1,21 +1,27 @@
 ﻿using CoreGame.Graphics;
-using Microsoft.Xna.Framework.Graphics;
+using CoreGame.Managers;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 
 namespace CoreGame.Objects.Entities.NPCS.Monsters
 {
-    class Slime : Monster
+    public class Slime : Monster
     {
-
-        public override void Initialize(string spriteName)
+        public override void Initialize(string spriteName, string collisionSprite)
         {
-            base.Initialize(spriteName);
+            base.Initialize(spriteName, collisionSprite);
             idle = new Animation(sprite, 25, 20, 0, 6, 100, true);
             animator = new Animator(idle);
         }
 
-        public override void Draw(SpriteBatch spriteBatch)
+        public override void Update(GameTime gameTime)
         {
-            base.Draw(spriteBatch);
+            Velocity = Vector2.Zero;
+            if (InputManager.Instance.isDown(Keys.B))
+            {
+                Velocity -= new Vector2(0, 10);
+            }
+            base.Update(gameTime);
         }
 
     }

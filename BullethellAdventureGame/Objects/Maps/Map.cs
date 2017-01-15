@@ -1,4 +1,5 @@
-﻿using LitJson;
+﻿using CoreGame.Objects.Entities.NPCS.Monsters;
+using LitJson;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
@@ -16,6 +17,9 @@ namespace CoreGame.Objects
         public int columns;
         public int tileSize;
 
+        public Player player;
+        public List<Entity> entities = new List<Entity>();
+
         public Map(JsonData data)
         {
             LoadMap(data);
@@ -26,6 +30,10 @@ namespace CoreGame.Objects
             rows = (int)data["rows"];
             columns = (int)data["columns"];
             tileSize = (int)data["tileSize"];
+
+            player = new Player();
+            player.Initialize("PlayerAnimations", "PlayerCollision");
+            player.Position = new Vector2((int)data["playerPos"][0], (int)data["playerPos"][1]);
 
             for (int y = 0; y < rows; y++)
             {
@@ -42,6 +50,20 @@ namespace CoreGame.Objects
                         newTile.Initialize();
                         tiles.Add(newTile);
                     }
+                }
+            }
+
+            for (int i = 0; i < data["entities"].Count; i++)
+            {
+                string name = data["entities"][i]["name"].ToString();
+                switch (name)
+                {
+                    case "slime":
+                        Slime slime = new Slime();
+                        slime.Initialize("Slime", "SlimeCollision");
+                        slime.Position = new Vector2((int)data["entities"][i]["position"][0], (int)data["entities"][i]["position"][1]);
+                        entities.Add(slime);
+                        break;
                 }
             }
         }
@@ -74,8 +96,22 @@ namespace CoreGame.Objects
             return null;
         }
 
+        public virtual void Update(GameTime gameTime)
+        {
+            player.Update(gameTime);
+            for (int i = 0; i < entities.Count; i++)
+            {
+                entities[i].Update(gameTime);
+            }
+        }
+
         public virtual void Draw(SpriteBatch spriteBatch)
         {
+            player.Draw(spriteBatch);
+            for (int i = 0; i < entities.Count; i++)
+            {
+                entities[i].Draw(spriteBatch);
+            }
             for (int i = 0; i < tiles.Count; i++)
             {
                 tiles[i].Draw(spriteBatch);

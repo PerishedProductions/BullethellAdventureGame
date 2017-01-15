@@ -46,6 +46,7 @@ namespace CoreGame.Managers
                 Sprites.Add("PlayerAnimations", Content.Load<Texture2D>("Sprites/PlayerAnimations"));
                 Sprites.Add("PlayerWalk", Content.Load<Texture2D>("Sprites/PlayerWalk"));
                 Sprites.Add("Slime", Content.Load<Texture2D>("Sprites/Slime"));
+                Sprites.Add("SlimeCollision", Content.Load<Texture2D>("Sprites/SlimeCollision"));
                 Sprites.Add("Tree", Content.Load<Texture2D>("Sprites/Tree"));
                 Sprites.Add("Backdrop", Content.Load<Texture2D>("Sprites/Backdrop"));
                 Sprites.Add("Window", Content.Load<Texture2D>("Sprites/Window"));
@@ -64,6 +65,7 @@ namespace CoreGame.Managers
                 Fonts.Add("FontSmall", Content.Load<SpriteFont>("Fonts/FontSmall"));
                 Fonts.Add("FontMedium", Content.Load<SpriteFont>("Fonts/FontMedium"));
                 Fonts.Add("FontBig", Content.Load<SpriteFont>("Fonts/FontBig"));
+                Fonts.Add("FontHuge", Content.Load<SpriteFont>("Fonts/FontHuge"));
                 loaded = true;
             }
         }

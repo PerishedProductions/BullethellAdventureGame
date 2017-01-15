@@ -69,7 +69,7 @@ namespace CoreGame.UI
                 frontLayer[i].Update(gameTime);
             }
 
-            if (menuButtons != null)
+            if (menuButtons.Count != 0)
             {
                 if (InputManager.Instance.isPressed(Keys.Up) || InputManager.Instance.controllerIsPressed(Buttons.DPadUp))
                 {

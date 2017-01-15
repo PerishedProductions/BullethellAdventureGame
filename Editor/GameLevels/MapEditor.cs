@@ -1,6 +1,7 @@
 ﻿using CoreGame.GameLevels;
 using CoreGame.Managers;
 using CoreGame.Objects;
+using CoreGame.Objects.Entities.NPCS.Monsters;
 using CoreGame.Utilities;
 using Editor.DataContainers;
 using Editor.Objects;
@@ -10,6 +11,7 @@ using GeonBit.UI.Entities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Diagnostics;
 
 namespace Editor.GameLevels
 {
@@ -28,6 +30,8 @@ namespace Editor.GameLevels
         private bool overUI = false;
 
         private Tile previewTile;
+        private CoreGame.Objects.Entity previewEntity;
+
         private SpriteFont font;
 
         private EditorMode editorMode = EditorMode.TileMode;
@@ -37,6 +41,9 @@ namespace Editor.GameLevels
             previewTile = new Tile(1);
             previewTile.Initialize("GroundTile1");
             ResourceManager.Instance.Fonts.TryGetValue("FontMedium", out font);
+
+            previewEntity = new Slime();
+            previewEntity.Initialize("Slime");
 
             UIManager = new UserInterface(ResourceManager.Instance.Content);
             UIManager.Initialize();
@@ -76,24 +83,24 @@ namespace Editor.GameLevels
             Button newMap = new Button("New Map", ButtonSkin.Default, Anchor.TopCenter, new Vector2(290, 60), null);
             newMap.OnClick = (GeonBit.UI.Entities.Entity btn) =>
             {
-                TogglePanel(filePanel);
                 NewMap();
+                TogglePanel(filePanel);
             };
             filePanel.AddChild(newMap);
 
             Button loadMap = new Button("Load Map", ButtonSkin.Default, Anchor.TopCenter, new Vector2(290, 60), new Vector2(0, 65));
             loadMap.OnClick = (GeonBit.UI.Entities.Entity btn) =>
             {
-                TogglePanel(filePanel);
                 LoadMap();
+                TogglePanel(filePanel);
             };
             filePanel.AddChild(loadMap);
 
             Button saveMap = new Button("Save Map", ButtonSkin.Default, Anchor.TopCenter, new Vector2(290, 60), new Vector2(0, 130));
             saveMap.OnClick = (GeonBit.UI.Entities.Entity btn) =>
             {
-                TogglePanel(filePanel);
                 SaveMap();
+                TogglePanel(filePanel);
             };
             filePanel.AddChild(saveMap);
 
@@ -171,6 +178,7 @@ namespace Editor.GameLevels
 
         public override void Update(GameTime gameTime)
         {
+
             if (InputManager.Instance.isDown(Keys.W))
             {
                 cam.position += new Vector2(0, -2);
@@ -221,11 +229,23 @@ namespace Editor.GameLevels
                     for (int i = 0; i < map.tiles.Count; i++)
                     {
                         EditorTile temp = (EditorTile)map.tiles[i];
-                        temp.Update(gameTime, previewTile);
+                        if (temp.BoundingBox.Contains(InputManager.Instance.getMouseWorldPos(cam.GetViewMatrix())) && InputManager.Instance.mouseIsPressed(CoreGame.Managers.MouseButton.Left))
+                        {
+                            Debug.WriteLine("Mouse Pos" + InputManager.Instance.getMouseWorldPos(cam.GetViewMatrix()));
+                            Debug.WriteLine("Pos" + temp.Position);
+                            temp.Id = previewTile.Id;
+                            temp.Initialize();
+                        }
                     }
                 }
             }
-            previewTile.Position = InputManager.Instance.getMouseWorldPos(cam.GetViewMatrix());
+
+            if (editorMode == EditorMode.EntityMode)
+            {
+                previewEntity.Position = InputManager.Instance.getMousePos();
+                previewEntity.Update(gameTime);
+                map.Update(gameTime);
+            }
 
             UIManager.Update(gameTime);
             base.Update(gameTime);
@@ -255,6 +275,7 @@ namespace Editor.GameLevels
                     spriteBatch.DrawString(font, "GroundTile" + previewTile.Id, InputManager.Instance.getMousePos() + new Vector2(30, 0), Color.White);
                     break;
                 case EditorMode.EntityMode:
+                    previewEntity.Draw(spriteBatch);
                     break;
                 case EditorMode.CollisionMode:
                     break;

@@ -1,12 +1,8 @@
-﻿using CoreGame.Objects;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CoreGame.Managers;
+using CoreGame.Objects;
+using CoreGame.Objects.Entities.NPCS.Monsters;
 using LitJson;
 using Microsoft.Xna.Framework;
-using CoreGame.Managers;
 
 namespace Editor.Objects.Entities
 {
@@ -24,6 +20,10 @@ namespace Editor.Objects.Entities
             columns = (int)data["columns"];
             tileSize = (int)data["tileSize"];
 
+            player = new Player();
+            player.Initialize("PlayerAnimations", "PlayerCollision");
+            player.Position = new Vector2((int)data["playerPos"][0], (int)data["playerPos"][1]);
+
             for (int y = 0; y < rows; y++)
             {
                 string mapString = (string)data["tiles"][y];
@@ -36,6 +36,29 @@ namespace Editor.Objects.Entities
                     tiles.Add(newTile);
                 }
             }
+
+            for (int i = 0; i < data["entities"].Count; i++)
+            {
+                string name = data["entities"][i]["name"].ToString();
+                switch (name)
+                {
+                    case "slime":
+                        Slime slime = new Slime();
+                        slime.Initialize("Slime");
+                        slime.Position = new Vector2((int)data["entities"][i]["position"][0], (int)data["entities"][i]["position"][1]);
+                        entities.Add(slime);
+                        break;
+                }
+            }
         }
+
+        public override void Update(GameTime gameTime)
+        {
+            for (int i = 0; i < entities.Count; i++)
+            {
+                entities[i].Update(gameTime);
+            }
+        }
+
     }
 }

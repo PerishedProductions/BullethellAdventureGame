@@ -1,6 +1,5 @@
 ﻿using CoreGame.Managers;
 using CoreGame.Objects;
-using CoreGame.Objects.Entities.NPCS.Monsters;
 using CoreGame.UI;
 using CoreGame.Utilities;
 using Microsoft.Xna.Framework;
@@ -13,8 +12,6 @@ namespace CoreGame.GameLevels
     public class MainLevel : GameLevel
     {
         private Camera cam;
-        private Player player;
-        private Slime slime;
         public static Map map;
 
         private Texture2D backdrop;
@@ -23,13 +20,6 @@ namespace CoreGame.GameLevels
         {
             ReadJson reader = new ReadJson();
             map = new Map(reader.ReadData("Data/New Map.json"));
-            player = new Player();
-            player.Initialize("PlayerAnimations", "PlayerCollision");
-            player.Position = new Vector2(300, 100);
-
-            slime = new Slime();
-            slime.Initialize("Slime");
-            slime.Position = new Vector2(350, 200);
 
             ResourceManager.Instance.Sprites.TryGetValue("Backdrop", out backdrop);
 
@@ -52,7 +42,7 @@ namespace CoreGame.GameLevels
                 }
                 else
                 {
-                    //TODO: Add main gui
+                    UIManager.Instance.ChangeCanvas(new PlayerHudCanvas());
                 }
             }
 
@@ -70,9 +60,8 @@ namespace CoreGame.GameLevels
                     cam.zoom -= .1f;
                 }
 
-                cam.LookAtSmooth(player.Position);
-                player.Update(gameTime);
-                slime.Update(gameTime);
+                map.Update(gameTime);
+                cam.LookAtSmooth(map.player.Position);
             }
 
             base.Update(gameTime);
@@ -80,19 +69,10 @@ namespace CoreGame.GameLevels
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            //TODO: DO this another way with paralaxing
             var viewMatrix = cam.GetViewMatrix();
             spriteBatch.Begin(SpriteSortMode.BackToFront, null, SamplerState.PointClamp, null, null, transformMatrix: viewMatrix);
+            spriteBatch.Draw(backdrop, new Vector2(map.player.Position.X / 10 - 100, -50), null, Color.White * 0.5f);
             map.Draw(spriteBatch);
-            spriteBatch.Draw(backdrop, Vector2.Zero, null, Color.White * 0.5f);
-            spriteBatch.Draw(backdrop, new Vector2(300, 0), null, Color.White * 0.5f);
-            spriteBatch.Draw(backdrop, new Vector2(600, 0), null, Color.White * 0.5f);
-            spriteBatch.End();
-
-            spriteBatch.Begin(SpriteSortMode.BackToFront, null, SamplerState.PointClamp, null, null, transformMatrix: viewMatrix);
-            map.Draw(spriteBatch);
-            player.Draw(spriteBatch);
-            slime.Draw(spriteBatch);
             spriteBatch.End();
         }
     }

@@ -53,6 +53,7 @@
     <Compile Include="Objects\Entities\Bullets\BulletBehaviorActions\BulletSpawnBehaviorAction.cs" />
     <Compile Include="Objects\Entities\Bullets\BulletBehaviorActions\BulletSpeedBehaviorAction.cs" />
     <Compile Include="Objects\Entities\Bullets\BulletBehaviorActions\Utility\SpawnPoint.cs" />
+    <Compile Include="Objects\Entities\DynamicEntity.cs" />
     <Compile Include="Objects\Entities\Entity.cs" />
     <Compile Include="Objects\Entities\IBehaviorAction.cs" />
     <Compile Include="Objects\Entities\IBehaviorManager.cs" />
@@ -71,6 +72,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UI\Canvases\MainMenuCanvas.cs" />
     <Compile Include="UI\Canvases\PauseMenuCanvas.cs" />
+    <Compile Include="UI\Canvases\PlayerHudCanvas.cs" />
     <Compile Include="UI\UIButton.cs" />
     <Compile Include="UI\UICanvas.cs" />
     <Compile Include="UI\UIElement.cs" />

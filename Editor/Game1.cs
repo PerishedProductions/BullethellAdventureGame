@@ -1,13 +1,8 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using System.Collections.Generic;
-
-// using GeonBit UI elements
-using GeonBit.UI;
-using GeonBit.UI.Entities;
+﻿// using GeonBit UI elements
 using CoreGame.Managers;
 using Editor.GameLevels;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Editor
 {
@@ -59,7 +54,10 @@ namespace Editor
         /// here we call the UI manager update() function to update the UI.
         protected override void Update(GameTime gameTime)
         {
-            LevelManager.Instance.currentLevel.Update(gameTime);
+            if (this.IsActive)
+            {
+                LevelManager.Instance.currentLevel.Update(gameTime);
+            }
 
             // tbd add your own update() stuff here..
 

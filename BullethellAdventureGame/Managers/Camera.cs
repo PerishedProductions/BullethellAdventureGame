@@ -15,7 +15,7 @@ namespace CoreGame.Managers
             this.viewport = viewport;
 
             rotation = 0;
-            zoom = 5f;
+            zoom = 2.8f;
             origin = new Vector2(viewport.Width / 2, viewport.Height / 2);
             position = Vector2.Zero;
         }

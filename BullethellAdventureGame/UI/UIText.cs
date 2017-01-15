@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 namespace CoreGame.UI
 {
     public enum Alignment { Left, Center, Right }
+    public enum TextSize { Small, Medium, Big, Huge }
 
     public class UIText : UIElement
     {
@@ -14,6 +15,7 @@ namespace CoreGame.UI
         private Rectangle container;
         private SpriteFont font;
         private Alignment alignment = Alignment.Left;
+        private TextSize textSize = TextSize.Medium;
 
         public UIText(Vector2 pos, string text)
         {
@@ -28,6 +30,14 @@ namespace CoreGame.UI
             this.container = container;
         }
 
+        public UIText(Rectangle container, string text, Alignment alignment, TextSize textSize)
+        {
+            this.text = text;
+            this.alignment = alignment;
+            this.container = container;
+            this.textSize = textSize;
+        }
+
         public override void Initialize()
         {
 
@@ -35,7 +45,21 @@ namespace CoreGame.UI
 
         public override void LoadContent()
         {
-            ResourceManager.Instance.Fonts.TryGetValue("FontMedium", out font);
+            switch (textSize)
+            {
+                case TextSize.Small:
+                    ResourceManager.Instance.Fonts.TryGetValue("FontSmall", out font);
+                    break;
+                case TextSize.Medium:
+                    ResourceManager.Instance.Fonts.TryGetValue("FontMedium", out font);
+                    break;
+                case TextSize.Big:
+                    ResourceManager.Instance.Fonts.TryGetValue("FontBig", out font);
+                    break;
+                case TextSize.Huge:
+                    ResourceManager.Instance.Fonts.TryGetValue("FontHuge", out font);
+                    break;
+            }
 
             if (container != null)
             {

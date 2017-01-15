@@ -2,9 +2,6 @@
 {
     public class Monster : NPC
     {
-        public override void HandleCollision(Entity otherEntity)
-        {
 
-        }
     }
 }

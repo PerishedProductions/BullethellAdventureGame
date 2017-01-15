@@ -4,18 +4,14 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace CoreGame.Objects.Entities.NPCS
 {
-    public class NPC : Entity
+    public class NPC : DynamicEntity
     {
         public Animator animator;
         public Animation idle;
 
-        public override void HandleCollision(Entity otherEntity)
-        {
-
-        }
-
         public override void Update(GameTime gameTime)
         {
+            base.Update(gameTime);
             animator.Update(gameTime, Position);
         }
 
